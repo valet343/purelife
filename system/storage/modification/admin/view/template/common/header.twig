@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html dir="{{ direction }}" lang="{{ lang }}">
+<head>
+<link rel="icon" href="view/image/favicon.svg">
+<meta charset="UTF-8" />
+<title>{{ title }}</title>
+<base href="{{ base }}" />
+{% if description %}
+<meta name="description" content="{{ description }}" />
+{% endif %}
+{% if keywords %}
+<meta name="keywords" content="{{ keywords }}" />
+{% endif %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+<script type="text/javascript" src="view/javascript/jquery/jquery-2.1.1.min.js"></script>
+
+					<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+				
+<script type="text/javascript" src="view/javascript/bootstrap/js/bootstrap.min.js"></script>
+<link href="view/stylesheet/bootstrap.css" type="text/css" rel="stylesheet" />
+<link href="view/javascript/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+<script src="view/javascript/jquery/datetimepicker/moment/moment.min.js" type="text/javascript"></script>
+<script src="view/javascript/jquery/datetimepicker/moment/moment-with-locales.min.js" type="text/javascript"></script>
+<script src="view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+<link href="view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" media="screen" />
+<link type="text/css" href="view/stylesheet/stylesheet.css" rel="stylesheet" media="screen" />
+<link type="text/css" href="view/stylesheet/dc_styles.css?v=2" rel="stylesheet" media="screen" />
+{% for style in styles %}
+<link type="text/css" href="{{ style.href }}" rel="{{ style.rel }}" media="{{ style.media }}" />
+{% endfor %}
+{% for link in links %}
+<link href="{{ link.href }}" rel="{{ link.rel }}" />
+{% endfor %}
+<script src="view/javascript/common.js" type="text/javascript"></script>
+{% for script in scripts %}
+<script type="text/javascript" src="{{ script }}"></script>
+{% endfor %}
+<!--OC15-TE-->
+<script type="text/javascript" src="view/javascript/client_translate_expert.js?v=02.06.1000"></script>
+<link type="text/css" rel="stylesheet" href="view/stylesheet/client_translate_expert.css?v=02.06.1000" />
+
+</head>
+<body>
+
+				{% if warning_file_update_speedy %}
+				<div class="modal" tabindex="-1" role="dialog" id="update_speedy_modal">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				        <h4 class="modal-title"><i class="fa fa-cog"></i> Выполните обновление</h4>
+				      </div>
+				      <div class="modal-body">
+				        <p>Будь ласка, виконайте оновлення шаблону до кінця.</p>
+				        <p>Натисніть на це посилання: <a target="_blank" href="{{ update_speedy_file_link }}"><b>update_speedy.php</b></a></p>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<script>
+				  $(document).ready(function() {
+
+				    $('#update_speedy_modal').modal();
+				  })
+				</script>
+				{% endif %}
+	      	
+<div id="container">
+<header id="header" class="navbar navbar-static-top">
+
+<script>
+	document.js_const_client_translate_expert_is_enabled = {{ client_translate_expert_is_enabled }};
+	document.js_const_client_translate_expert_languages = {{ client_translate_expert_languages }};
+</script>
+	  
+  <div class="container-fluid">
+    <div id="header-logo" class="navbar-header"><a href="{{ home }}" class="navbar-brand pro-label"><img src="view/image/logo_left.svg" alt="{{ heading_title }}" title="{{ heading_title }}" /></a><button class="change_theme"></button></div>
+    {% if logged %}<a href="#" id="button-menu" class="hidden-md hidden-lg"><span class="fa fa-bars"></span></a>
+    <ul class="nav pull-left">
+      <li class="dropdown dropdown_plus"><a class="dropdown-toggle" data-toggle="dropdown"  title="{{ text_new }}"><i class="fa fa-plus fa-lg"></i> <span class="header-item">{{ text_new }}</span></a>
+        <ul class="dropdown-menu dropdown-menu-left alerts-dropdown">
+          <li><a href="{{ new_product }}" style="display: block; overflow: auto;">{{ text_new_product }}</a></li>
+          <li><a href="{{ new_category }}" style="display: block; overflow: auto;">{{ text_new_category }}</a></li>
+          <li><a href="{{ new_manufacturer }}" style="display: block; overflow: auto;">{{ text_new_manufacturer }}</a></li>
+          <li><a href="{{ new_customer }}" style="display: block; overflow: auto;">{{ text_new_customer }}</a></li>
+          <li><a href="{{ new_download }}" style="display: block; overflow: auto;">{{ text_new_download }}</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div id="oc-search-div" class="col-sm-3 col-md-3 pull-left">
+      {{ search }}
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="hidden-md hidden-lg"><a href="#" id="navbar-dc-pro-menu"><i class="fa fa-bell" aria-hidden="true"></i><span class="label">{{ count_all }}</span><i class="fa fa-caret-down fa-fw"></i></a>
+        </li>
+      <li class="dropdown dropdown_user"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ image }}" alt="{{ firstname }} {{ lastname }}" title="{{ username }}" id="user-profile" class="img-circle" />
+        <!-- {{ firstname }} {{ lastname }} -->
+        <i class="fa fa-caret-down fa-fw"></i></a>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><a href="{{ profile }}"><i class="fa fa-user-circle-o fa-fw"></i> {{ text_profile }}</a></li>
+          <li role="separator" class="divider"></li>
+          <li class="dropdown-header">{{ text_store }}</li>
+          {% for store in stores %}
+          <li><a href="{{ store.href }}" target="_blank">{{ store.name }}</a></li>
+          {% endfor %}
+          <li role="separator" class="divider"></li>
+          <li class="dropdown-header">{{ text_help }}</li>
+          <li><a href="https://dev-opencart.com/devcart" target="_blank"><i class="fa fa-opencart fa-fw"></i> {{ text_homepage }}</a></li>
+          <li><a href="https://dev-opencart.com/devcart-faq" target="_blank"><i class="fa fa-file-text-o fa-fw"></i> {{ text_documentation }}</a></li>
+          <li><a href="https://t.me/devcart" target="_blank"><i class="fa fa-comments-o fa-fw"></i> {{ text_support }}</a></li>
+        </ul>
+      </li>
+      <li><a href="{{ logout }}"><i class="fa fa-sign-out"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_logout }}</span></a></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right navbar-dc-pro">
+      <!-- dc_pro -->
+        <li class="dropdown-dc-pro"><a href="{{ reviews }}" class="dc_header_count_icon"><i class="fa fa-commenting" aria-hidden="true"></i><span class="label">{{ reviews_total }}</span></a>
+        </li>
+        <li class="dropdown-dc-pro"><a href="{{ art_aqa_product }}" class="dc_header_count_icon"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i><span class="label">{{ art_aqa_product_total }}</span></a>
+        </li>
+        <li class="dropdown-dc-pro"><a href="{{ found_cheaper_link }}" class="dc_header_count_icon"><i class="fa fa-eye" aria-hidden="true"></i><span class="label">{{ found_cheaper_count }}</span></a>
+        </li>
+        <!-- <li class="dropdown-dc-pro"><a href="{{ fast_checkout_link }}" class="dc_header_count_icon"><i class="fa fa-shopping-basket" aria-hidden="true"></i><span class="label">{{ fast_checkout_count }}</span></a>
+        </li> -->
+        <li class="dropdown-dc-pro dropdown dropdown_orders"><a class="dropdown-toggle dc_header_count_icon" data-toggle="dropdown"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="label">{{ orders_count }}</span><i class="fa fa-caret-down fa-fw"></i></a>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li class="dropdown-header">Заказы</li>
+            {% for order_status in order_statuses %}
+            <li><a href="{{ order_status.link }}"><span class="label label-info pull-right">{{ order_status.total }}</span>{{ order_status.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      <!------------>
+    </ul>
+    {% endif %}</div>
+</header>

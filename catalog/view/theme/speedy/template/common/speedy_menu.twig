@@ -1,0 +1,288 @@
+{% if items %}
+<nav id="menu">
+	<button type="button" class="dropdown-toggle"><span class="hidden_xs">{{ text_category }}</span></button>
+	<div class="dropdown-menu">
+		<div class="m_menu_back">{{ button_back }}</div>
+  		<ul class="dropdown-content">
+		{% for item in items %} 
+			{% if item.children %} 
+			<li class="dropdown dropdown_icon">
+				<a href="{{ item.href }}" {% if item.new_blank == 1 %}target="_blank" data-target="link"{% endif %} {% if item.thumb_hover %}class="thumb_hover"{% endif %}>
+					{% if item.thumb %}
+						<img alt="{{ item.name }}" class="thumb_icon" src="{{ item.thumb }}"/>
+					{% endif %} 
+					{% if item.thumb_hover %}
+						<img alt="{{ item.name }}" class="thumb_icon thumb_hover_active" src="{{ item.thumb_hover }}"/>
+					{% endif %} 
+					{% if item.sticker_parent is not empty %}
+						<span style="color:#{{ item.spctext }}; background-color:#{{ item.spbg }}" class="menu_sticker">{{ item.sticker_parent }}</span>
+					{% endif %} 
+					{{ item.name }} 
+				</a>
+				<div class="dropdown-menu-2">
+
+				{% if item.type == 'information' %}	
+				<!--Information-->
+					<div class="dropdown-content menu_information {% if item.add_html %}menu_full{% endif %}">
+						<div class="dropdown-inner">
+							<div class="dropdown-inner-left">
+								<ul>
+									{% for child in item.children %} 
+										<li><a href="{{ child.href }}">{{ child.name }}</a></li>
+									{% endfor %} 
+								</ul>
+							</div>
+							{% if item.add_html %}
+							<div class="dropdown-inner-right menu-add-html">
+								{{ item.add_html }} 
+							</div>
+							{% endif %}									  
+						</div>            
+					</div>
+				{% endif %}
+
+				{% if item.type == 'category' %} 
+				<!--Category-->
+					{% if item.subtype == 'simple' %} 
+					  	<div class="dropdown-content menu_category">
+							<ul>
+								{% for child in item.children %} 
+								<li class="{% if child.children %}dropdown-2 dropdown_icon{% else %}no-dropdown-2{% endif %}">
+									<a href="{{ child.href }}">{% if child.children is not empty %}{% endif %} 
+									{{ child.name }} 
+									</a>
+									{% if child.children %}
+									<div class="dropdown-menu-3">
+										<div class="dropdown-content">
+											<ul>
+											 {% for subchild in child.children %} 
+												<li><a href="{{ subchild.href }}">{{ subchild.name }}</a></li>	
+											{% endfor %} 
+											</ul>
+										</div>
+									</div>
+									{% endif %}				
+								</li>
+								{% endfor %} 
+							</ul>
+						</div>
+					{% endif %}	
+				{% endif %} 
+				{% if item.type == 'category' %}
+					{% if item.subtype == 'full_image' or item.subtype == 'full' %}
+				  		<div class="dropdown-content menu_category menu_full_image menu_full">
+						<div class="dropdown-inner">
+							<div class="dropdown-inner-left"> 
+								<ul>
+								{% for child in item.children %}
+									<li class="{% if child.children %}dropdown-2 dropdown_icon{% else %}no-dropdown-2{% endif %}">
+									{% if item.subtype == 'full_image' %} 
+									<a class="full_image" href="{{ child.href }}"><img src="{{ child.thumb }}" alt="{{ child.name }}" title="{{ child.name }}"/>{{ child.name }}</a>
+									{% else %}
+									<a href="{{ child.href }}">{{ child.name }}</a>
+									{% endif %}
+										{% if child.children is not empty %} 
+										<div class="dropdown-menu-3">
+											<div class="dropdown-content">
+												<ul>
+													{% for subchild in child.children %} 
+													<li><a href="{{ subchild.href }}">{{ subchild.name }}</a></li>		
+													{% endfor %} 
+												</ul>
+											</div>
+										</div>
+										{% endif %}
+									</li>
+								{% endfor %}	
+								</ul>
+							</div>
+							{% if item.add_html %}
+							<div class="dropdown-inner-right menu-add-html">
+								{{ item.add_html }} 
+							</div>
+							{% endif %}
+						</div>  
+						</div>
+					{% endif %}	
+				{% endif %}
+
+				{% if item.type == 'html' %}
+				<!--HTML-->
+			  		<div class="dropdown-content menu_html menu_full">
+					<div class="dropdown-inner">
+						<div class="dropdown-inner-html">
+						{{ item.html }} 				
+						</div>					
+					</div>            
+				   </div>	
+				{% endif %}
+
+				{% if item.type == 'manufacturer' %}
+				<!--Manufacturer-->
+					<div class="dropdown-content menu_manufacturer menu_full">
+					{% if item.type_manuf == 'type_alphabet' %} 
+					<div class="dropdown-inner">
+						{% if item.add_html %}
+						<div class="dropdown-inner-top menu-add-html">
+							{{ item.add_html }} 
+						</div>
+						{% endif %}
+						<div class="dropdown-inner-manufacturer">
+							{% if item.result_manufacturer_a %}
+								<ul>
+								{% for manufacturer_a in item.result_manufacturer_a %} 
+									{% if manufacturer_a.manufacturer %}
+									<div class="item">
+									<span class="manufacturer_a">{{ manufacturer_a.name }}</span>
+										{% for manufacturers in manufacturer_a %}
+											<ul>
+												{% for manufacturer in manufacturers %} 
+												<li class="manuf-res"><a href="{{ manufacturer.href }}">{{ manufacturer.name }}</a></li>
+												{% endfor %}
+											</ul>
+										{% endfor %} 
+									</div>
+									{% endif %} 
+								{% endfor %} 
+								</ul>
+							{% endif %} 
+						</div>
+					</div>
+					{% endif %} 
+					{% if item.type_manuf == 'type_image' %} 
+					<div class="dropdown-inner">
+						<div class="dropdown-inner-left">
+							<ul>
+								{% for children in item.children %} 
+								<li>
+									<a href="{{ children.href }}"><img src="{{ children.thumb }}" alt="{{ children.name }}" title="{{ children.name }}" />{{ children.name }}</a>
+								</li>
+								{% endfor %}
+							</ul>
+						</div>
+						{% if item.add_html %}
+						<div class="dropdown-inner-right menu-add-html">
+							{{ item.add_html }} 
+						</div>
+						{% endif %}
+					</div>
+					{% endif %}
+					</div>
+				{% endif %}
+
+				{% if item.type == 'product' %}
+				<!--Product-->
+					<div class="dropdown-content menu_product menu_full">
+						<div class="dropdown-inner">
+						{% if item.add_html %}
+						<div class="dropdown-inner-top menu-add-html">
+							{{ item.add_html }} 
+						</div>
+						{% endif %}
+						<div class="dropdown-inner-product">
+								<ul>
+									{% for children in item.children %} 
+										<li class="item">
+											<div class="image"><a href="{{ children.href }}"><img src="{{ children.thumb }}" alt="{{ children.name }}" title="{{ children.name }}" /></a></div>
+											<div class="caption">
+												<div class="name"><a href="{{ children.href }}">{{ children.name }}</a></div>
+												<div class="price">
+													{% if not children.special %} 
+														<div class="price-stock">{{ children.price }}</div>
+													{% else %} 
+														<div class="price-old">{{ children.price }}</div> 
+														<div class="price-stock price-new">{{ children.special }}</div>
+													{% endif %} 
+												</div>
+											</div>
+										</li>
+									{% endfor %} 
+								</ul>
+						</div>
+						</div>            
+					</div>
+				{% endif %}
+
+				{% if item.type == 'freelink' %} 
+				<!--Freelink-->
+					{% if item.subtype == 'simple' %} 
+					  	<div class="dropdown-content menu_freelink">
+						<div class="dropdown-inner">
+							<ul class="list-unstyled nsmenu-haschild">
+								{% for child in item.children %} 
+								<li class="{% if child.children %} nsmenu-issubchild{% endif %}">
+									<a href="{{ child.href }}">{% if child.children is not empty %}<i class="fa fa-angle-down arrow"></i>{% endif %}{{ child.name }}</a>
+									{% if child.children %}
+										<ul class="list-unstyled nsmenu-ischild nsmenu-ischild-simple">
+											{% for subchild in child.children %} 
+												<li><a href="{{ subchild.link }}">{{ subchild.title }}</a></li>				
+											{% endfor %} 
+										</ul>
+									{% endif %}				
+								</li>
+								{% endfor %} 
+							</ul>
+						</div>            
+					   	</div>
+					{% endif %} 
+					{% endif %} 
+					{% if item.type == 'freelink' %}
+					{% if item.subtype == 'full_image' or item.subtype == 'full' %}
+					 	<div class="dropdown-content menu_freelink menu_full_image menu_full">
+						<div class="dropdown-inner">
+							<div class="col-sm-{% if item.add_html %}8{% else %}12{% endif %} nsmenu-haschild">
+							 {% set num_columns = item.add_html ? 4 : 6 %} 
+								{% for children in item.children|batch(num_columns) %}	
+								<div class="row">
+									{% for child in children %} 
+									<div class="nsmenu-parent-block{% if child.children is not empty %} nsmenu-issubchild{% endif %} col-md-{% if item.add_html %}3{% else %}2{% endif %} col-sm-12">
+										{% if item.subtype == 'full_image' %} 
+										<a class="nsmenu-parent-img" href="{{ child.href }}"><img src="{{ child.thumb }}" alt="{{ child.name }}" title="{{ child.name }}"/></a>
+										{% endif %} 
+										<a class="nsmenu-parent-title" href="{{ child.href }}">{{ child.name }}</a>
+										
+										{% if child.children is not empty %} 
+											<ul class="list-unstyled nsmenu-ischild">
+												{% for subchild in child.children %} 
+												<li><a href="{{ subchild.link }}">{{ subchild.title }}</a></li>				
+												{% endfor %} 
+											</ul>
+										{% endif %}	
+										
+									</div>
+									{% endfor %}	
+								</div>
+								{% endfor %}	
+							</div>
+							{% if item.add_html %}
+							<div class="col-sm-4 menu-add-html">
+								{{ item.add_html }} 
+							</div>
+							{% endif %}
+						</div>             
+						</div>
+					{% endif %} 
+				{% endif %}
+				<!---->
+
+				</div>
+			</li>
+		{% else %} 
+			<li class="no-dropdown"><a {% if item.new_blank == 1 %}{{ 'target="_blank" data-target="link"' }}{% else %} {{ 'class="dropdown-img"' }}{% endif %} href="{{ item.href }}">
+				{% if item.thumb %}
+					<img alt="{{ item.name }}" class="nsmenu-thumb {% if item.thumb_hover %}pitem-icon{% endif %}" src="{{ item.thumb }}"/>
+				{% endif %} 
+				{% if item.thumb_hover %}
+					<img alt="{{ item.name }}" class="nsmenu-thumb hitem-icon" src="{{ item.thumb_hover }}"/>
+				{% endif %} 
+				{% if item.sticker_parent is not empty %}
+					<span style="color:#{{ item.spctext }}; background-color:#{{ item.spbg }}" class="cat-label cat-label-label">{{ item.sticker_parent }}</span>
+				{% endif %} 
+				{{ item.name }}</a>
+			</li>
+			{% endif %} 
+		{% endfor %} 
+	  </ul>
+	</div>
+</nav>
+{% endif %}

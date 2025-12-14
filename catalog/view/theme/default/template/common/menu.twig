@@ -1,0 +1,52 @@
+{% if categories %}
+<div class="container">
+  <nav id="menu" class="navbar">
+    <div class="navbar-header"><span id="category" class="visible-xs">{{ text_category }}</span>
+      <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+    </div>
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav">
+        {% for category in categories %}
+        {% if category.children %}
+        <li class="dropdown"><a href="{{ category.href }}" class="dropdown-toggle" data-toggle="dropdown">{{ category.name }}</a>
+          <div class="dropdown-menu">
+            <div class="dropdown-inner"> {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+              <ul class="list-unstyled">
+                {% for child in children %}
+                {% if child.grand_childs %}
+                <li>
+                  <a href="{{ child.href }}">{% if child.thumb and menu_view_image_2 %}<img src="{{ child.thumb }}" alt="{{ child.name }}">{% endif %}{{ child.name }}</a>
+                    <ul class="list-unstyled" style="padding-left: 15px;">
+                    {% for grand_child in child.grand_childs %}
+                    {% if grand_child.grand_childs_2 %}
+                    <li>
+                      <a href="{{ grand_child.href }}">{% if grand_child.thumb and menu_view_image_3 %}<img src="{{ grand_child.thumb }}" alt="{{ grand_child.name }}">{% endif %}{{ grand_child.name }}</a>
+                      <ul class="list-unstyled" style="padding-left: 15px;">
+                      {% for grand_child_2 in grand_child.grand_childs_2 %}
+                        <li><a href="{{ grand_child_2.href }}">{% if grand_child_2.thumb and menu_view_image_4 %}<img src="{{ grand_child_2.thumb }}" alt="{{ grand_child_2.name }}">{% endif %}{{ grand_child_2.name }}</a></li>
+                      {% endfor %}
+                      </ul>
+                    </li>    
+                    {% else %}
+                    <li><a href="{{ grand_child.href }}">{% if grand_child.thumb and menu_view_image_3 %}<img src="{{ grand_child.thumb }}" alt="{{ grand_child.name }}">{% endif %}{{ grand_child.name }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    </ul>
+                </li>
+                {% else %}
+                <li><a href="{{ child.href }}">{% if child.thumb and menu_view_image_2 %}<img src="{{ child.thumb }}" alt="{{ child.name }}">{% endif %}{{ child.name }}</a></li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+              {% endfor %}</div>
+            <a href="{{ category.href }}" class="see-all">{{ text_all }} {{ category.name }}</a> </div>
+        </li>
+        {% else %}
+        <li><a href="{{ category.href }}">{{ category.name }}</a></li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </nav>
+</div>
+{% endif %} 

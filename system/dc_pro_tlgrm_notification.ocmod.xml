@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<name>DEV-OPENCART.COM — Уведомления в Telegram (DEVCART PRO)</name>
+	<version>1</version>
+	<link>https://dev-opencart.com</link>
+	<author>DEV-OPENCART.COM</author>
+	<code>dev_opencart_com_telegram_v3</code>
+	<file path="catalog/controller/information/contact.php">
+		<operation>
+			<search><![CDATA[$mail->send();]]></search>
+			<add position="after"><![CDATA[
+			$send_ntf = $this->config->get('module_tlgrm_notification_status');
+			$contact_form = $this->config->get('module_tlgrm_notification_contact_form');
+			
+			if ($send_ntf == 1 && $contact_form == 1) {
+				$tlgrm_ntf_id = $this->config->get('module_tlgrm_notification_id');
+				if (strlen($tlgrm_ntf_id) > 0) {
+					$tlgrm_ntf = array(
+						'name',
+						'email',
+					);
+
+					foreach ($tlgrm_ntf as $key) {
+						$tlgrm_ntf[$key] = $this->config->get('module_tlgrm_notification_contact_'.$key) || 0;
+					}
+
+					$this->load->language('extension/module/tlgrm_notification');
+	
+					$message = $this->language->get("text_contact") . ' ' . $this->request->server['HTTP_HOST'] . PHP_EOL;
+					foreach ($this->request->post as $key => $value) {
+						if (isset($tlgrm_ntf[$key])) {
+				   			if ($tlgrm_ntf[$key] && !empty($this->request->post[$key])) {
+				   				$message .= '<b>'. $this->language->get("text_contact_$key") .': </b>'. $this->request->post[$key] . PHP_EOL;
+				   			}
+				   		}
+					}
+					if ($this->config->get('module_tlgrm_notification_contact_comment')) {
+						$message .= '<b>'. $this->language->get("text_contact_comment") .': </b>' . PHP_EOL . strip_tags($this->request->post['enquiry']) . PHP_EOL;
+					}
+					$this->load->model("extension/module/tlgrm_notification");
+			        $this->model_extension_module_tlgrm_notification->SendMessage($message);
+				}
+			}
+			]]></add>
+		</operation>
+	</file>		
+	<file path="catalog/model/account/customer.php">
+		<operation>
+			<search><![CDATA[$customer_id = $this->db->getLastId();]]></search>
+			<add position="after"><![CDATA[
+			$send_ntf = $this->config->get('module_tlgrm_notification_status');
+			$new_customer = $this->config->get('module_tlgrm_notification_new_customer');
+			
+			if ($send_ntf == 1 && $new_customer == 1) {
+				$tlgrm_ntf_id = $this->config->get('module_tlgrm_notification_id');
+				if (strlen($tlgrm_ntf_id) > 0) {
+
+					$tlgrm_ntf = array(
+						'firstname',
+						'lastname',
+						'email',
+						'telephone',
+					);
+
+					foreach ($tlgrm_ntf as $key) {
+						$tlgrm_ntf[$key] = $this->config->get('module_tlgrm_notification_customer_'.$key) || 0;
+					}
+
+					$this->load->language('extension/module/tlgrm_notification');
+	
+					$message = $this->language->get("text_customer") . ' ' . $_SERVER['HTTP_HOST'] . PHP_EOL;
+					foreach ($data as $key => $value) {
+						if (isset($tlgrm_ntf[$key])) {
+				   			if ($tlgrm_ntf[$key] && !empty($data[$key])) {
+				   				$message .= '<b>'. $this->language->get("text_customer_$key") .': </b>'. $data[$key] . PHP_EOL;
+				   			}
+				   		}
+					}
+					$this->load->model("extension/module/tlgrm_notification");
+			        $this->model_extension_module_tlgrm_notification->SendMessage($message);
+				}
+			}
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/model/catalog/review.php">
+		<operation>
+			<search><![CDATA[$review_id = $this->db->getLastId();]]></search>
+			<add position="before"><![CDATA[
+			
+			$send_ntf = $this->config->get('module_tlgrm_notification_status');
+			$new_review = $this->config->get('module_tlgrm_notification_new_review');
+
+			if ($send_ntf == 1 && $new_review) {
+				$tlgrm_ntf_id = $this->config->get('module_tlgrm_notification_id');
+				if (strlen($tlgrm_ntf_id) > 0) {
+
+					$tlgrm_ntf = array(
+						'name',
+						'text',
+						'rating'
+					);
+
+					foreach ($tlgrm_ntf as $key) {
+						$tlgrm_ntf[$key] = $this->config->get('module_tlgrm_notification_review_'.$key) || 0;
+					}
+
+					$this->load->language('extension/module/tlgrm_notification');
+
+					$message = $this->language->get("text_review") . ' ' . $_SERVER['HTTP_HOST'] . PHP_EOL;
+					foreach ($data as $key => $value) {
+						if (isset($tlgrm_ntf[$key])) {
+				   			if ($tlgrm_ntf[$key] && !empty($data[$key])) {
+				   				$message .= '<b>'. $this->language->get("text_review_$key") .': </b>'. $data[$key] . PHP_EOL;
+				   			}
+				   		}
+					}
+					if ($this->config->get('module_tlgrm_notification_review_product_name')) {
+						$this->load->model('catalog/product');
+						$product = $this->model_catalog_product->getProduct($product_id);
+						$link = $this->url->link('product/product', 'product_id=' . $product_id);
+						$message .= '<b>'. $this->language->get("text_review_product_name") .': </b><a href="'. $link . '">'. $product['name'] .'</a>'. PHP_EOL;
+					}
+
+					$this->load->model("extension/module/tlgrm_notification");
+			        $this->model_extension_module_tlgrm_notification->SendMessage($message);
+				}
+			}
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/model/checkout/order.php">
+		<operation>
+			<search><![CDATA[$order_info = $this->getOrder($order_id);]]></search>
+			<add position="after"><![CDATA[
+			$send_ntf = $this->config->get('module_tlgrm_notification_status');
+			$new_order = $this->config->get('module_tlgrm_notification_new_order');
+			$tlgrm_send = $this->config->get('module_tlgrm_notification_send');
+			$manager = $this->config->get('module_tlgrm_notification_new_order_status');
+			
+			if ($send_ntf == 1 && $new_order == 1 && !$order_info['order_status_id'] && $order_status_id) {
+				if (isset($tlgrm_send[2])) {	
+					$this->load->controller('extension/module/tlgrm_notification/messageOrder', array('order_id' => $order_id, 'order_status_id' => $order_status_id));
+				}
+			}
+
+			if ($send_ntf == 1 && $manager == 1) { 
+				$template_ntf = $this->config->get('module_tlgrm_notification_template_order_status');
+				if (isset($template_ntf[$order_status_id]) && !empty($template_ntf[$order_status_id])) {
+					$this->load->controller('extension/module/tlgrm_notification/changeStatus', array('order_id' => $order_id, 'order_status_id' => $order_status_id, 'status_comment' => $comment));
+				}
+			}		
+			]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[return $order_id;]]></search>
+			<add position="before" index="0"><![CDATA[
+			$send_ntf = $this->config->get('module_tlgrm_notification_status');
+			$new_order = $this->config->get('module_tlgrm_notification_new_order');
+			$tlgrm_send = $this->config->get('module_tlgrm_notification_send');
+			$order_status_zero = $this->config->get('module_tlgrm_notification_template_order_status');
+
+			if ($send_ntf == 1) { 
+				if ($new_order == 1 && isset($tlgrm_send[1])) {
+					$this->load->controller('extension/module/tlgrm_notification/messageOrder', array('order_id' => $order_id));	
+				} else if (isset($order_status_zero[0]) && !empty($order_status_zero[0])) {
+					$this->load->controller('extension/module/tlgrm_notification/changeStatus', array('order_id' => $order_id, 'order_status_id' => -1));	
+				}
+			}
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/checkout/success.php">
+		<operation>
+			<search><![CDATA[unset($this->session->data['shipping_method']);]]></search>
+			<add position="before"><![CDATA[
+			$send_ntf = $this->config->get('module_tlgrm_notification_status');
+			$new_order = $this->config->get('module_tlgrm_notification_new_order');
+			$tlgrm_send = $this->config->get('module_tlgrm_notification_send');
+	
+			if ($send_ntf == 1 && $new_order == 1 && isset($tlgrm_send[3])) {
+				$this->load->controller('extension/module/tlgrm_notification/messageOrder');
+			}
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/model/account/return.php">
+		<operation>
+			<search><![CDATA[return $this->db->getLastId();]]></search>
+			<add position="before"><![CDATA[
+			$return_id = $this->db->getLastId();
+			$send_ntf = $this->config->get('module_tlgrm_notification_status');
+			$return_order = $this->config->get('module_tlgrm_notification_return_order');
+			if ($send_ntf == 1 && $return_order == 1) {
+				$tlgrm_ntf_id = $this->config->get('module_tlgrm_notification_id');
+				if (strlen($tlgrm_ntf_id) > 0) {
+					$tlgrm_ntf = array(
+						'order_id'	  => 0,
+						'firstname'   => 0,
+						'lastname'	  => 0,
+						'email'       => 0,
+						'telephone'   => 0,
+						'date_ordered'=> 0,
+						'product'     => 0,
+						'model'       => 0,
+						'quantity'    => 0,
+						'reason'      => 0,
+						'opened'      => 0,
+						'comment'     => 0,
+					);
+
+					$this->load->language('extension/module/tlgrm_notification');
+					$this->load->model("extension/module/tlgrm_notification");
+
+					$result = $this->model_extension_module_tlgrm_notification->getReturn($return_id);
+
+					$message = $this->language->get("text_return_order") . ' ' . $this->request->server['HTTP_HOST'] . PHP_EOL;
+
+					foreach ($tlgrm_ntf as $key => $value) {
+						$tlgrm_ntf[$key] = $this->config->get('module_tlgrm_notification_return_'.$key);
+						if ($tlgrm_ntf[$key]) {
+							if ($key != 'opened') {
+								$message .= '<b>'. $this->language->get('text_return_'.$key) .': </b>'. strip_tags($result[$key]) . PHP_EOL;
+							} else {
+								$message .= '<b>'. $this->language->get('text_return_'.$key) .': </b>'. ($result[$key] ? $this->language->get('text_return_yes') : $this->language->get('text_return_not') ) . PHP_EOL;
+							}
+						}
+					}
+
+					$this->load->model("extension/module/tlgrm_notification");
+			        $this->model_extension_module_tlgrm_notification->SendMessage($message);
+				}
+			}
+			]]></add>
+		</operation>
+	</file>
+</modification>

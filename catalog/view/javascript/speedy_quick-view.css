@@ -1,0 +1,324 @@
+/*!
+/* FONT PATH
+ * -------------------------- */
+.dw-quickview {
+  display:none;
+}
+.product-layout:hover .dw-quickview {
+  display:block;
+}
+.dw-quickview a {
+  position: absolute;
+  border-radius: 4px;
+  top: 26%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  background: rgb(0 0 0 / 80%);
+  font-weight: 600;
+  color: #fff;
+  font-size: 13px;
+  padding: 10px 15px;
+  white-space: nowrap;
+}
+.dw-quickview .dw-icon {
+  border-radius:50%;
+  padding:15px 14px 14px 14px;
+}
+.dw-quickview .dw-icon .fa {
+  font-weight:500;
+  font-size:20px;
+}
+.dw-quickview a:hover, .dw-quickview a:focus {
+  background:#59C2E6;;
+  color:#fff;
+}
+@media (min-width: 992px) {
+  .dwquick-view .modal-sdw {
+    width: 960px;
+  }
+}
+.dwquick-view .modal-header {
+  min-height: 14px;
+  padding: 15px 15px 10px 15px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.dw-datas .nav-tabs>li>a {
+  background-color: #59C2E6;
+  color: #FFF;
+  font-size: 14px;
+  font-family: 'OpenSansSemibold', sans-serif;
+}
+.dw-datas .nav-tabs>li.active>a, 
+.dw-datas .nav-tabs>li.active>a:focus, 
+.dw-datas .nav-tabs>li.active>a:hover {
+  background-color: #4F5F6F;
+  color: #FFF;
+}
+.dwquick-view .modal-content {
+  border-radius: 4px !important;
+}
+.dwquick-view .form-group {
+  margin-bottom: 9px;
+}
+.dwquick-view .form-control {
+  border-radius:0;
+}
+.dwquick-view input.form-control {
+  height: 32px;
+}
+.dwquick-view textarea.form-control {
+  height: auto;
+}
+.dwquick-view .modal-body {
+  padding-top: 8px;
+}
+.dwquick-view .modal-header .dw-title {
+  font-weight:800;
+  color:#74738C;
+  font-size: 23px;
+  font-family: 'Exo', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 6px 2px;
+}
+.dwquick-view hr {
+  border-top: 1px solid #eee;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.dw-mb {
+  margin-top:4px;
+  margin-bottom:10px;
+}
+.dw-mb p {
+  margin: 0 0 3px;
+}
+.dwquick-view .after-header {
+  font-family: 'OpenSansBold', sans-serif;
+  font-size: 14px;
+  font-weight:600;
+  color:#20A2CC;
+  text-align:center;
+  margin-top:4px;
+  margin-bottom:10px;
+}
+.dwquick-view .after-price {
+  font-family: 'OpenSansBold', sans-serif;
+  font-weight:600;
+  color:#20A2CC;
+  text-align:left;
+  margin-top:7px;
+  margin-bottom:7px;
+}
+.after-price .oct-price-normal, 
+.after-price .pro-price {
+  font-size: 26px;
+  line-height: 42px;
+  font-weight: 700;
+  color: #1F9DC7;
+  _color: #74738C;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+.after-price .old-pr {
+  font-size: 22px;
+  line-height: 42px;
+  font-weight: 600;
+  color: #919191;
+  text-decoration: line-through;
+}
+.after-price p {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4F5F6F;
+  margin: 0 0 3px;
+}
+.dwquick-view .text-dwm {
+  font-family: 'OpenSansBold', sans-serif;
+  font-size: 13px;
+  font-weight:700;
+  color: #4f5f6f;
+}
+.dwquick-view a {
+  font-weight:normal;
+  color: #4F5F6F;
+}
+.dwquick-view h5 {
+  font-size: 18px;
+  font-weight:600;
+  color:#20A2CC;
+}
+.dwquick-view .blok-p .checkbox, 
+.dwquick-view .blok-p .radio {
+  position: relative;
+  display: block;
+  margin-top: 1px;
+  margin-bottom: 2px;
+}
+.dwquick-view .blok-p .opt-name {
+  margin-bottom: 2px;
+}
+.dwquick-view .option-blok-open {
+  cursor:pointer;
+}
+.dwquick-view .option-blok-open .fa {
+  font-size: 18px;
+}
+.dwquick-view .more_p {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1E94BB;
+  cursor:pointer;
+}
+.dwquick-view .blok-btn {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+.blok-btn .btn-number {
+  display: table-cell;
+  background: transparent;
+  background-image: none;
+  border: 0;
+  padding: 6px 12px;
+}
+.blok-btn .dw-quantity {
+  display: table-cell;
+  text-align: center;
+  width: 40px;
+  border: 0;
+  padding: 6px 4px;
+}
+.blok-btn .btn-number:focus, 
+.blok-btn .dw-quantity:focus {
+  border-color: #fff;
+  outline: 0;
+}
+.dwquick-view .btn-primary {
+  background: #59C2E6 !important;
+  color: #fff !important;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 3px;
+  border: 0;
+  padding: 10px 20px;
+}
+.dwquick-view .btn-primary:hover, 
+.dwquick-view .btn-primary:focus {
+  background: #4F5F6F !important;
+}
+.dwquick-view .dw-btn {
+  background: #4F5F6F !important;
+  padding: 10px 16px;
+}
+.dwquick-view .dw-btn:hover, 
+.dwquick-view .dw-btn:focus {
+  background: #59C2E6 !important;
+}
+.sd-alert {
+    padding: 8px 42px 8px 60px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    position: relative;
+    font-size: 15px;
+    font-weight: 600;
+    min-height: 50px;
+    border: none;
+    color: rgba(255, 255, 255, 0.59);
+	width: 100%;
+    margin: 4px auto 4px auto;
+    overflow: hidden;
+}
+
+.sd-success .fa {
+    background: #00bf54;
+}
+.sd-alert .fa {
+    color: #fff;
+    opacity: 1;
+    text-shadow: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 26px;
+    width: 52px;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.09);
+    display: flex;
+    align-items: center;
+	z-index: 999;
+    justify-content: center;
+}
+.sd-success {
+    background: #00bf54;
+}
+.sd-danger {
+    background: #de4343;
+}
+.sd-alert a, 
+.sd-alert a:visited, 
+.sd-alert a:focus, .sd-alert a:hover {
+    color: #ffffff;
+}
+.sd-alert .close {
+    color: #fff;
+    opacity: 1;
+    text-shadow: none;
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    font-size: 22px;
+    height: 26px;
+    width: 26px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.09);
+}
+@media (max-width: 768px) {
+  .sd-alert {
+    font-size: 14px;
+  }
+  .sd-alert .fa {
+    width: 49px;
+  }
+  .sd-alert .fa, .sd-alert .close {
+    font-size: 20px;
+  }
+}
+@media (max-width: 411px) {
+  .sd-alert {
+    font-size: 13px;
+	padding: 8px 54px 7px 72px;
+  }
+  .sd-alert .fa {
+    width: 48px;
+  }
+  .sd-alert .fa, .sd-alert .close {
+    font-size: 18px;
+  }
+}
+
+.dwquick-view .load {
+  z-index: 99;
+  position: fixed;
+  right: 0;
+  top: 0;
+  background-color: rgba(255, 255, 255, .6);
+  width: calc(100% - 235px);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dwquick-view .load img {
+  max-width: 50px;
+  animation: load 1s infinite;
+}
+@keyframes load {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

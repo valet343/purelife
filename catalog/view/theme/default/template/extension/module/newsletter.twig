@@ -1,0 +1,44 @@
+<section class="subscribe">
+  <div class="subscribe_content">
+    <div class="subscribe_content_left">
+      <p>{{ heading_title }}</p>
+      <span>{{ html }}</span>
+    </div>
+    <div class="subscribe_content_right newsletter_module">
+    	<div id="respond" class="{{ module }}"></div>
+    	<div class="input-group">
+		<input type="text" id="email{{ module }}" name="email" class="form-control" placeholder="{{ entry_email }}" />
+		<span id="button-subscribe" class="{{ module }} input-group-addon btn btn-primary">{{ button_subscribe }}</span>
+	</div>
+    </div>
+  </div>
+</section>
+<script>
+$(document).ready(function() {
+	$('.newsletter_box input[name=\'email{{ module }}\']').bind('keydown', function(e) {
+		if (e.keyCode == 13) {
+			$('#button-subscribe{{ module }}').trigger('click');
+		}
+	});
+	$('#button-subscribe.{{ module }}').on('click', function() {
+		$.ajax({
+			url: 'index.php?route=extension/module/newsletter/subscribe',
+			type: 'post',
+			dataType: 'json',
+			data: 'email=' + encodeURIComponent($('input[id=\'email{{ module }}\']').val()),
+			success: function(json) {
+				$('.alert-dismissible').remove();
+        if (json['error']) {
+          $('.subscribe_content').parent().before('<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+        }
+        if (json['success']) {
+          $('.subscribe_content').parent().before('<div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+          $.cookie( 'newsletter_already_added' , 1 , { expires: 14 , path: '/' });
+					$('input[id=\'email{{ module }}\']').val('');
+        }
+			}
+	});
+	});
+});
+</script>

@@ -1,0 +1,99 @@
+{{ header }}
+<div class="container">
+  <ul itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+    
+            {% set last_crumb = breadcrumbs|last %}
+            {% set breadcrumbs = breadcrumbs|slice(0,-1) %}
+            {% set i = 1 %}
+            {% for breadcrumb in breadcrumbs %}
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ breadcrumb.href }}" itemprop="item"><span itemprop="name">{{ breadcrumb.text }}</span></a><meta itemprop="position" content="{{ i }}" /></li>
+                {% set i = i + 1 %}
+            {% endfor %}
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><link href="{{ last_crumb.href }}" itemprop="item"/><span itemprop="name">{{ last_crumb.text|striptags }}</span><meta itemprop="position" content="{{ i }}" /></li>
+            {% for breadcrumb in breadcrumbs123 %}
+            
+    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endfor %}
+  </ul>
+  <h1>{{ heading_title }}</h1>
+  <div class="columns">
+    {{ column_left }}
+    <div id="content" class="{{ class }}">
+      {{ content_top }}
+      {% if articles %}
+      <div class="products_sort products_sort_blog">
+        <div class="type">
+          <button type="button" id="list-view"></button>
+          <button type="button" id="grid-view"></button>
+        </div>
+        <div class="sort">
+          <label class="input-group-addon" for="input-sort">{{ text_sort }}</label>
+          <select id="input-sort" class="form-control" onchange="location = this.value;">
+            {% for sorts in sorts %}
+            {% if sorts.value == '%s-%s'|format(sort, order) %}
+            <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
+            {% else %}
+            <option value="{{ sorts.href }}">{{ sorts.text }}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <div class="limit">
+          <label for="input-limit">{{ text_limit }}</label>
+          <select id="input-limit" onchange="location = this.value;">
+            {% for limits in limits %}
+            {% if limits.value == limit %}
+            <option value="{{ limits.href }}" selected="selected">{{ limits.text }}</option>
+            {% else %}
+            <option value="{{ limits.href }}">{{ limits.text }}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="products_items blog_items products_sort_content blog_items">  
+        {% for article in articles %} 
+        <div class="item">
+            <div class="image">
+              <a href="{{ article['href'] }}"><img src="{{ article['thumb'] }}" alt="{{ article['name'] }}" title="{{ article['name'] }}" class="img-responsive" /></a>
+            </div>
+            <div class="caption">
+              <div class="name"><a href="{{ article['href'] }}">{{ article['name'] }}</a></div>
+              <p class="description">{{ article['description'] }}</p>
+              <div class="additional">
+                {% if configblog_review_status %}
+                  <div class="rating">
+                    {% for i in 1..5 %}
+                    {% if article.rating < i %}
+                    <span></span>
+                    {% else %}
+                    <span class="active"></span>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+                 {% endif %}
+                <!-- <div class="viewed">{{ text_views }} {{ article.viewed }}</div> -->
+              </div>
+              <div class="price_button">
+                <div class="date">{{ article.date_added }}</div>
+                <button class="btn icon_read" type="button" onclick="location.href = ('{{ article.href }}');"></button>
+              </div>
+            </div>
+        </div>
+       {% endfor %}
+      </div>
+      <div class="row">
+        <div class="col-sm-6 text-left">{{ pagination }}</div>
+      </div>
+      {% else %}
+      <p style="min-height: 200px">{{ text_empty }}</p>
+      <div class="buttons">
+        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {% endif %}
+    </div>
+    {{ column_right }}
+  </div>
+  {{ content_bottom }}
+</div>
+{{ footer }}

@@ -1,0 +1,44 @@
+{% if reviews %}
+{% for review in reviews %}
+<div class="review_item">
+  <div class="review_item_header">
+    <b>{{ review.author }}</b>
+    <p class="date">{{ review.date_added }}</p>
+  </div>
+  <div class="review_item_content">
+    <div class="rating">
+    {% for i in 1..5 %}
+      {% if review.rating < i %}
+      <span></span>
+      {% else %}
+      <span class="active"></span>
+      {% endif %}
+    {% endfor %}
+    </div>
+    <p>{{ review.text }}</p>
+    {% if review.plus or review.minus %}
+    <ul class="plus_and_minus">
+      {% if review.plus %}<li><span>{{ text_review_plus }}</span><p>{{ review.plus }}</p></li>{% endif %}
+      {% if review.minus %}<li><span>{{ text_review_minus }}</span><p>{{ review.minus }}</p></li>{% endif %}
+    </ul>
+    {% endif %} 
+  </div>
+</div>
+{% if config_review_answer_admin %}
+  {% if (review['answer']) %} 
+    <div class="review_item review_item_admin_answer">
+      <div class="review_item review_item_admin_answer_inner">
+      <b>{{ review['admin_author'] }}</b>
+      <p>{{ review['answer'] }}</p>
+      </div>
+    </div>
+  {% endif %} 
+{% endif %}
+{% endfor %}
+<div class="pagination_items">
+  {{ pagination }}
+  <p class="result">{{ results }}</p>
+</div>
+{% else %}
+<p>{{ text_no_reviews }}</p>
+{% endif %}

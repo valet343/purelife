@@ -1,0 +1,85 @@
+<div id="cart">
+  {% if cart_sidebar_status %}
+  <button class="dropdown-toggle cart_button icon_cart" type="button" id="cart-total"><p>{% if text_items_sum != 0 %}{{ text_items_sum }}{% endif %}</p><span>{{ text_items_count }}</span></button>
+  {% else %}
+  <a class="cart_button" href="{{ cart }}" id="cart-total"><p>{% if text_items_sum != 0 %}{{ text_items_sum }}{% endif %}</p><span>{{ text_items_count }}</span></a>
+  {% endif %}
+  <ul class="dropdown-menu" style="{{ cart_sidebar_position }}: 0">
+    <h3>{{ text_heading_cart }}<button class="btn-close btn-close-cart"></button></h3>
+    <span>
+    {% if products or vouchers %}
+    <li class="cart_content">
+      <div class="cart_items">
+        {% for product in products %}
+        <div class="item">
+          {% if product.thumb %}
+          <div class="image">
+              <a href="{{ product.href }}">
+                <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+              </a>
+          </div>
+          {% endif %}
+          <div class="caption">
+            <div class="name">
+              <a href="{{ product.href }}">{{ product.name }}</a>
+              {% if product.option %}
+                <div class="options">
+                {% for option in product.option %}
+                - {{ option.name }} {{ option.value }}
+                <br>
+                {% endfor %}
+                </div>
+                {% endif %}
+                {% if product.recurring %}
+                - {{ text_recurring }} {{ product.recurring }}
+              {% endif %}
+            </div>
+            <div class="price">
+              {{ product.price }}
+              <div class="total_change">
+                <button onclick="updateCart('{{ product.cart_id }}', '-1', '1')" class="btn cart-quantity__btn">-</button>
+                <input class="cart-quantity__input" type="number" name="{{ product.cart_id }}" size="2" value="{{ product.quantity }}" onchange="updateCart('{{ product.cart_id }}', $(this).val(), '0')" />
+                <button onclick="updateCart('{{ product.cart_id }}', '+1', '1')" class="btn cart-quantity__btn">+</button>
+              </div>
+            </div>
+            <div class="total">{{ product.quantity }} x {{ product.total }}</div>
+          </div>
+          <button type="button" onclick="cart.remove('{{ product.cart_id }}');" title="{{ button_remove }}" class="btn btn-danger btn-delete btn-xs"></button>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="voucher_items">
+        {% for voucher in vouchers %}
+        <div>
+          <div class="text-center"></div>
+          <div class="text-left">{{ voucher.description }}</div>
+          <div class="text-right">x&nbsp;1</div>
+          <div class="text-right">{{ voucher.amount }}</div>
+          <div class="text-center text-danger"><button type="button" onclick="voucher.remove('{{ voucher.key }}');" title="{{ button_remove }}" class="btn btn-danger btn-delete btn-xs"></button></div>
+        </div>
+        {% endfor %}
+      </div>
+    </li>
+    <li class="cart_total">
+        {% for total in totals %}
+        <div class="total_item"><b>{{ total.title }}:</b> {{ total.text }}</div>
+        {% endfor %}
+        <div class="buttons buttons_column">
+          {% if cart_sidebar_clear_status %}<a class="btn btn-gray-s" onclick="cart.clear();">{{ text_cart_clear }}</a>{% endif %}
+          <a class="btn btn-gray" href="{{ cart }}">{{ text_cart }}</a>
+          <a class="btn" href="{{ checkout }}">{{ text_checkout }}</a>
+        </div>
+    </li>
+    {% else %}
+    <li class="cart_empty">
+      <p class="text-center">{{ text_empty }}</p>
+      <div class="buttons">
+        <div class="pull-right">
+            <button class="btn btn-primary">{{ button_continue }}</button>
+          </div>
+      </div>
+    </li>
+    {% endif %}
+    </span>
+  </ul>
+</div>

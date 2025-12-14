@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>  
+    <name>DEV-OPENCART.COM — Исправленные хлебные крошки</name>
+    <version>1</version>
+    <link>https://dev-opencart.com</link>
+    <author>DEV-OPENCART.COM</author>
+    <code>dev_opencart_com_breadcrumbs_fix</code>
+    <file path="catalog/view/theme/*/template/{product,information,account,affiliate,checkout,error,blog,gallery,module,extension/module,extension/module/productbundles,extension/quickcheckout,extension/module/oclayerednavigation}/*.twig" error="skip">
+        <operation error="skip">
+            <search index="0"><![CDATA[class="breadcrumb]]></search>
+            <add position="replace"><![CDATA[itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[{% for breadcrumb in breadcrumbs %}]]></search>
+            <add position="replace"><![CDATA[
+            {% set last_crumb = breadcrumbs|last %}
+            {% set breadcrumbs = breadcrumbs|slice(0,-1) %}
+            {% set i = 1 %}
+            {% for breadcrumb in breadcrumbs %}
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ breadcrumb.href }}" itemprop="item"><span itemprop="name">{{ breadcrumb.text }}</span></a><meta itemprop="position" content="{{ i }}" /></li>
+                {% set i = i + 1 %}
+            {% endfor %}
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><link href="{{ last_crumb.href }}" itemprop="item"/><span itemprop="name">{{ last_crumb.text|striptags }}</span><meta itemprop="position" content="{{ i }}" /></li>
+            {% for breadcrumb in breadcrumbs123 %}
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[{% for i,breadcrumb in breadcrumbs %} ]]></search>
+            <add position="replace"><![CDATA[
+            {% set last_crumb = breadcrumbs|last %}
+            {% set breadcrumbs = breadcrumbs|slice(0,-1) %}
+            {% set i = 1 %}
+            {% for breadcrumb in breadcrumbs %}
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ breadcrumb.href }}" itemprop="item"><span itemprop="name">{{ breadcrumb.text }}</span></a><meta itemprop="position" content="{{ i }}" /></li>
+                {% set i = i + 1 %}
+            {% endfor %}
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><link href="{{ last_crumb.href }}" itemprop="item"/><span itemprop="name">{{ last_crumb.text|striptags }}</span><meta itemprop="position" content="{{ i }}" /></li>
+            {% for i,breadcrumb in breadcrumbs123 %}
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search index="0"><![CDATA[<li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>]]></search>
+            <add position="replace"><![CDATA[<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><link href="{{ last_crumb.href }}" itemprop="item"/><h1 class="inbreadcrumb" itemprop="name">{{ last_crumb.text|striptags }}</h1><meta itemprop="position" content="{{ i }}" /></li>]]></add>
+        </operation>
+    </file>
+    <file path="catalog/view/theme/*/template/soconfig/breadcrumbs.twig" error="skip">
+        <operation error="skip">
+            <search index="0"><![CDATA[class="breadcrumb]]></search>
+            <add position="replace"><![CDATA[itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[{% for breadcrumb in breadcrumbs %}]]></search>
+            <add position="replace"><![CDATA[
+            {% set last_crumb = breadcrumbs|last %}
+            {% set breadcrumbs = breadcrumbs|slice(0,-1) %}
+            {% set i = 1 %}
+            {% for breadcrumb in breadcrumbs %}
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ breadcrumb.href }}" itemprop="item"><span itemprop="name">{{ breadcrumb.text }}</span></a><meta itemprop="position" content="{{ i }}" /></li>
+                {% set i = i + 1 %}
+            {% endfor %}
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><link href="{{ last_crumb.href }}" itemprop="item"/><span itemprop="name">{{ last_crumb.text|striptags }}</span><meta itemprop="position" content="{{ i }}" /></li>
+            {% for breadcrumb in breadcrumbs123 %}
+            ]]></add>
+        </operation>
+    </file>
+    <file path="catalog/controller/product/product.php">
+        <operation>
+            <search><![CDATA[
+            public function index() {
+            ]]></search>
+            <add position="before"><![CDATA[
+            protected function getPath($parent_id, $current_path = '') {
+                $category_info = $this->model_catalog_category->getCategory($parent_id);          
+                if ($category_info) {
+                    if (!$current_path) {
+                        $new_path = $category_info['category_id'];
+                    } else {
+                        $new_path = $category_info['category_id'] . '_' . $current_path;
+                    }             
+                    $path = $this->getPath($category_info['parent_id'], $new_path);           
+                    if ($path) {
+                        return $path;
+                    } else {
+                        return $new_path;
+                    }
+                }
+            }
+            ]]></add>
+        </operation>
+        <operation>
+            <search><![CDATA[
+            if ($product_info) {
+            ]]></search>
+            <add position="after"><![CDATA[
+            if(!isset($category_info)) {
+                $categories = $this->model_catalog_product->getCategories($this->request->get['product_id']);
+                if($categories) {               
+                    foreach($categories as $category){            
+                        $path = $this->getPath($category['category_id']);
+                        $category_info = $this->model_catalog_category->getCategory($category['category_id']);
+                        if($path){
+                            $cat_path = $path;
+                        }else{
+                            $cat_path = $category_info['category_id'];
+                        }                 
+                        if($category_info) {
+                            $path = '';
+                            $cat_path = explode('_', $cat_path);
+                            foreach ( $cat_path as $path_id) {
+                              if (!$path) {
+                                $path = $path_id;
+                              } else {
+                                $path .= '_' . $path_id;
+                              }
+                                  
+                              $category_info = $this->model_catalog_category->getCategory($path_id);
+                              
+                              if ($category_info) {
+                                  $data['breadcrumbs'][] = array(
+                                  'text'      => $category_info['name'],
+                                  'href'      => $this->url->link('product/category', '&path=' . $path),
+                                  'separator' => $this->language->get('text_separator')
+                                  );
+                                }
+                            }
+                        break;
+                        }             
+                    }
+                }
+            }
+            ]]></add>
+        </operation>
+    </file>
+</modification>

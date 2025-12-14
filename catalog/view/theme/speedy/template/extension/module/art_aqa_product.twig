@@ -1,0 +1,98 @@
+{{ product_question }}
+{% if art_aqa_product_form_type == 1 %}
+<div class="art_aqa_product_block">
+	<button type="button" class="btn btn-primary btn-lg" id="art_aqa_product_modal_btn">{{ art_aqa_product_title }}</button>
+</div>
+{% endif %}
+{% if art_aqa_product_form_type == 3 %}
+	<div class="form-horizontal">
+		<h3>{{ art_aqa_product_title }}</h3>
+		{{ art_form }}
+	</div>
+{% endif %}
+{% if art_aqa_product_form_type == 1 or art_aqa_product_form_type == 2 %}
+<div id="art_aqa_product_modal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 class="modal-title">{{ art_aqa_product_title }}</h3>
+			</div>
+			<div class="modal-body">
+				{{ art_form }}
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+<script>
+	$('#art_aqa_product_modal_btn').click(function(){
+		$('#art_aqa_product_modal').modal('show');
+	})
+
+	$('#art_aqa_product_questions').delegate('.pagination a', 'click', function(e) {
+	    e.preventDefault();
+	    $('#art_aqa_product_questions').fadeOut('slow');
+	    $('#art_aqa_product_questions').load(this.href);
+	    $('#art_aqa_product_questions').fadeIn('slow');
+	    $('html, body').animate({
+	        scrollTop: $('#art_aqa_product_questions').offset().top - 100
+	    }, 750);
+	});
+
+	$('#button-art_aqa_product').on('click', function() {
+	  $.ajax({
+	    url: 'index.php?route=extension/module/art_aqa_product/sendmessage',
+	    type: 'post',
+	    dataType: 'json',
+	    data: $("#form-art_aqa_product").serialize(),
+	    beforeSend: function() {
+	      // $('#button-art_aqa_product').button('loading');
+	    },
+	    complete: function() {
+	      $('#button-art_aqa_product').button('reset');
+	    },
+	    success: function(json) {
+	      $('.alert-success, .alert-danger').remove();
+
+	      if (json['error']) {
+	        if($('.alert-item-modal-push').length < 1) {
+	          $('body').append('<ul class="alert-modal alert-item-modal-push"></ul>');
+	        }
+	        if($('.alert-item').length = 6) {
+	          $('.alert-item').eq(5).prevAll(".alert-item").remove();
+	        }
+	        var i = 0
+	        var $alertItem = $('<li class="alert-item alert-error alert-item-error"><span class="alert-icon"></span>' + json['error'] + '<button class="btn-close btn-close-alert-modal"></button></li>').addClass("alert-item-animate");
+	        $(".alert-item-modal-push").prepend($alertItem);
+	        setTimeout(function() {
+	            $alertItem.remove();
+	        }, 2400);
+		  }
+
+	      if (json['success']) {
+			$.ajax({
+				url: 'index.php?route=extension/module/art_aqa_product/success',
+				type: 'post',
+				success: function(data) {
+					if($('.alert-item-modal-push').length < 1) {
+			          $('body').append('<ul class="alert-modal alert-item-modal-push"></ul>');
+			        }
+			        if($('.alert-item').length = 6) {
+			          $('.alert-item').eq(5).prevAll(".alert-item").remove();
+			        }
+			        var $alertItem = $('<li class="alert-item alert-success alert-item-success"><span class="alert-icon"></span>' + json['success'] + '<button class="btn-close btn-close-alert-modal"></button></li>').addClass("alert-item-animate");
+			        $(".alert-item-modal-push").prepend($alertItem);
+			        setTimeout(function() {
+			            $alertItem.remove();
+			        }, 2400);
+				}
+			});
+		
+	        $('#form-art_aqa_product input:not([type=\'hidden\'])').val('');
+	        $('#form-art_aqa_product textarea').val('');
+	      }
+	    }
+	  });
+	});
+</script>

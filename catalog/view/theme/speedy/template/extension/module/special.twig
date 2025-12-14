@@ -1,0 +1,154 @@
+{% if products %}
+<section>
+  <div class="section_title">
+    {{ heading_title }}
+    <div class="swiper_arrows swiper_arrows_products{% if products_type == 'slider' and products_slider_arrows %} swiper_arrows_products_active{% endif%}" id="products_items_slider_arrows_special">
+      <div class="arrow arrow_prev"></div>
+      <div class="arrow arrow_next"></div>
+    </div>
+  </div>
+  {% if products_type == 'slider' %}<div class="swiper-pagination" id="products_items_slider_pagination_special"></div>{% endif %}
+  <div class="products_items{% if products_type == 'slider' %} products_items_slider{% endif%}" id="products_items_slider_special">
+    {% if products_type == 'slider' %}<div class="swiper-wrapper">{% endif %}
+      {% for product in products %}
+      <div class="{% if products_type == 'slider'%}swiper-slide {% endif%}item product_{{ product.id }}">
+        <div class="image">
+          <a href="{{ product.href }}">
+            <img class="image_main" src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+            {% if product.thumb2 %}<img class="image_hover" src="{{ product.thumb2 }}" alt="{{ product.name }}" title="{{ product.name }}" />{% endif %}
+          </a>
+          {% if catalog_stickers_text %}
+          <ul class="stickers_text">
+            {% if product.sticker_new_status %}<li style="background: {{ sticker_new_background }}">{{ sticker_new_name }}</li>{% endif %}
+            {% if product.sticker_special_status %}<li style="background: {{ sticker_special_background }}">{{ sticker_special_name }}</li>{% endif %}
+            {% if product.sticker_sale_status %}<li style="background: {{ sticker_sale_background }}">{{ sticker_sale_name }}</li>{% endif %}
+            {% if product.sticker_hot_status %}<li style="background: {{ sticker_hot_background }}">{{ sticker_hot_name }}</li>{% endif %}
+          </ul>
+          {% endif %}
+          <div class="buttons_compare_wishlist">
+            <button type="button" class="button_wishlist icon_wishlist" onclick="wishlist.add('{{ product.product_id }}');"></button>
+            <button type="button" class="button_compare icon_compare" onclick="compare.add('{{ product.product_id }}');"></button>
+            <button type="button" class="button_view_modal icon_view_modal"></button>
+            {% if buyoneclick_status_module %}
+              <button type="button" data-loading-text="{{ buyoneclick_text_loading }}" class="button_fast_checkout icon_fast_checkout" {% if (buyoneclick_google_status and buyoneclick_google_category_btn is defined and buyoneclick_google_category_btn != '' and buyoneclick_google_action_btn is defined and buyoneclick_google_action_btn != '') %} onClick="clickAnalytics(); return true;" {% endif %} data-target="#boc_order" data-product="{{ product['name'] }}" data-product_id="{{ product['product_id'] }}"></button>
+            {% endif %}
+          </div>
+          {% if product.special %}
+          <div class="percent">-{{ product.special_percent }}%</div>
+          {% endif %}
+        </div>
+        <div class="caption">
+          <div class="name"><a href="{{ product.href }}">{{ product.name }}</a></div>
+          {% if product.description and catalog_description %}<p class="description">{{ product.description }}</p>{% endif %}
+          <div class="additional">
+            <div class="rating">
+              {% for i in 1..5 %}
+                {% if product.rating < i %}
+                <span></span>
+                {% else %}
+                <span class="active"></span>
+                {% endif %}
+              {% endfor %}
+              <p>{{ product.reviews }}</p>
+            </div>
+            {% if product.model and catalog_model %}
+            <p class="model">{{ product.model }}</p>
+            {% endif %}
+            {% if product.stock and catalog_stock %}
+            <div class="stock{% if product.stock_status_id == 7 %} in{% elseif product.stock_status_id == 5 %} out{% elseif product.stock_status_id == 6 %} wait{% elseif product.stock_status_id == 8 %} pre{% endif %}">{{ product.stock }}</div>
+            {% endif %}
+          </div>
+          <div class="price_button">
+            {% if product.price %}
+            <div class="price">
+              {% if not product.special %}
+              <div class="price-stock">{{ product.price }}</div>
+              {% else %}
+              <div class="price-old">{{ product.price }}</div>
+              <div class="price-stock price-new">{{ product.special }}</div>
+              {% endif %}
+            </div>
+            {% endif %}
+            <button class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock{% endif %}" type="button" onclick="cart.add('{{ product.product_id }}');"></button>
+          </div>
+          <div class="hover_block">
+            {% if product.attribute_groups and catalog_attribute_groups %}
+            <ul class="attribute_groups">
+              {% for attribute_group in product.attribute_groups %}
+              {% for attribute in attribute_group.attribute|slice(0, 2) %}
+              <li>
+                <b>{{ attribute.name }}:</b>
+                {% if attribute.text|length > 90 %}
+                  {{ attribute.text|slice(0, 90) ~ '...' }}
+                {% else %}
+                  {{ attribute.text }}
+                {% endif %}
+              </li>
+              {% endfor %}
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    {% if products_type == 'slider' %}</div>{% endif %}
+  </div>
+  {% if products_type == 'slider' %}
+  <script>
+    // Проверка на наличие блока в Aside
+    if($("#products_items_slider_special").parent().parent().attr("id") != 'column-left') {
+      var swiperspecial = new Swiper("#products_items_slider_special", {
+        lazy: true,
+        loop: true,
+        navigation: {
+          nextEl: "#products_items_slider_arrows_special .arrow_next",
+          prevEl: "#products_items_slider_arrows_special .arrow_prev",
+        },
+        pagination: {
+          el: "#products_items_slider_pagination_special",
+          type: "progressbar",
+        },
+        breakpoints: {
+          320: {
+            slidesPerView: {{ products_slider_limit_xs }},
+            spaceBetween: 10,
+          },
+          480: {
+            slidesPerView: {{ products_slider_limit_sm }},
+            spaceBetween: 10,
+          },
+          768: {
+            slidesPerView: {{ products_slider_limit_md }},
+            spaceBetween: 10,
+          },
+          1024: {
+            slidesPerView: {{ products_slider_limit_lg }},
+            spaceBetween: 10,
+          },
+          1280: {
+            slidesPerView: {{ products_slider_limit_xl }},
+            spaceBetween: 10,
+          },
+          1440: {
+            slidesPerView: {{ products_slider_limit }},
+            spaceBetween: 10,
+          }
+        }
+      });
+    } else {
+      var swiperspecialAside = new Swiper("#products_items_slider_special", {
+        lazy: true,
+        loop: true,
+        navigation: {
+          nextEl: "#products_items_slider_arrows_special .arrow_next",
+          prevEl: "#products_items_slider_arrows_special .arrow_prev",
+        },
+        slidesPerView: 1,
+        spaceBetween: 10,
+      });
+    }
+  </script>
+  {% endif %}
+</section>
+{% endif %}

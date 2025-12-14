@@ -1,0 +1,271 @@
+
+	        {{ dw_quick_modal }}
+	    
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div id="logo">
+              {% if logo %}
+                <img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" />
+              {% endif %}
+        </div>
+        <p>{{ powered }}</p>
+        {% if footer_socials %}
+        <ul class="list-unstyled social_links">
+          {% if instagram %}<li class="instagram"><a href="{{ instagram }}"></a></li>{% endif %}
+          {% if facebook %}<li class="facebook"><a href="{{ facebook }}"></a></li>{% endif %}
+          {% if twitter %}<li class="twitter"><a href="{{ twitter }}"></a></li>{% endif %}
+          {% if youtube %}<li class="youtube"><a href="{{ youtube }}"></a></li>{% endif %}
+          {% if linkedin %}<li class="linkedin"><a href="{{ linkedin }}"></a></li>{% endif %}
+          {% if pinterest %}<li class="pinterest"><a href="{{ pinterest }}"></a></li>{% endif %}
+        </ul>
+        {% endif %}
+      </div>
+      <div class="col-sm-3">
+        <h5>{{ text_catalog }}</h5>
+        <ul class="list-unstyled">
+          {{ menu }}
+        </ul>
+      </div>
+      <div class="col-sm-3">
+        <h5>{{ text_extra }}</h5>
+        <ul class="list-unstyled">
+          <li><a href="{{ account }}">{{ text_account }}</a></li>
+          <li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+          <li><a href="{{ compare }}">{{ text_compare }}</a></li>
+          <li><a href="{{ contact }}">{{ text_contact }}</a></li>
+          <li><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>
+          <li><a href="{{ special }}">{{ text_special }}</a></li>
+          {% for information in informations %}
+          <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+          {% endfor %}
+          <li><a href="{{ return }}">{{ text_return }}</a></li>
+          <li><a href="{{ sitemap }}">{{ text_sitemap_html }}</a></li>
+          {% for sitemap in sitemaps %}
+          <li><a href="{{ sitemap.href }}">{{ text_sitemap }} ({{ lang }})</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-sm-3">
+        <h5>{{ text_contact }}</h5>
+        {% if footer_phones %}
+        <ul class="list-unstyled footer_telephones">
+          <li><a href="tel:{{ telephone }}">{{ telephone }}</a></li>
+          {% if telephone_2 %}<li><a href="tel:{{ telephone }}">{{ telephone_2 }}</a></li>{% endif %}
+          {% if telephone_3 %}<li><a href="tel:{{ telephone }}">{{ telephone_3 }}</a></li>{% endif %}
+          {% if telephone_4 %}<li><a href="tel:{{ telephone }}">{{ telephone_4 }}</a></li>{% endif %}
+        </ul>
+        {% endif %}
+        {% if footer_messengers %}
+        <ul class="list-unstyled messenger_links">
+          {% if telegram %}<li class="telegram"><a href="https://t.me/{{ telegram }}"></a></li>{% endif %}
+          {% if viber %}<li class="viber"><a href="viber://chat?number={{ viber }}"></a></li>{% endif %}
+          {% if whatsapp %}<li class="whatsapp"><a href="whatsapp://send?phone={{ whatsapp }}"></a></li>{% endif %}
+        </ul>
+        {% endif %}
+        {% if footer_email %}
+        <ul class="list-unstyled">
+          <li><a href="mailto:{{ email }}">{{ email }}</a></li>
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{{ microdatapro }} {% set microdatapro_main_flag = 1 %} {# microdatapro 8.1 - 1 - main #}
+
+            {% if catalog_quantity %}      
+            <script>
+                    var priceFormated = function (price) {
+                        let jj;
+                        price = price * '{{ data_currency.value }}';
+                        
+                         let c = '{{ data_currency.decimals is empty ? "0" : data_currency.decimals  }}';
+                        let d = '{{ data_currency.decimal_point }}';
+                        let t = '{{ data_currency.thousand_point }}';
+                        let s_left = '{{ data_currency.symbol_left }}';
+                        let s_right = '{{ data_currency.symbol_right }}';
+                        let i = parseInt(price = Math.abs(price).toFixed(c)) + '';
+                         jj = ((jj = i.length) > 3) ? jj % 3 : 0;
+                        
+                        return s_left + (jj ? i.substr(0, jj) + t : '') + i.substr(jj).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(price - i).toFixed(c).slice(2) : '') + s_right;
+                    };
+                            
+                    var textMaximum ='{{ text_maximum }}',
+                        textMinimum = '{{ text_minimum }}',
+                        textAddMultiple = '{{ text_add_multiple }}';
+            </script>        
+            {% endif %}
+        
+</footer>
+{% if footer_payments_status %}
+<div class="footer_payments_icons">
+  {% for footer_payment in footer_payments %}
+  <img src="{{ footer_payment.image }}" alt="">
+  {% endfor %}
+</div>
+{% endif %}
+{% if code_footer_js_link %}<script src="catalog/view/javascript/{{ code_footer_js_link }}.js{% if developer_mode %}?={{ developer_mode }}{% endif %}" type="text/javascript"></script>{% endif %}
+{% if code_footer_js %}<script>{{ code_footer_js }}</script>{% endif %}
+{% for style in styles %}
+<link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
+{% endfor %}
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+<script src="catalog/view/javascript/voice_search.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<div class="cookie_modal">
+  {{ widgets_modal_cookie_description }}
+  <span class="btn">{{ button_continue }}</span>
+  <span class="btn btn-close">&times;</span>
+</div>
+<script>
+  if (localStorage.getItem('agree_cookie') == null) {
+    setTimeout(function(){
+      $(".cookie_modal").addClass("active"); 
+    }, 1000);
+  }
+  $(".cookie_modal span").on("click", function() {
+    localStorage.setItem('agree_cookie', '1');
+    $(".cookie_modal").remove();
+  });
+</script>
+{% if widgets_messenger_status %}
+<div class="widgets_messenger_link"></div>
+<ul class="widgets_messenger_content">
+  <li><a href="tel:{{ telephone }}">{{ telephone }}</a></li>
+  {% if telephone_2 %}<li><a href="tel:{{ telephone }}">{{ telephone_2 }}</a></li>{% endif %}
+  {% if telephone_3 %}<li><a href="tel:{{ telephone }}">{{ telephone_3 }}</a></li>{% endif %}
+  {% if telephone_4 %}<li><a href="tel:{{ telephone }}">{{ telephone_4 }}</a></li>{% endif %}
+  <span></span>
+  {% if telegram %}<li class="telegram"><a href="https://t.me/{{ telegram }}">{{ text_telegram }}</a></li>{% endif %}
+  {% if viber %}<li class="viber"><a href="viber://chat?number={{ viber }}">{{ text_viber }}</a></li>{% endif %}
+  {% if whatsapp %}<li class="whatsapp"><a href="whatsapp://send?phone={{ whatsapp }}">{{ text_whatsapp }}</a></li>{% endif %}
+  <span></span>
+  <li><a href="mailto:{{ email }}">{{ email }}</a></li>
+  <span></span>
+  {% if instagram %}<li class="instagram"><a href="{{ instagram }}">{{ text_instagram }}</a></li>{% endif %}
+  {% if facebook %}<li class="facebook"><a href="{{ facebook }}">{{ text_facebook }}</a></li>{% endif %}
+  {% if twitter %}<li class="twitter"><a href="{{ twitter }}">{{ text_twitter }}</a></li>{% endif %}
+  {% if youtube %}<li class="youtube"><a href="{{ youtube }}">{{ text_youtube }}</a></li>{% endif %}
+  {% if linkedin %}<li class="linkedin"><a href="{{ linkedin }}">{{ text_linkedin }}</a></li>{% endif %}
+  {% if pinterest %}<li class="pinterest"><a href="{{ pinterest }}">{{ text_pinterest }}</a></li>{% endif %}
+</ul>
+<script>
+  $(".widgets_messenger_link").on("click", function(){
+    if($(this).hasClass("active")){
+      $(this).removeClass("active");
+      $(".widgets_messenger_content").removeClass("active");
+    } else {      
+      $(this).addClass("active");
+      $(".widgets_messenger_content").addClass("active");
+    }
+  })
+</script>
+{% endif %}
+{% if smartsearch %}
+<script type="text/javascript"> 
+
+     $(document).on('keyup', '{{ smartsearch_field }}', function(e) {
+        if (e.keyCode == 40 || e.keyCode == 38) {
+            return;
+        }
+
+        var search = $(this).val();
+        var input = $(this);
+
+        $.ajax({
+            url: 'index.php?route=extension/module/smartsearch',
+            type: 'post',
+            data: 'search=' + search,
+            dataType: 'json',
+            beforeSend: function() {                                    
+            },
+            complete: function() {                                    
+            },
+            success: function(json) {
+            //alert(json)
+
+            if (input.parent().find('.smartsearch').length == 0) {
+                input.after('<div class="smartsearch"></div>');
+            }
+
+            
+            if (json['html']) {
+                $('.smartsearch').html(json['html']);
+                $('.smartsearch').show();
+            } else {
+                $('.smartsearch').html('');
+                $('.smartsearch').hide();
+            }
+            
+            
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+            //alert(thrownError + " " + xhr.statusText + " " + xhr.responseText);
+            }
+        });
+
+    });
+
+
+    $(document).on('keyup', '{{ smartsearch_field }}', function(e) {
+        var smartsearch = $(this).parent().find('.smartsearch');
+        if (e.keyCode == 40) {
+            if (smartsearch.find('.item').length > 0) {
+                if (smartsearch.find('.item.current').length == 0) {                                        
+                    smartsearch.find('.item').first().addClass('current')
+                } else {
+                    var el = smartsearch.find('.item.current');
+                    el.removeClass('current');
+                    if (el.next().length == 0) {
+                        smartsearch.find('.item').first().addClass('current')
+                    } else {
+                        el.next().addClass('current');
+                    }                                        
+                }
+                $(this).val(smartsearch.find('.item.current').attr('search_name'));
+
+            }                                
+        }
+        if (e.keyCode == 38) {
+            if (smartsearch.find('.item').length > 0) {
+                if (smartsearch.find('.item.current').length == 0) {                                    
+                    smartsearch.find('.item').last().addClass('current')
+                } else {
+                    var el = smartsearch.find('.item.current');
+                    el.removeClass('current');
+                    if (el.prev().length == 0) {
+                        smartsearch.find('.item').last().addClass('current')
+                    } else {
+                        el.prev().addClass('current');
+                    }                                        
+                }
+                $(this).val(smartsearch.find('.item.current').attr('search_name'));
+            }
+        }
+    });
+
+
+   
+
+    $(document).on('focus', '{{ smartsearch_field }}', function(e) {  
+        var smartsearch = $(this).parent().find('.smartsearch');
+        if (smartsearch.find('.items>.item').length > 0) {
+            smartsearch.show();
+        }
+    }); 
+
+    $(document).mouseup(function (e) {
+        var container = $('{{ smartsearch_field }}');                    
+        if (!container.is(e.target) && container.has(e.target).length === 0) { 
+            container.parent().find('.smartsearch').hide();
+        }
+    });
+
+</script>
+{% endif %}
+{% if (microdatapro_main_flag is not defined) %}{{ microdatapro }} {% set microdatapro_main_flag = 1 %}{% endif %} {# microdatapro 8.1 - 2 - extra #}
+{% if (microdatapro_main_flag is not defined) %}{{ microdatapro }}{% endif %} {# microdatapro 8.1 - 3 - extra #}
+</body></html>

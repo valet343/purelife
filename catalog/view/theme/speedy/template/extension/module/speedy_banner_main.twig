@@ -1,0 +1,134 @@
+{% if banners_main %}
+<section class="banner_main{% if container == 'fixed' %} banner_main_fixed{% else %} banner_main_adaptive{% endif %}">
+    <div class="swiper{% if type == 'slider' %} banner_main_slider{% else %} banner_main_carousel{% endif %}" id="{% if type == 'slider' %}banner_main_slider{% else %}banner_main_carousel{% endif %}{{ module }}">
+        <div class="swiper-wrapper">
+                    {% for banner_main in banners_main %}
+                        <div class="swiper-slide item{% if type == 'slider' %}{% if slider_type == 'image_and_text' %} item_type_image_and_text{% else%} item_type_image{% endif %}{% endif %}"{% if banner_main.background_color and slider_type == 'image_and_text' %} style="background: {{ banner_main.background_color }}"{% endif %}>
+                                {% if slider_type == 'image_and_text' and type == 'slider' %}
+                                <div class="item_inner" style="width: {{ width_item }}px;max-width: 100%;">
+                                    <img src="{{ banner_main.image }}" />
+                                    <span class="{% if banner_main.position == 1 %}position_left{% else %}position_right{% endif %} {{ banner_main.class }}">
+                                        <p class="title">{{ banner_main.title }}</p>
+                                        <p class="description">{{ banner_main.description }}</p>
+                                        {% if banner_main.link %}
+                                            <a class="link" href="{{ banner_main.link }}">{{ banner_main.button_text }}</a>
+                                        {% else %}
+                                            <p class="link">{{ banner_main.button_text }}</p>
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                {% else %}
+                                    {% if banner_main.link %}
+                                    <a href="{{ banner_main.link }}" target="_blank"><img src="{{ banner_main.image }}" /></a>
+                                    {% else %}
+                                    <img src="{{ banner_main.image }}" />
+                                    {% endif %}
+                                {% endif %}
+                        </div>
+                    {% endfor %}
+        </div>
+        {% if arrows %}
+        <div class="banner_main_arrows swiper_arrows">
+            <div class="arrow arrow_prev"></div>
+            <div class="arrow arrow_next"></div>
+        </div>
+        {% endif %}
+    </div>
+    {% if type == 'carousel' and freemode == 0 %}
+    <style>
+        .banner_main_carousel .item {
+            max-width: initial;
+        }
+    </style>
+    {% endif %}
+    <script>
+    {% if container == 'adaptive' %}
+        // Если слайдер стоит первым, то перенести его ближе к шапке
+        if($("#content > *:first-child").hasClass("banner_main_adaptive")) {
+            $("#common-home").eq(0).before($(".banner_main_adaptive"));
+        }
+    {% endif %}
+    {% if container == 'adaptive' and type == 'carousel' and freemode == 0 %}
+        // Если слайдер стоит первым, то перенести его ближе к шапке + сделать отступ слева для красоты
+        $("#common-home").eq(0).before($(".banner_main_adaptive"));
+    {% endif %}
+    {% if container == 'adaptive' and type == 'carousel' and freemode == 1 %}
+        // Если слайдер стоит первым, то перенести его ближе к шапке + сделать отступ слева для красоты
+        var marginLeftBanner = $(".container").offset().left + 10;
+        $(".banner_main_adaptive").css({"margin-left":marginLeftBanner});
+    {% endif %}
+    {% if type == 'slider' %}
+        // Условия для слайдера
+        var swiperbannerMain = new Swiper("#banner_main_slider{{ module }}", {
+          slidesPerView: 1,
+          
+          spaceBetween: 0,
+          loop: true,
+          {% if autoplay %}
+          autoplay: {
+            delay: {% if autoplay_time %}{{ autoplay_time }}{% else %}2000{% endif %}
+          },
+          {% endif %}
+          {% if arrows %}
+          navigation: {
+            nextEl: ".banner_main_arrows .arrow_next",
+            prevEl: ".banner_main_arrows .arrow_prev",
+          },
+          {% endif %}
+        });
+        // Инверсия цветов в зависимости от фона
+        function isDark( color ) {
+            var match = /rgb\((\d+).*?(\d+).*?(\d+)\)/.exec(color);
+            return ( match[1] & 255 )
+                 + ( match[2] & 255 )
+                 + ( match[3] & 255 )
+                   < 3 * 256 / 2;
+        }
+        $('.item_type_image_and_text').each(function() {
+            $(this).css("color", isDark($(this).css("background")) ? 'white' : 'black');
+        });
+    {% else %}
+        // Условия для слайдера (тип: истории)
+        var swiperbannerMain = new Swiper("#banner_main_carousel{{ module }}", {
+          {% if freemode %}  
+          slidesPerView: "auto",
+          {% else %}
+          breakpoints: {
+              320: {
+                slidesPerView: 1,
+              },
+              480: {
+                slidesPerView: 1,
+              },
+              768: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+              1280: {
+                slidesPerView: 4,
+              },
+              1440: {
+                slidesPerView: {{ carousel_items }},
+              },
+            },
+          {% endif %}
+          spaceBetween: 10,
+          loop: true,
+          {% if autoplay %}
+          autoplay: {
+            delay: {% if autoplay_time %}{{ autoplay_time }}{% else %}2000{% endif %}
+          },
+          {% endif %}
+          {% if arrows %}
+          navigation: {
+            nextEl: ".banner_main_arrows .arrow_next",
+            prevEl: ".banner_main_arrows .arrow_prev",
+          },
+          {% endif %}
+        });
+    {% endif %}
+    </script>
+</section>
+{% endif %}

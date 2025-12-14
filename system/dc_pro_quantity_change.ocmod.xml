@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+<name>DEV-OPENCART.COM - Кнопки + и - для выбора количества в категории</name>
+<version>1</version>
+<link>https://DEV-OPENCART.COM</link>
+<author>DEV-OPENCART.COM</author>
+<code>dev_opencart_com_pmcat</code>
+    <file path="catalog/controller/common/footer.php">
+        <operation error="skip">
+            <search><![CDATA[$this->load->language('common/footer');]]></search>
+            <add position="after"><![CDATA[
+        // plus minus start
+                
+        $this->document->addScript('catalog/view/javascript/f_plus_minus.js', 'footer');
+
+        $data_currency = array();
+        $data_currency['value'] = $this->currency->getValue($this->session->data['currency']);
+        $data_currency['symbol_left'] = $this->currency->getSymbolLeft($this->session->data['currency']);
+        $data_currency['symbol_right'] = $this->currency->getSymbolRight($this->session->data['currency']);
+        $data_currency['decimals'] = $this->currency->getDecimalPlace($this->session->data['currency']);
+        $data_currency['decimal_point'] = $this->language->get('decimal_point');
+        $data_currency['thousand_point'] = $this->language->get('thousand_point');
+        $data['data_currency'] = $data_currency;
+        
+        $this->load->language('product/category');
+        
+        $data['text_minimum'] = $this->language->get('text_minimum');
+        $data['text_maximum'] = $this->language->get('text_maximum');
+        $data['text_add_multiple'] = $this->language->get('text_add_multiple');
+                
+        // plus minus end
+        ]]></add>
+        </operation>
+
+    </file>
+    <file path="catalog/view/theme/*/template/common/footer.twig">
+        <operation error="skip">
+            <search><![CDATA[</footer>]]></search>
+            <add position="before"><![CDATA[
+            {% if catalog_quantity %}      
+            <script>
+                    var priceFormated = function (price) {
+                        let jj;
+                        price = price * '{{ data_currency.value }}';
+                        
+                         let c = '{{ data_currency.decimals is empty ? "0" : data_currency.decimals  }}';
+                        let d = '{{ data_currency.decimal_point }}';
+                        let t = '{{ data_currency.thousand_point }}';
+                        let s_left = '{{ data_currency.symbol_left }}';
+                        let s_right = '{{ data_currency.symbol_right }}';
+                        let i = parseInt(price = Math.abs(price).toFixed(c)) + '';
+                         jj = ((jj = i.length) > 3) ? jj % 3 : 0;
+                        
+                        return s_left + (jj ? i.substr(0, jj) + t : '') + i.substr(jj).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(price - i).toFixed(c).slice(2) : '') + s_right;
+                    };
+                            
+                    var textMaximum ='{{ text_maximum }}',
+                        textMinimum = '{{ text_minimum }}',
+                        textAddMultiple = '{{ text_add_multiple }}';
+            </script>        
+            {% endif %}
+        ]]></add>
+        </operation>
+    </file>
+    <file path="catalog/controller/product/{category,manufacturer,special,search}.php">
+        <operation error="skip">
+            <search><![CDATA[$data['products'][] = array(]]></search>
+            <add position="before"><![CDATA[
+                // plus minus start
+                
+                if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+                    $price_no_format = $result['price'];
+                } else {
+                    $price_no_format = '';
+                }
+                if ((float) $result['special']) {
+                    $special_no_format = $result['special'];
+                } else {
+                    $special_no_format = '';
+                }
+
+                if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+                    // plus minus  добавлено  * $result['minimum']
+                    $price = $this->currency->format($this->tax->calculate($result['price'] * $result['minimum'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
+                } else {
+                    $price = false;
+                }
+
+                if ((float) $result['special']) {
+                    // plus minus  добавлено  * $result['minimum']
+                    $special = $this->currency->format($this->tax->calculate($result['special'] * $result['minimum'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
+                } else {
+                    $special = false;
+                }
+
+                // plus minus end 
+        ]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[$data['products'][] = array(]]></search>
+            <add position="after"><![CDATA[
+                    // plus minus start
+                    'maximum' => $result['quantity'],
+                    'price_no_format' => $price_no_format,
+                    'special_no_format' => $special_no_format,
+                    // plus minus end
+        ]]></add>
+        </operation>
+    </file>
+    <file path="catalog/language/*/product/{category,manufacturer,special,search}.php">
+        <operation error="skip">
+            <search><![CDATA[// Text]]></search>
+            <add position="after"><![CDATA[
+// plus minus start
+                
+$_['text_minimum'] = 'Минимальное количество - ';
+$_['text_maximum'] = 'Максимальное количество - ';
+$_['text_add_multiple'] = 'Количество, только кратно минимальному кол. товара - ';
+                
+//  plus minus end
+        ]]></add>
+        </operation>
+    </file>
+    <file path="catalog/view/theme/*/template/product/{category,manufacturer_info,special,search}.twig">
+        <operation error="skip">
+            <search><![CDATA[<div class="hover_block">]]></search>
+            <add position="after"><![CDATA[
+            {% if catalog_quantity %}
+            <div class="wrap-plus-minus" id="wrap-plus-minus{{ product.product_id }}">
+                <span class="btn p-m minus">-</span>
+                <input name="quantity" id="quantity{{ product.product_id }}" class="inp-quantity p-m" value="{{ product.minimum }}" type="text">
+                <span class="btn p-m plus">+</span>
+                <input name="product_id" type="hidden" class="product-id" value="{{ product.product_id }}">
+                <input name="minimum" type="hidden" class="minimum" value="{{ product.minimum }}">
+                <input name="maximum" type="hidden" class="maximum" value="{{ product.maximum }}">
+                <input name="price-no-format" type="hidden" class="price-no-format" value="{{ product.price_no_format }}">
+                <input name="special-no-format" type="hidden" class="special-no-format" value="{{ product.special_no_format }}">
+            </div>
+            {% endif %}
+        ]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[<div class="price-stock">{{ product.price }}</div>]]></search>
+            <add position="replace"><![CDATA[
+            {% if catalog_quantity %}
+                <div class="price-stock el-price">{{ product.price }}</div>
+            {% else %}
+                <div class="price-stock">{{ product.price }}</div>
+            {% endif %}
+        ]]></add>
+      </operation>
+        <operation error="skip">
+            <search><![CDATA[<button class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock{% endif %}" type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"></button>]]></search>
+            <add position="replace"><![CDATA[
+            {% if catalog_quantity %}
+               <button id="add-cart-{{ product.product_id }}" type="button" data-productid ="{{ product.product_id }}" class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock {% endif %} bcart f-button-add-cart"></button>
+            {% else %}
+                <button class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock{% endif %}" type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"></button>
+            {% endif %}
+        ]]></add>
+        </operation>
+    </file>
+</modification>

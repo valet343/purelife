@@ -1,0 +1,172 @@
+{{ header }}
+<div id="information-contact" class="container">
+  <div class="columns">
+    {{ column_left }}
+    <div id="content" class="{{ class }}">
+      <ul itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+        
+            {% set last_crumb = breadcrumbs|last %}
+            {% set breadcrumbs = breadcrumbs|slice(0,-1) %}
+            {% set i = 1 %}
+            {% for breadcrumb in breadcrumbs %}
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ breadcrumb.href }}" itemprop="item"><span itemprop="name">{{ breadcrumb.text }}</span></a><meta itemprop="position" content="{{ i }}" /></li>
+                {% set i = i + 1 %}
+            {% endfor %}
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><link href="{{ last_crumb.href }}" itemprop="item"/><span itemprop="name">{{ last_crumb.text|striptags }}</span><meta itemprop="position" content="{{ i }}" /></li>
+            {% for breadcrumb in breadcrumbs123 %}
+            
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+      <h1>{{ heading_title }}</h1>
+      {{ content_top }}
+      {% if contact_status %}
+      <div class="panels">
+        <div class="panel contact_items">
+          <h3>{{ text_location }}</h3>
+            {% if instagram or facebook or twitter or youtube or linkedin or pinterest %}
+              <div class="item">
+                <p>Мы в социальных сетях:</p>
+                <ul class="social_links">
+                {% if instagram %}<li class="instagram"><a href="{{ instagram }}"></a></li>{% endif %}
+                {% if facebook %}<li class="facebook"><a href="{{ facebook }}"></a></li>{% endif %}
+                {% if twitter %}<li class="twitter"><a href="{{ twitter }}"></a></li>{% endif %}
+                {% if youtube %}<li class="youtube"><a href="{{ youtube }}"></a></li>{% endif %}
+                {% if linkedin %}<li class="linkedin"><a href="{{ linkedin }}"></a></li>{% endif %}
+                {% if pinterest %}<li class="pinterest"><a href="{{ pinterest }}"></a></li>{% endif %}
+              </ul>
+              </div>
+            {% endif %}
+            {% if address %}
+              <div class="item">
+                <p>{{ text_address }}</p>
+                <address>
+                {{ address }} {% if geocode %}(<a href="https://maps.google.com/maps?q={{ geocode|url_encode }}&hl={{ geocode_hl }}&t=m&z=15" target="_blank">{{ button_map }}</a>){% endif %}
+                </address>
+              </div>
+            {% endif %}
+            <div class="item">
+              <p>{{ text_telephone }}</p>
+              <ul class="phones">
+                <li><a href="tel:{{ telephone }}">{{ telephone }}</a></li>
+                {% if telephone_2 %}<li><a href="tel:{{ telephone }}">{{ telephone_2 }}</a></li>{% endif %}
+                {% if telephone_3 %}<li><a href="tel:{{ telephone }}">{{ telephone_3 }}</a></li>{% endif %}
+                {% if telephone_4 %}<li><a href="tel:{{ telephone }}">{{ telephone_4 }}</a></li>{% endif %}
+              </ul>
+              {% if fax %}
+              <p>{{ text_fax }}</p>
+              {{ fax }}
+              {% endif %}
+            </div>
+            {% if telegram or viber or whatsapp %}
+              <div class="item">
+                <p>Мы в мессенджерах:</p>
+                <ul class="messenger_links">
+                  {% if telegram %}<li class="telegram"><a href="https://t.me/{{ telegram }}"></a></li>{% endif %}
+                  {% if viber %}<li class="viber"><a href="viber://chat?number={{ viber }}"></a></li>{% endif %}
+                  {% if whatsapp %}<li class="whatsapp"><a href="whatsapp://send?phone={{ whatsapp }}"></a></li>{% endif %}
+                </ul>
+              </div>
+            {% endif %}
+            {% if open %}
+              <div class="item">
+                {% if open %}
+                <p>{{ text_open }}</p>
+                {{ open }}
+                {% endif %}
+              </div>
+            {% endif %}
+            {% if comment %}
+              <div class="item">
+                {% if comment %}
+                <p>{{ text_comment }}</p>
+                {{ comment }}
+                {% endif %}
+              </div>
+            {% endif %}
+        </div>
+        {% endif %}
+        {% if locations and locations_status %}
+        <div class="panel locations_items">
+          <h3>{{ text_store }}</h3>
+          {% for location in locations %}
+          <div class="item">
+            <h4 class="name">{{ location.name }}</h4>
+            <div class="info">
+              {% if location.image %}
+                <div class="image"><img src="{{ location.image }}" alt="{{ location.name }}" title="{{ location.name }}" /></div>
+              {% endif %}
+              <div class="caption">
+                <div class="item">
+                  <p>{{ location.name }}</p>
+                  <address>
+                  {{ text_address }}: {{ location.address }}
+                  </address>
+                  {% if location.geocode %}
+                  <a href="https://maps.google.com/maps?q={{ location.geocode|url_encode }}&hl={{ geocode_hl }}&t=m&z=15" target="_blank" class="btn btn-info"><i class="fa fa-map-marker"></i> {{ button_map }}</a>
+                  {% endif %}
+                </div>
+                <div class="item">
+                  <p>{{ text_telephone }}</p>
+                  {{ location.telephone }}
+                  {% if location.fax %}
+                  <p>{{ text_fax }}</p>
+                  {{ location.fax }}
+                  {% endif %}
+                </div>
+                <div class="item">
+                  {% if location.open %}
+                  <p>{{ text_open }}</p>
+                  {{ location.open }}
+                  {% endif %}
+                </div>
+                <div class="item">
+                  {% if location.comment %}
+                  <p>{{ text_comment }}</p>
+                  {{ location.comment }}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <div class="panel">
+          <h3>{{ text_contact }}</h3>
+          <form action="{{ action }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+            <fieldset>
+              <div class="form-group required">
+                <input placeholder="{{ entry_name }}" type="text" name="name" value="{{ name }}" id="input-name" class="form-control" />
+                {% if error_name %}
+                <div class="text-danger">{{ error_name }}</div>
+                {% endif %}
+              </div>
+              <div class="form-group required">
+                <input placeholder="{{ entry_email }}" type="text" name="email" value="{{ email }}" id="input-email" class="form-control" />
+                {% if error_email %}
+                <div class="text-danger">{{ error_email }}</div>
+                {% endif %}
+              </div>
+              <div class="form-group required">
+                <textarea placeholder="{{ entry_enquiry }}" name="enquiry" rows="10" id="input-enquiry" class="form-control">{{ enquiry }}</textarea>
+                {% if error_enquiry %}
+                <div class="text-danger">{{ error_enquiry }}</div>
+                {% endif %}
+              </div>
+              {{ captcha }}
+            </fieldset>
+            <div class="buttons">
+              <div class="pull-right">
+                <input class="btn btn-primary" type="submit" value="{{ button_submit }}" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      {{ content_bottom }}
+    </div>
+    {{ column_right }}
+  </div>
+</div>
+{{ footer }}

@@ -1,0 +1,44 @@
+[29-Jun-2025 13:29:08 Europe/Kiev] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home/purelifebiz/public_html/admin/model/tool/image.php:42
+Stack trace:
+#0 /home/purelifebiz/public_html/system/engine/loader.php(248): ModelToolImage->resize('profile.png', 45, 45)
+#1 /home/purelifebiz/public_html/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#2 /home/purelifebiz/public_html/admin/controller/common/header.php(94): Proxy->__call('resize', Array)
+#3 /home/purelifebiz/public_html/system/engine/action.php(79): ControllerCommonHeader->index(Array)
+#4 /home/purelifebiz/public_html/system/engine/loader.php(48): Action->execute(Object(Registry), Array)
+#5 /home/purelifebiz/public_html/admin/controller/common/dashboard.php(89): Loader->controller('common/header')
+#6 /home/purelifebiz/public_html/system/engine/action.php(79): ControllerCommonDashboard->index()
+#7 /home/purelifebiz/public_html/admin/controller/startup/router.php(2): Action->execute(Object(Registry), Array)
+#8 /home/purelifebiz/public_html/system/engine/ac in /home/purelifebiz/public_html/admin/model/tool/image.php on line 42
+[29-Jun-2025 13:29:12 Europe/Kiev] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home/purelifebiz/public_html/admin/model/tool/image.php:42
+Stack trace:
+#0 /home/purelifebiz/public_html/system/engine/loader.php(248): ModelToolImage->resize('profile.png', 45, 45)
+#1 /home/purelifebiz/public_html/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#2 /home/purelifebiz/public_html/admin/controller/common/header.php(94): Proxy->__call('resize', Array)
+#3 /home/purelifebiz/public_html/system/engine/action.php(79): ControllerCommonHeader->index(Array)
+#4 /home/purelifebiz/public_html/system/engine/loader.php(48): Action->execute(Object(Registry), Array)
+#5 /home/purelifebiz/public_html/admin/controller/common/dashboard.php(89): Loader->controller('common/header')
+#6 /home/purelifebiz/public_html/system/engine/action.php(79): ControllerCommonDashboard->index()
+#7 /home/purelifebiz/public_html/admin/controller/startup/router.php(2): Action->execute(Object(Registry), Array)
+#8 /home/purelifebiz/public_html/system/engine/ac in /home/purelifebiz/public_html/admin/model/tool/image.php on line 42
+[29-Jun-2025 13:29:15 Europe/Kiev] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home/purelifebiz/public_html/admin/model/tool/image.php:42
+Stack trace:
+#0 /home/purelifebiz/public_html/system/engine/loader.php(248): ModelToolImage->resize('profile.png', 45, 45)
+#1 /home/purelifebiz/public_html/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#2 /home/purelifebiz/public_html/admin/controller/common/header.php(94): Proxy->__call('resize', Array)
+#3 /home/purelifebiz/public_html/system/engine/action.php(79): ControllerCommonHeader->index(Array)
+#4 /home/purelifebiz/public_html/system/engine/loader.php(48): Action->execute(Object(Registry), Array)
+#5 /home/purelifebiz/public_html/admin/controller/common/dashboard.php(89): Loader->controller('common/header')
+#6 /home/purelifebiz/public_html/system/engine/action.php(79): ControllerCommonDashboard->index()
+#7 /home/purelifebiz/public_html/admin/controller/startup/router.php(2): Action->execute(Object(Registry), Array)
+#8 /home/purelifebiz/public_html/system/engine/ac in /home/purelifebiz/public_html/admin/model/tool/image.php on line 42
+[29-Jun-2025 13:29:32 Europe/Kiev] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home/purelifebiz/public_html/admin/model/tool/image.php:42
+Stack trace:
+#0 /home/purelifebiz/public_html/system/engine/loader.php(248): ModelToolImage->resize('profile.png', 45, 45)
+#1 /home/purelifebiz/public_html/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#2 /home/purelifebiz/public_html/admin/controller/common/header.php(94): Proxy->__call('resize', Array)
+#3 /home/purelifebiz/public_html/system/engine/action.php(79): ControllerCommonHeader->index(Array)
+#4 /home/purelifebiz/public_html/system/engine/loader.php(48): Action->execute(Object(Registry), Array)
+#5 /home/purelifebiz/public_html/admin/controller/common/dashboard.php(89): Loader->controller('common/header')
+#6 /home/purelifebiz/public_html/system/engine/action.php(79): ControllerCommonDashboard->index()
+#7 /home/purelifebiz/public_html/admin/controller/startup/router.php(2): Action->execute(Object(Registry), Array)
+#8 /home/purelifebiz/public_html/system/engine/ac in /home/purelifebiz/public_html/admin/model/tool/image.php on line 42

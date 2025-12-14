@@ -1,0 +1,31 @@
+[29-Jun-2025 13:28:41 Europe/Kiev] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home/purelifebiz/public_html/catalog/model/tool/image.php:44
+Stack trace:
+#0 /home/purelifebiz/public_html/system/engine/loader.php(248): ModelToolImage->resize('no_image.png', 100, 100)
+#1 /home/purelifebiz/public_html/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#2 /home/purelifebiz/public_html/catalog/controller/common/menu.php(23): Proxy->__call('resize', Array)
+#3 /home/purelifebiz/public_html/system/engine/action.php(79): ControllerCommonMenu->index(Array)
+#4 /home/purelifebiz/public_html/system/engine/loader.php(48): Action->execute(Object(Registry), Array)
+#5 /home/purelifebiz/public_html/catalog/controller/common/header.php(115): Loader->controller('common/menu')
+#6 /home/purelifebiz/public_html/system/engine/action.php(79): ControllerCommonHeader->index(Array)
+#7 /home/purelifebiz/public_html/system/engine/loader.php(48): Action->execute(Object(Registry), Array)
+#8 /home/purelifebiz/public_html/catalog/controller/erro in /home/purelifebiz/public_html/catalog/model/tool/image.php on line 44
+[29-Jun-2025 13:28:46 Europe/Kiev] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home/purelifebiz/public_html/catalog/model/tool/image.php:44
+Stack trace:
+#0 /home/purelifebiz/public_html/system/engine/loader.php(248): ModelToolImage->resize('no_image.png', 100, 100)
+#1 /home/purelifebiz/public_html/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#2 /home/purelifebiz/public_html/catalog/controller/common/menu.php(23): Proxy->__call('resize', Array)
+#3 /home/purelifebiz/public_html/system/engine/action.php(79): ControllerCommonMenu->index(Array)
+#4 /home/purelifebiz/public_html/system/engine/loader.php(48): Action->execute(Object(Registry), Array)
+#5 /home/purelifebiz/public_html/catalog/controller/common/header.php(115): Loader->controller('common/menu')
+#6 /home/purelifebiz/public_html/system/engine/action.php(79): ControllerCommonHeader->index(Array)
+#7 /home/purelifebiz/public_html/system/engine/loader.php(48): Action->execute(Object(Registry), Array)
+#8 /home/purelifebiz/public_html/catalog/controller/erro in /home/purelifebiz/public_html/catalog/model/tool/image.php on line 44
+[26-Nov-2025 20:25:41 Europe/Kiev] PHP Fatal error:  Uncaught Error: Call to a member function getInformations() on null in /home/purelifebiz/public_html/system/storage/modification/catalog/controller/common/header.php:146
+Stack trace:
+#0 /home/purelifebiz/public_html/system/storage/modification/system/engine/action.php(79): ControllerCommonHeader->index(Array)
+#1 /home/purelifebiz/public_html/system/storage/modification/system/engine/loader.php(48): Action->execute(Object(Registry), Array)
+#2 /home/purelifebiz/public_html/system/storage/modification/catalog/controller/product/manufacturer.php(695): Loader->controller('common/header')
+#3 /home/purelifebiz/public_html/system/storage/modification/system/engine/action.php(79): ControllerProductManufacturer->info()
+#4 /home/purelifebiz/public_html/catalog/controller/startup/router.php(25): Action->execute(Object(Registry))
+#5 /home/purelifebiz/public_html/system/storage/modification/system/engine/action.php(79): ControllerStartupRouter->index()
+#6 /home/purelifebiz/public_html/system/storage/modification/system/eng in /home/purelifebiz/public_html/system/storage/modification/catalog/controller/common/header.php on line 146

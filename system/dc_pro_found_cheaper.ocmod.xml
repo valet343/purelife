@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+<name>DEV-OPENCART.COM - Нашли дешевле (DEVCART PRO)</name>
+<version>1</version>
+<link>https://DEV-OPENCART.COM</link>
+<author>DEV-OPENCART.COM</author>
+<code>dev_opencart_com_dc_found_cheaper</code>
+	<file path="catalog/controller/product/product.php">
+    <operation>
+      <search><![CDATA[// dc_template_pro]]></search>
+      <add position="after"><![CDATA[
+      $this->load->language('extension/module/found_cheaper');
+      $data['found_cheaper_status'] = $this->config->get('module_found_cheaper_status');
+      $data['found_cheaper_mask'] = $this->config->get('module_found_cheaper_mask');
+      ]]></add>
+    </operation>
+	</file>
+</modification>

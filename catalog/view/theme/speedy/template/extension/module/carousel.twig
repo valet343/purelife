@@ -1,0 +1,61 @@
+<section class="carousel">
+  <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+  <div id="carousel_content{{ module }}" class="carousel_content">
+      {% for banner in banners %}
+      <div class="item">
+        <div class="item_inner">
+          {% if banner.link %}
+          <a href="{{ banner.link }}">
+            <img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
+          </a>
+          {% else %}
+          <img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+  </div>
+  {% if carousel_arrows %}
+  <div class="carousel_content_arrows slick_arrows">
+      <div class="arrow arrow_prev"></div>
+      <div class="arrow arrow_next"></div>
+  </div>
+  {% endif %}
+</section>
+<script>
+function setProgress(index) {
+  const calc = ((index + 1) / ($slider.slick('getSlick').slideCount)) * 100;
+
+  $progressBar
+    .css('background-size', `${calc}% 100%`)
+    .attr('aria-valuenow', calc);
+
+  // $progressBarLabel.text(`${calc.toFixed(2)}% completed`);
+}
+
+const $slider = $('#carousel_content{{ module }}');
+const $progressBar = $('.progress');
+// const $progressBarLabel = $('.slider__label');
+
+$slider.on('beforeChange', function(event, slick, currentSlide, nextSlide) {   
+  setProgress(nextSlide);
+});
+$('#carousel_content{{ module }}').slick({
+lazyLoad: 'ondemand',
+infinite: true,
+variableWidth: true,
+slidesToShow: 4,
+// slidesToScroll: 1,
+autoplay: 1000,
+autoplaySpeed: 2000,
+});
+setProgress(0);
+</script>
+{% if carousel_arrows %}
+<script>
+$('#carousel_content{{ module }}').slick({
+nextArrow: document.querySelector('.carousel_content_arrows .arrow_next'),
+prevArrow: document.querySelector('.carousel_content_arrows .arrow_prev')
+});
+</script>
+{% endif %}

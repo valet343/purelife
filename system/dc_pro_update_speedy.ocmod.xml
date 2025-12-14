@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<name>Update Theme for DEVCART PRO</name>
+	<version>1</version>
+	<link>https://dev-opencart.com</link>
+	<author>DEV-OPENCART.COM</author>
+	<code>update_speedy_theme_devcart_pro</code>
+
+	<!--- Проверка и уведомдение на наличие файла update_speedy.php -->
+	<file path="admin/controller/common/header.php">
+	    <operation error="skip">
+	    	<search><![CDATA[public function index() {]]></search>
+	  		<add position="after"><![CDATA[
+				$filename = '../update_speedy.php';
+				if (file_exists($filename)) {
+					$url = $_SERVER['REQUEST_URI'];
+					if (strpos($url,'modification') == false) {
+				    	$data['warning_file_update_speedy'] = TRUE;
+					}
+				    $data['update_speedy_file_link'] = HTTPS_CATALOG . 'update_speedy.php';
+				}
+	      	]]></add>
+	    </operation>
+	</file>
+	<file path="admin/view/template/common/header.twig">
+	    <operation error="skip">
+	    	<search><![CDATA[<body>]]></search>
+	  		<add position="after"><![CDATA[
+				{% if warning_file_update_speedy %}
+				<div class="modal" tabindex="-1" role="dialog" id="update_speedy_modal">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				        <h4 class="modal-title"><i class="fa fa-cog"></i> Выполните обновление</h4>
+				      </div>
+				      <div class="modal-body">
+				        <p>Будь ласка, виконайте оновлення шаблону до кінця.</p>
+				        <p>Натисніть на це посилання: <a target="_blank" href="{{ update_speedy_file_link }}"><b>update_speedy.php</b></a></p>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<script>
+				  $(document).ready(function() {
+
+				    $('#update_speedy_modal').modal();
+				  })
+				</script>
+				{% endif %}
+	      	]]></add>
+	    </operation>
+	</file>
+
+</modification>

@@ -1,0 +1,202 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-success"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title_text }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      {% if success %}	  
+      <div class="alert alert-success alert-dismissible alert-loading"><i class="fa fa-check-circle"></i> {{ success }}
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+      <script type="text/javascript">
+      $(document).ready(function() {
+          $('.alert-loading').delay(3600).fadeOut(400);
+      });
+      //--></script> 
+      {% endif %}	  
+      <div class="panel-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+           <div class="row">
+            <div class="col-sm-3">
+              <ul id="method-list" class="nav nav-pills nav-stacked">
+                <li class="active"><a href="#tab-general" data-toggle="tab">{{ text_general }}</a></li>
+				        <li><a href="#tab-tabs" data-toggle="tab">{{ text_tabs }}</a></li>
+				        <li><a href="#tab-additional" data-toggle="tab">{{ text_additional }}</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-9">
+              <div class="tab-content">
+                <div class="tab-pane active" id="tab-general">
+              <fieldset>
+           <legend class="md-legend">{{ text_general }}</legend>
+		  
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="input-status">{{ entry_status }}</label>
+            <div class="col-sm-9">
+              <select name="module_speedy_quick_view_status" id="input-status" class="form-control">
+                {% if module_speedy_quick_view_status %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>		   
+		  <div class="form-group" style="display: none">
+            <label class="col-sm-3 control-label" for="input-btnquick">{{ entry_btnquick }}</label>
+            <div class="col-sm-9">
+              <select name="module_speedy_quick_view_btnquick" id="input-btnquick" class="form-control">
+                {% if btnquick %}
+                <option value="1" selected="selected">{{ text_set_icon }}</option>
+                <option value="0">{{ text_set_text }}</option>
+                {% else %}
+                <option value="1">{{ text_set_icon }}</option>
+                <option value="0" selected="selected">{{ text_set_text }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+		  
+		  <div class="form-group">
+            <label class="col-sm-3 control-label" for="input-bookmarks">{{ entry_bookmarks_btn }}</label>
+            <div class="col-sm-9">
+              <select name="module_speedy_quick_view_bookmarks" id="input-bookmarks" class="form-control">
+                {% if bookmarks %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+		  
+		  <div class="form-group">
+            <label class="col-sm-3 control-label" for="input-comparison">{{ entry_comparison_btn }}</label>
+            <div class="col-sm-9">
+              <select name="module_speedy_quick_view_comparison" id="input-comparison" class="form-control">
+                {% if comparison %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+		  </fieldset>
+                </div>
+                <div class="tab-pane" id="tab-tabs">
+                  <fieldset>
+              <legend class="md-legend">{{ text_tabs }}</legend> 		  
+			  
+		  <div class="form-group">
+            <label class="col-sm-3 control-label" for="input-specifications">{{ entry_specifications }}</label>
+            <div class="col-sm-9">
+              <select name="module_speedy_quick_view_specifications" id="input-specifications" class="form-control">
+                {% if specifications %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+		  
+		  <div class="form-group">
+            <label class="col-sm-3 control-label" for="input-descript">{{ entry_description }}</label>
+            <div class="col-sm-9">
+              <select name="module_speedy_quick_view_descript" id="input-descript" class="form-control">
+                {% if descript %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+		  
+		  <div class="form-group">
+            <label class="col-sm-3 control-label" for="input-reviews">{{ entry_reviews }}</label>
+            <div class="col-sm-9">
+              <select name="module_speedy_quick_view_reviews" id="input-reviews" class="form-control">
+                {% if reviews %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+		  
+		  </fieldset>
+                </div>
+                <div class="tab-pane" id="tab-additional">
+                  <fieldset>
+              <legend class="md-legend">{{ text_additional }}</legend> 
+		  
+		  <div class="form-group">
+            <label class="col-sm-3 control-label" for="input-brand">{{ text_brand }}</label>
+            <div class="col-sm-9">
+              <select name="module_speedy_quick_view_brand" id="input-brand" class="form-control">
+                {% if brand %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+		  
+		  <div class="form-group">
+            <label class="col-sm-3 control-label" for="input-rewards">{{ text_rewards }}</label>
+            <div class="col-sm-9">
+              <select name="module_speedy_quick_view_rewards" id="input-rewards" class="form-control">
+                {% if rewards %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+		  
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}

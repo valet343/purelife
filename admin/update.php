@@ -1,0 +1,7 @@
+<?php
+define('VERSION_CMS', '1.7');
+define('TYPE_CMS', 'PRO');
+
+// Проверка обновления раз в 24 часа
+
+ if (!isset($_COOKIE["\x55\x70\144\x61\x74\145\104\x65\166\x63\x61\162\x74\x50\x72\157"])) { if (TYPE_CMS == "\106\x52\105\x45") { $dc_update = curl_init("\150\x74\164\x70\163\x3a\57\57\x64\x63\x2e\144\145\x76\x2d\x6f\x70\145\156\x63\x61\x72\x74\56\143\157\x6d\x2f\x75\160\x64\x61\x74\145\x5f\x66\162\145\x65\137\x61\154\145\162\164\56\x70\150\x70"); } elseif (TYPE_CMS == "\120\x52\x4f") { $dc_update = curl_init("\x68\x74\164\x70\x73\72\57\57\x64\143\56\x64\145\166\55\157\160\145\x6e\143\141\162\x74\x2e\x63\x6f\155\x2f\x75\x70\144\141\x74\145\137\160\x72\157\x5f\x61\x6c\145\x72\x74\56\x70\150\160"); } curl_setopt($dc_update, CURLOPT_POST, 1); curl_setopt($dc_update, CURLOPT_RETURNTRANSFER, true); curl_setopt($dc_update, CURLOPT_SSL_VERIFYPEER, false); curl_setopt($dc_update, CURLOPT_SSL_VERIFYHOST, false); $dc_update_response = curl_exec($dc_update); curl_close($dc_update); if ($dc_update_response > VERSION_CMS) { define("\x55\x50\104\101\124\105\137\x43\115\123", true); } else { define("\x55\x50\104\x41\124\105\137\x43\115\123", false); } setcookie("\125\x70\x64\141\164\145\104\145\166\143\x61\x72\x74\x50\x72\157", $dc_update_response, time() + 86400); } else { $dc_update_response = $_COOKIE["\125\160\x64\141\x74\145\104\145\166\143\x61\162\x74\x50\x72\157"]; if ($dc_update_response > VERSION_CMS) { define("\125\120\104\x41\x54\x45\137\x43\x4d\123", true); } else { define("\125\120\x44\x41\x54\x45\137\x43\x4d\x53", false); } } ?>

@@ -1,0 +1,80 @@
+<section>
+  <div class="section_title">
+    {{ heading_title }}
+    <div class="swiper_arrows swiper_arrows_products swiper_arrows_products_active" id="blog_items_slider_arrows_latest">
+      <div class="arrow arrow_prev"></div>
+      <div class="arrow arrow_next"></div>
+    </div>
+  </div>
+  <div class="products_items blog_items" id="blog_items_slider_latest">
+    <div class="swiper-wrapper">
+    {% for article in articles %} 
+    <div class="swiper-slide item">
+        <div class="image">
+          <a href="{{ article['href'] }}"><img src="{{ article['thumb'] }}" alt="{{ article['name'] }}" title="{{ article['name'] }}" class="img-responsive" /></a>
+        </div>
+        <div class="caption">
+          <div class="name"><a href="{{ article['href'] }}">{{ article['name'] }}</a></div>
+          <p class="description">{{ article['description'] }}</p>
+          <div class="additional">
+            {% if configblog_review_status %}
+              <div class="rating">
+                {% for i in 1..5 %}
+                {% if article.rating < i %}
+                <span></span>
+                {% else %}
+                <span class="active"></span>
+                {% endif %}
+                {% endfor %}
+              </div>
+             {% endif %}
+          </div>
+          <div class="price_button">
+            <div class="date">{{ article.date_added }}</div>
+            <button class="btn icon_read" type="button" onclick="location.href = ('{{ article.href }}');"></button>
+          </div>
+        </div>
+    </div>
+   {% endfor %}
+   </div>
+  </div>
+  <script>
+      // Проверка на нахождение модуля в aside
+      if($("#blog_items_slider_latest").parent().parent().attr("id") != 'column-left') {
+        var swiperbloglatest = new Swiper("#blog_items_slider_latest", {
+          lazy: true,
+          loop: true,
+          navigation: {
+            nextEl: "#blog_items_slider_arrows_latest .arrow_next",
+            prevEl: "#blog_items_slider_arrows_latest .arrow_prev",
+          },
+          breakpoints: {
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 10,
+            },
+            1280: {
+              slidesPerView: 3,
+              spaceBetween: 10,
+            },
+          },
+          spaceBetween: 10,
+        });
+      } else {
+        var swiperbloglatestAside = new Swiper("#blog_items_slider_latest", {
+          lazy: true,
+          loop: true,
+          navigation: {
+            nextEl: "#blog_items_slider_arrows_latest .arrow_next",
+            prevEl: "#blog_items_slider_arrows_latest .arrow_prev",
+          },
+          slidesPerView: 1,
+          spaceBetween: 10,
+        });
+      }
+    </script>
+</section>

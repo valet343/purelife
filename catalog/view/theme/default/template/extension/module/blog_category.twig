@@ -1,0 +1,59 @@
+<style>
+.list-group {
+  font-family: {{ font_family ? font_family : 'Arial, sans-serif' }};
+}
+.list-group .list-group-item {
+  font-family: {{ font_family ? font_family : 'Arial, sans-serif' }};
+  font-size: {{ font_size ? font_size : '16px' }};
+  font-weight: {{ font_weight ? font_weight : 'normal' }};
+  color: {{ font_color ? font_color : '#000000' }};
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.list-group .list-group-item .category-icon {
+  width: {{ icon_size ? icon_size : '24px' }};
+  height: {{ icon_size ? icon_size : '24px' }};
+  object-fit: contain;
+  flex-shrink: 0;
+}
+</style>
+
+<div class="list-group">
+  {% for category in categories %}
+  {% if category.blog_category_id == blog_category_id %} 
+  <a href="{{ category.href }}" class="list-group-item active">
+    {% if show_icons and category.icon is defined and category.icon %}
+    <img src="{{ category.icon }}" alt="{{ category.name }}" class="category-icon" />
+    {% endif %}
+    <span>{{ category.name }}</span>
+  </a> 
+  {% if category.children %}
+  {% for child in category.children %}
+  {% if child.blog_category_id == child_id %}
+  <a href="{{ child.href }}" class="list-group-item active">
+    {% if show_icons and child.icon is defined and child.icon %}
+    <img src="{{ child.icon }}" alt="{{ child.name }}" class="category-icon" />
+    {% endif %}
+    <span>&nbsp;&nbsp;&nbsp;- {{ child.name }}</span>
+  </a> 
+  {% else %} 
+  <a href="{{ child.href }}" class="list-group-item">
+    {% if show_icons and child.icon is defined and child.icon %}
+    <img src="{{ child.icon }}" alt="{{ child.name }}" class="category-icon" />
+    {% endif %}
+    <span>&nbsp;&nbsp;&nbsp;- {{ child.name }}</span>
+  </a>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+  {% else %} 
+  <a href="{{ category.href }}" class="list-group-item">
+    {% if show_icons and category.icon is defined and category.icon %}
+    <img src="{{ category.icon }}" alt="{{ category.name }}" class="category-icon" />
+    {% endif %}
+    <span>{{ category.name }}</span>
+  </a>
+  {% endif %}
+  {% endfor %}
+</div>

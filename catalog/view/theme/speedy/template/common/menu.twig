@@ -1,0 +1,80 @@
+{% if categories %}
+<!-- <style>
+  #menu .dropdown-menu > ul {
+    height: {{ menu_height }}px;
+  }
+</style> -->
+  <nav id="menu">
+    <button class="dropdown-toggle"><span class="hidden_xs">{{ text_category }}</span></button>
+    <span class="dropdown-menu">
+      <ul>
+        {% for category in categories %}
+        {% if category.children %}
+        <li class="dropdown">
+          <a href="{{ category.href }}">{% if category.thumb and menu_view_image %}<img src="{{ category.thumb }}" alt="{{ category.name }}">{% endif %}{{ category.name }}</a>
+              <span>
+              <ul class="dropdown-menu-2">
+              {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+                {% for child in children %}
+                {% if child.grand_childs %}
+                <li class="dropdown">
+                  <a href="{{ child.href }}">{% if child.thumb and menu_view_image_2 %}<img src="{{ child.thumb }}" alt="{{ child.name }}">{% endif %}{{ child.name }}</a>
+                    <span>
+                    <ul class="dropdown-menu-3">
+                    {% for grand_child in child.grand_childs %}
+                    {% if grand_child.grand_childs_2 %}
+                    <li class="dropdown">
+                      <a href="{{ grand_child.href }}">{% if grand_child.thumb and menu_view_image_3 %}<img src="{{ grand_child.thumb }}" alt="{{ grand_child.name }}">{% endif %}{{ grand_child.name }}</a>
+                      <span>
+                      <ul class="dropdown-menu-4">
+                      {% for grand_child_2 in grand_child.grand_childs_2 %}
+                        <li><a href="{{ grand_child_2.href }}">{% if grand_child_2.thumb and menu_view_image_4 %}<img src="{{ grand_child_2.thumb }}" alt="{{ grand_child_2.name }}">{% endif %}{{ grand_child_2.name }}</a></li>
+                      {% endfor %}
+                      </ul>
+                      </span>
+                    </li>    
+                    {% else %}
+                    <li><a href="{{ grand_child.href }}">{% if grand_child.thumb and menu_view_image_3 %}<img src="{{ grand_child.thumb }}" alt="{{ grand_child.name }}">{% endif %}{{ grand_child.name }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    </ul>
+                    </span>
+                </li>
+                {% else %}
+                <li><a href="{{ child.href }}">{% if child.thumb and menu_view_image_2 %}<img src="{{ child.thumb }}" alt="{{ child.name }}">{% endif %}{{ child.name }}</a></li>
+                {% endif %}
+                {% endfor %}
+              {% endfor %}
+              </ul>
+              </span>
+        </li>
+        {% else %}
+        <li><a href="{{ category.href }}">{% if category.thumb and menu_view_image %}<img src="{{ category.thumb }}" alt="{{ category.name }}">{% endif %}{{ category.name }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if menu_additional_links %}
+          {% for menu_additional_link in menu_additional_links %}
+          <li class="menu_additional_link"><a href="{{ menu_additional_link.link }}">{% if menu_additional_link.image and menu_view_image %}<img src="{{ menu_additional_link.image }}" alt="{{ menu_additional_link.title }}">{% endif %}{{ menu_additional_link.title }}</a></li>
+          <li class="dropdown menu_additional_link">
+            <a href="{{ menu_additional_link.link }}">{% if menu_additional_link.image and menu_view_image %}<img src="{{ menu_additional_link.image }}" alt="{{ menu_additional_link.title }}">{% endif %}{{ menu_additional_link.title }}</a>
+            <span>
+              <ul class="dropdown-menu-2">
+                <li class="dropdown">
+                  <a href="{{ menu_additional_link.link }}">{% if menu_additional_link.image and menu_view_image %}<img src="{{ menu_additional_link.image }}" alt="{{ menu_additional_link.title }}">{% endif %}{{ menu_additional_link.title }}</a>
+                  <span>
+                    <ul class="dropdown-menu-2">
+                    </ul>
+                  </span>
+                </li>
+              </ul>
+            </span>
+          </li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </span>
+  </nav>
+{% endif %}
+<script>
+  $("#menu .dropdown-menu ul li:nth-of-type(2)").after($(".menu_additional_link"));
+</script>

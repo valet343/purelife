@@ -1,0 +1,190 @@
+{{ header }}
+<div id="product-manufacturer" class="container">
+  <div class="columns">
+    {{ column_left }}
+    <div id="content" class="{{ class }}">
+      <ul itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+        
+            {% set last_crumb = breadcrumbs|last %}
+            {% set breadcrumbs = breadcrumbs|slice(0,-1) %}
+            {% set i = 1 %}
+            {% for breadcrumb in breadcrumbs %}
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ breadcrumb.href }}" itemprop="item"><span itemprop="name">{{ breadcrumb.text }}</span></a><meta itemprop="position" content="{{ i }}" /></li>
+                {% set i = i + 1 %}
+            {% endfor %}
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><link href="{{ last_crumb.href }}" itemprop="item"/><span itemprop="name">{{ last_crumb.text|striptags }}</span><meta itemprop="position" content="{{ i }}" /></li>
+            {% for breadcrumb in breadcrumbs123 %}
+            
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+      <h1>{{ heading_title }}</h1>
+      {{ content_top }}
+      {% if thumb or description %}
+      <div class="row">
+        {% if thumb %}
+        <div class="col-sm-2"><img src="{{ thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="img-thumbnail" /></div>
+        {% endif %}
+        {% if description %}
+        <div class="col-sm-10">{{ description }}</div>
+        {% endif %}
+      </div>
+      {% endif %}
+      {% if products %}
+      <div class="products_sort">
+        <div class="type">
+          <button type="button" id="list-view"></button>
+          <button type="button" id="grid-view"></button>
+        </div>
+        <div class="sort">
+          <label class="input-group-addon" for="input-sort">{{ text_sort }}</label>
+          <select id="input-sort" class="form-control" onchange="location = this.value;">
+            {% for sorts in sorts %}
+            {% if sorts.value == '%s-%s'|format(sort, order) %}
+            <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
+            {% else %}
+            <option value="{{ sorts.href }}">{{ sorts.text }}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <div class="limit">
+          <label for="input-limit">{{ text_limit }}</label>
+          <select id="input-limit" onchange="location = this.value;">
+            {% for limits in limits %}
+            {% if limits.value == limit %}
+            <option value="{{ limits.href }}" selected="selected">{{ limits.text }}</option>
+            {% else %}
+            <option value="{{ limits.href }}">{{ limits.text }}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <div class="compare"><a href="{{ compare }}" id="compare-total">{{ text_compare }}</a></div>
+      </div>
+      <div class="products_items products_sort_content">
+        {% for product in products %}
+        <div class="item product_{{ product.id }}">
+          <div class="image">
+            <a href="{{ product.href }}">
+              <img class="image_main" src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+              {% if product.thumb2 %}<img class="image_hover" src="{{ product.thumb2 }}" alt="{{ product.name }}" title="{{ product.name }}" />{% endif %}
+            </a>
+            {% if catalog_stickers_text %}
+            <ul class="stickers_text">
+              {% if product.sticker_new_status %}<li style="background: {{ sticker_new_background }}">{{ sticker_new_name }}</li>{% endif %}
+              {% if product.sticker_special_status %}<li style="background: {{ sticker_special_background }}">{{ sticker_special_name }}</li>{% endif %}
+              {% if product.sticker_sale_status %}<li style="background: {{ sticker_sale_background }}">{{ sticker_sale_name }}</li>{% endif %}
+              {% if product.sticker_hot_status %}<li style="background: {{ sticker_hot_background }}">{{ sticker_hot_name }}</li>{% endif %}
+            </ul>
+            {% endif %}
+            <div class="buttons_compare_wishlist">
+              <button type="button" class="button_wishlist icon_wishlist" onclick="wishlist.add('{{ product.product_id }}');"></button>
+              <button type="button" class="button_compare icon_compare" onclick="compare.add('{{ product.product_id }}');"></button>
+              <button type="button" class="button_view_modal icon_view_modal"></button>
+              {% if buyoneclick_status_module %}
+                <button type="button" data-loading-text="{{ buyoneclick_text_loading }}" class="button_fast_checkout icon_fast_checkout" {% if (buyoneclick_google_status and buyoneclick_google_category_btn is defined and buyoneclick_google_category_btn != '' and buyoneclick_google_action_btn is defined and buyoneclick_google_action_btn != '') %} onClick="clickAnalytics(); return true;" {% endif %} data-target="#boc_order" data-product="{{ product['name'] }}" data-product_id="{{ product['product_id'] }}"></button>
+              {% endif %}
+            </div>
+            {% if product.special %}
+            <div class="percent">-{{ product.special_percent }}%</div>
+            {% endif %}
+          </div>
+          <div class="caption">
+            <div class="name"><a href="{{ product.href }}">{{ product.name }}</a></div>
+            {% if product.description and catalog_description %}<p class="description">{{ product.description }}</p>{% endif %}
+            <div class="additional">
+              <div class="rating">
+                {% for i in 1..5 %}
+                  {% if product.rating < i %}
+                  <span></span>
+                  {% else %}
+                  <span class="active"></span>
+                  {% endif %}
+                {% endfor %}
+                <p>{{ product.reviews }}</p>
+              </div>
+              {% if product.model and catalog_model %}
+              <p class="model">{{ product.model }}</p>
+              {% endif %}
+              {% if product.stock and catalog_stock %}
+              <div class="stock{% if product.stock_status_id == 7 %} in{% elseif product.stock_status_id == 5 %} out{% elseif product.stock_status_id == 6 %} wait{% elseif product.stock_status_id == 8 %} pre{% endif %}">{{ product.stock }}</div>
+              {% endif %}
+            </div>
+            <div class="price_button">
+              {% if product.price %}
+              <div class="price">
+                {% if not product.special %}
+                
+            {% if catalog_quantity %}
+                <div class="price-stock el-price">{{ product.price }}</div>
+            {% else %}
+                <div class="price-stock">{{ product.price }}</div>
+            {% endif %}
+        
+                {% else %}
+                <div class="price-old">{{ product.price }}</div>
+                <div class="price-stock price-new">{{ product.special }}</div>
+                {% endif %}
+              </div>
+              {% endif %}
+              
+            {% if catalog_quantity %}
+               <button id="add-cart-{{ product.product_id }}" type="button" data-productid ="{{ product.product_id }}" class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock {% endif %} bcart f-button-add-cart"></button>
+            {% else %}
+                <button class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock{% endif %}" type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"></button>
+            {% endif %}
+        
+            </div>
+            <div class="hover_block">
+
+            {% if catalog_quantity %}
+            <div class="wrap-plus-minus" id="wrap-plus-minus{{ product.product_id }}">
+                <span class="btn p-m minus">-</span>
+                <input name="quantity" id="quantity{{ product.product_id }}" class="inp-quantity p-m" value="{{ product.minimum }}" type="text">
+                <span class="btn p-m plus">+</span>
+                <input name="product_id" type="hidden" class="product-id" value="{{ product.product_id }}">
+                <input name="minimum" type="hidden" class="minimum" value="{{ product.minimum }}">
+                <input name="maximum" type="hidden" class="maximum" value="{{ product.maximum }}">
+                <input name="price-no-format" type="hidden" class="price-no-format" value="{{ product.price_no_format }}">
+                <input name="special-no-format" type="hidden" class="special-no-format" value="{{ product.special_no_format }}">
+            </div>
+            {% endif %}
+        
+              {% if product.attribute_groups and catalog_attribute_groups %}
+              <ul class="attribute_groups">
+                {% for attribute_group in product.attribute_groups %}
+                {% for attribute in attribute_group.attribute|slice(0, 2) %}
+                <li>
+                  <b>{{ attribute.name }}:</b>
+                  {% if attribute.text|length > 90 %}
+                    {{ attribute.text|slice(0, 90) ~ '...' }}
+                  {% else %}
+                    {{ attribute.text }}
+                  {% endif %}
+                </li>
+                {% endfor %}
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="pagination_items">
+        {{ pagination }}
+        <p class="result">{{ results }}</p>
+      </div>
+      {% else %}
+      <p>{{ text_empty }}</p>
+      <div class="buttons">
+        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {% endif %}
+{{ microdatapro }} {% set microdatapro_main_flag = 1 %} {# microdatapro 8.1 - 1 - main #}
+      {{ content_bottom }}</div>
+    {{ column_right }}</div>
+</div>
+{% if (microdatapro_main_flag is not defined) %}{{ microdatapro }}{% endif %} {# microdatapro 8.1 - 2 - extra #}
+{{ footer }}

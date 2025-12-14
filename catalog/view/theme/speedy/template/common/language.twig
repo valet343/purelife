@@ -1,0 +1,151 @@
+{% if languages|length > 1 %}
+{% if checklang_status %}
+  {% if popup is defined and popup == true %}
+  <style>
+    .wl-popup-language {
+      padding: 15px;
+      box-shadow: 0px 0px 25px #d8d8d8;
+      background: #f0f0f0;
+      border-radius: 5px;
+      position: fixed;
+      bottom: -100%;
+      left: 50%;
+      transform: translate(-50%, 0%);
+      transition: bottom 1s;
+    }
+    .wl-popup-language.active {
+      bottom: 30px;
+      z-index: 1000;
+    }
+    .wl-popup-language-ua-lang {
+      display: flex;
+      align-items: center;
+    }
+    .wl-popup-language-close {
+      background: var(--background_footer_color);
+/*      right: -15px;*/
+/*      top: -15px;*/
+      position: relative;
+      margin-left: 5px;
+      border-radius: 7px;
+    }
+    .wl-popup-language-close:hover {
+      cursor: pointer;
+    }
+    .wl-popup-language p {
+      color: #000;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .wl-popup-language u {
+      background: url(catalog/view/theme/speedy/image/icons/ua.svg) no-repeat;
+      background-size: cover;
+      border-radius: 100%;
+      margin-right: 8px;
+      width: 30px;
+      height: 30px;
+    }
+    .wl-popup-language span {
+      display: block;
+      color: #000;
+      font-size: 12px;
+      opacity: .67;
+      margin-bottom: 10px;
+    }
+    .wl-popup-language-ua-lang span {
+      display: none;
+    }
+    .wl-popup-language .btn-group li {
+      margin-right: 10px;
+    }
+    .wl-popup-language-ua-lang .btn-group li {
+      margin-right: 0px;
+    }
+    .wl-popup-language .btn-group li:last-child {
+      margin-right: 0px;
+    }
+    .wl-popup-language .btn-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .wl-popup-language-ua-lang .btn-group {
+      justify-content: flex-start;
+    }
+    .wl-popup-language .btn-group .language-select {
+      text-align: center !important;
+    }
+    .wl-popup-language-ua-lang .btn-group .language-select {
+      display: none;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .wl-popup-language-ua-lang .btn-group .language-select[name="uk-ua"] {
+      display: flex;
+      margin-left: 10px;
+    }
+    @media (max-width: 380px) {
+      .wl-popup-language {
+        width: 90%;
+      }
+    }
+  </style>
+  <div class="wl-popup-language{% if checklang_type == 'ua_lang' %} wl-popup-language-ua-lang{% endif %}">
+    {% if checklang_type == 'ua_lang' %}
+    <u class="icon"></u>
+    <p>{{ text_popup_language_title_ua_lang }}</p>
+    <span>{{ text_popup_language_description_ua_lang }}</span>
+    {% else %}
+    <p>{{ text_popup_language_title }}</p>
+    <span>{{ text_popup_language_description }}</span>
+    {% endif %}
+    <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-language">
+      <ul class="btn-group">
+        {% for language in languages %}
+        <li>
+          <button class="btn btn-link btn-block language-select" type="button" name="{{ language.code }}">{{ language.name }}</button>
+        </li>
+        {% endfor %}
+      </ul>
+      <input type="hidden" name="code" value="" />
+      <input type="hidden" name="redirect" value="{{ redirect }}" />
+    </form>
+    <div class="wl-popup-language-close btn-close"></div>
+  </div>
+  <script>
+  $(".dropdown-bg").after($(".wl-popup-language"));
+  $(".wl-popup-language-close").on("click", function() {
+    $(this).parent().remove();
+  })
+  </script>
+  {% if checklang_type == 'ua_lang' %}
+    <script>
+      $('#form-language button[name="uk-ua"]').text("{{ text_popup_language_button_ua_lang }}")
+      if($("html").attr("lang") != "uk") {
+        setTimeout(function(){
+          $(".wl-popup-language").addClass("active");
+        }, 1000);
+      }
+    </script>
+  {% else %}
+    <script>
+      setTimeout(function(){
+        $(".wl-popup-language").addClass("active");
+      }, 1000);
+    </script>
+  {% endif %}
+  {% endif %}
+{% endif %}
+<form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-language">
+  <button class="dropdown-toggle">{% for language in languages %}{% if language.code == code %} {{ language.name }}{% endif %}{% endfor %}</button>
+  <ul class="dropdown-menu">
+    {% for language in languages %}
+    <li>
+      <button class="btn btn-link btn-block language-select" type="button" name="{{ language.code }}">{{ language.name }}</button>
+    </li>
+    {% endfor %}
+  </ul>
+  <input type="hidden" name="code" value="" />
+  <input type="hidden" name="redirect" value="{{ redirect }}" />
+</form>
+{% endif %}

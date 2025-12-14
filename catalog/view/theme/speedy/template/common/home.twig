@@ -1,0 +1,27 @@
+{{ header }}
+{% if catalog_link %}
+<style>
+  @media (max-width: 1100px) {
+    .banner_main_slider {
+      margin-top: 15px;
+    }
+  }
+</style>
+<p class="btn home_catalog_link">{{ text_catalog }}</p>
+<script>
+  $(".home_catalog_link").on("click", function() {
+    $("#m_menu > .dropdown-menu").addClass("active").find(".m_menu_nav").addClass("active");
+    $("#top").addClass("active");
+    $(".m_menu_back").fadeOut(0);
+  });
+</script>
+{% endif %}
+<div id="common-home" class="container">
+  {{ column_left }}
+  <div id="content" class="{{ class }}">
+    {{ content_top }}
+    {{ content_bottom }}
+  </div>
+  {{ column_right }}
+</div>
+{{ footer }}

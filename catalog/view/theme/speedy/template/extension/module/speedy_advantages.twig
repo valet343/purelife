@@ -1,0 +1,52 @@
+{% if blocks %}
+{% if column == 3 %}
+<style>
+    .advantage_items {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+</style>
+{% elseif column == 4 %}
+<style>
+    .advantage_items {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    @media (max-width: 1280px) {
+        .advantage_items {
+            grid-template-columns: 1fr 1fr;
+        }   
+    }
+</style>
+{% elseif column == 5 %}
+<style>
+    .advantage_items {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+    @media (max-width: 1280px) {
+        .advantage_items {
+            grid-template-columns: 1fr 1fr;
+        }   
+    }
+</style>
+{% endif %}
+<style>
+    @media (max-width: 768px) {
+        .advantage_items {
+            grid-template-columns: 1fr;
+        }   
+    }
+</style>
+<section class="advantage">
+    <!-- <div class="section_title">{{ heading_title }}</div> -->
+    <div class="advantage_items">
+        {% for block in blocks %}
+            <div class="item{% if align == 'left' %} left{% endif %}">
+                <div class="icon"{% if align == 'left' %} style="min-width: {{ image_width }}px"{% endif %}><img src="{{ block.image }}"/></div>
+                <div class="caption">
+                    <p>{{ block.title }}</p>
+                    <span>{{ block.description }}</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}

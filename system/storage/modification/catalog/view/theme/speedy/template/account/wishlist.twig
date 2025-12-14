@@ -1,0 +1,118 @@
+{{ header }}
+<div id="account-wishlist" class="container">
+  <div class="columns">
+    {{ column_left }}
+    <div id="content" class="{{ class }}">
+      <ul itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+        
+            {% set last_crumb = breadcrumbs|last %}
+            {% set breadcrumbs = breadcrumbs|slice(0,-1) %}
+            {% set i = 1 %}
+            {% for breadcrumb in breadcrumbs %}
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ breadcrumb.href }}" itemprop="item"><span itemprop="name">{{ breadcrumb.text }}</span></a><meta itemprop="position" content="{{ i }}" /></li>
+                {% set i = i + 1 %}
+            {% endfor %}
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><link href="{{ last_crumb.href }}" itemprop="item"/><span itemprop="name">{{ last_crumb.text|striptags }}</span><meta itemprop="position" content="{{ i }}" /></li>
+            {% for breadcrumb in breadcrumbs123 %}
+            
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+      {% if success %}
+      <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+      {% endif %}
+      <h1>{{ heading_title }}</h1>
+      {{ content_top }}
+      {% if products %}
+      <div class="products_items">
+          {% for product in products %}
+          <div class="item">
+          <div class="item_inner">
+            <div class="image">
+              <a href="{{ product.href }}">
+                <img class="image_main" src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+                {% if product.thumb2 %}<img class="image_hover" src="{{ product.thumb2 }}" alt="{{ product.name }}" title="{{ product.name }}" />{% endif %}
+              </a>
+              <div class="buttons_compare_wishlist">
+                <button type="button" class="button_wishlist icon_wishlist" onclick="wishlist.add('{{ product.product_id }}');"></button>
+                <button type="button" class="button_compare icon_compare" onclick="compare.add('{{ product.product_id }}');"></button>
+                <button type="button" class="button_view_modal icon_view_modal"></button>
+                {% if buyoneclick_status_module %}
+                  <button type="button" data-loading-text="{{ buyoneclick_text_loading }}" class="button_fast_checkout icon_fast_checkout" {% if (buyoneclick_google_status and buyoneclick_google_category_btn is defined and buyoneclick_google_category_btn != '' and buyoneclick_google_action_btn is defined and buyoneclick_google_action_btn != '') %} onClick="clickAnalytics(); return true;" {% endif %} data-target="#boc_order" data-product="{{ product['name'] }}" data-product_id="{{ product['product_id'] }}"></button>
+                {% endif %}
+              </div>
+              {% if product.special %}
+              <div class="percent">-{{ product.special_percent }}%</div>
+              {% endif %}
+            </div>
+            <div class="caption">
+              <div class="name"><a href="{{ product.href }}">{{ product.name }}</a></div>
+              {% if product.description and catalog_description %}<p class="description">{{ product.description }}</p>{% endif %}
+              <div class="additional">
+                <div class="rating">
+                  {% for i in 1..5 %}
+                    {% if product.rating < i %}
+                    <span></span>
+                    {% else %}
+                    <span class="active"></span>
+                    {% endif %}
+                  {% endfor %}
+                  <p>{{ product.reviews }}</p>
+                </div>
+                {% if product.model and catalog_model %}
+                <p class="model">{{ product.model }}</p>
+                {% endif %}
+                {% if product.stock and catalog_stock %}
+                <div class="stock{% if product.stock_status_id == 7 %} in{% elseif product.stock_status_id == 5 %} out{% elseif product.stock_status_id == 6 %} wait{% elseif product.stock_status_id == 8 %} pre{% endif %}">{{ product.stock }}</div>
+                {% endif %}
+              </div>
+              <div class="price_button">
+                {% if product.price %}
+                <div class="price">
+                  {% if not product.special %}
+                  <div class="price-stock">{{ product.price }}</div>
+                  {% else %}
+                  <div class="price-old">{{ product.price }}</div>
+                  <div class="price-stock price-new">{{ product.special }}</div>
+                  {% endif %}
+                </div>
+                {% endif %}
+                <button class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock{% endif %}" type="button" onclick="cart.add('{{ product.product_id }}');"></button>
+              </div>
+              <div class="hover_block">
+                {% if product.attribute_groups and catalog_attribute_groups %}
+                <ul class="attribute_groups">
+                  {% for attribute_group in product.attribute_groups %}
+                  {% for attribute in attribute_group.attribute|slice(0, 2) %}
+                  <li>
+                    <b>{{ attribute.name }}:</b>
+                    {% if attribute.text|length > 90 %}
+                      {{ attribute.text|slice(0, 90) ~ '...' }}
+                    {% else %}
+                      {{ attribute.text }}
+                    {% endif %}
+                  </li>
+                  {% endfor %}
+                  {% endfor %}
+                </ul>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          </div>
+          {% endfor %}
+      </div>
+      {% else %}
+      <p>{{ text_empty }}</p>
+      <div class="buttons">
+        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {% endif %}
+      {{ content_bottom }}
+    </div>
+    {{ column_right }}
+  </div>
+</div>
+{{ footer }}

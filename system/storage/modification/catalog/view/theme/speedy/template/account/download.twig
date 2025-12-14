@@ -1,0 +1,65 @@
+{{ header }}
+<div id="account-download" class="container">
+  <div class="columns">
+    {{ column_left }}
+    <div id="content" class="{{ class }}">
+      <ul itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+        
+            {% set last_crumb = breadcrumbs|last %}
+            {% set breadcrumbs = breadcrumbs|slice(0,-1) %}
+            {% set i = 1 %}
+            {% for breadcrumb in breadcrumbs %}
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ breadcrumb.href }}" itemprop="item"><span itemprop="name">{{ breadcrumb.text }}</span></a><meta itemprop="position" content="{{ i }}" /></li>
+                {% set i = i + 1 %}
+            {% endfor %}
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><link href="{{ last_crumb.href }}" itemprop="item"/><span itemprop="name">{{ last_crumb.text|striptags }}</span><meta itemprop="position" content="{{ i }}" /></li>
+            {% for breadcrumb in breadcrumbs123 %}
+            
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+      {{ content_top }}
+      <h1>{{ heading_title }}</h1>
+      {% if downloads %}
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <td class="text-right">{{ column_order_id }}</td>
+              <td class="text-left">{{ column_name }}</td>
+              <td class="text-left">{{ column_size }}</td>
+              <td class="text-left">{{ column_date_added }}</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+          
+          {% for download in downloads %}
+          <tr>
+            <td class="text-right">{{ download.order_id }}</td>
+            <td class="text-left">{{ download.name }}</td>
+            <td class="text-left">{{ download.size }}</td>
+            <td class="text-left">{{ download.date_added }}</td>
+            <td><a href="{{ download.href }}" data-toggle="tooltip" title="{{ button_download }}" class="btn btn-primary"><i class="fa fa-cloud-download"></i></a></td>
+          </tr>
+          {% endfor %}
+          </tbody>
+          
+        </table>
+      </div>
+      <div class="pagination_items">
+        {{ pagination }}
+        <p class="result">{{ results }}</p>
+      </div>
+      {% else %}
+      <p>{{ text_empty }}</p>
+      {% endif %}
+      <div class="buttons clearfix">
+        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {{ content_bottom }}
+    </div>
+    {{ column_right }}
+  </div>
+</div>
+{{ footer }}

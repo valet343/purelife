@@ -1,0 +1,1 @@
+2025-08-25 17:13:29 - PHP Warning:  filesize(): stat failed for /home/purelifebiz/public_html/system/storage/cache/cache.currency.1756134809 in /home/purelifebiz/public_html/system/library/cache/file.php on line 32

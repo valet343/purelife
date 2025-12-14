@@ -1,0 +1,31 @@
+{{ header }}
+<div id="information-information" class="container">
+  <div class="columns">
+    {{ column_left }}
+    <div id="content" class="{{ class }}">
+      <ul itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+        
+            {% set last_crumb = breadcrumbs|last %}
+            {% set breadcrumbs = breadcrumbs|slice(0,-1) %}
+            {% set i = 1 %}
+            {% for breadcrumb in breadcrumbs %}
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ breadcrumb.href }}" itemprop="item"><span itemprop="name">{{ breadcrumb.text }}</span></a><meta itemprop="position" content="{{ i }}" /></li>
+                {% set i = i + 1 %}
+            {% endfor %}
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><link href="{{ last_crumb.href }}" itemprop="item"/><span itemprop="name">{{ last_crumb.text|striptags }}</span><meta itemprop="position" content="{{ i }}" /></li>
+            {% for breadcrumb in breadcrumbs123 %}
+            
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+      <h1>{{ heading_title }}</h1>
+      {{ content_top }}
+      <div class="description_tags">{{ description }}</div>
+{{ microdatapro }} {% set microdatapro_main_flag = 1 %} {# microdatapro 8.1 - 1 - main #}
+      {{ content_bottom }}
+    </div>
+    {{ column_right }}
+    </div>
+</div>
+{% if (microdatapro_main_flag is not defined) %}{{ microdatapro }}{% endif %} {# microdatapro 8.1 - 2 - extra #}
+{{ footer }}

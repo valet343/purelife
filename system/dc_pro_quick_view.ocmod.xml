@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>DEV-OPENCART.COM — Быстрый просмотр товара</name>
+	<version>1</version>
+	<link>https://dev-opencart.com</link>
+	<author>DEV-OPENCART.COM</author>
+	<code>dev_opencart_com_quick_view</code>
+	
+	<file path="catalog/controller/common/footer.php">
+	    <operation>
+	    <search trim="true"><![CDATA[$this->load->language('common/footer');]]></search>
+	    <add position="after"><![CDATA[
+	    $data['dw_quick_modal'] = '';
+		
+		if( $this->config->get('module_speedy_quick_view_status') && $this->config->get('module_speedy_quick_view_status') > 0 ) {
+			$route = isset($this->request->get['route']) && $this->request->get['route'] ? $this->request->get['route']  : "";
+				
+			$data['btnquick'] = $this->config->get('module_speedy_quick_view_btnquick');
+			 
+		    if( $this->request->server['HTTPS'] ) {
+		        $servers = $this->config->get('config_ssl');
+		    } else {
+		        $servers = $this->config->get('config_url');
+		    }
+			
+			switch( $route ){
+				case "":
+			    case "common/home": 
+			    case "product/category":
+			    case "product/search":
+			    case "product/manufacturer":
+				case "product/manufacturer/info":
+					$this->document->addStyle('catalog/view/javascript/swiper/swiper-bundle.min.css');
+					$this->document->addScript('catalog/view/javascript/swiper/swiper-bundle.min.js');
+				    $this->document->addScript('catalog/view/javascript/speedy_quick_view.js', 'footer');
+					
+					$data['loading_gif'] = $servers . 'catalog/view/theme/speedy/image/icon_devcart_pro.svg';
+			        $data['dw_quick_modal'] = $this->load->view('extension/module/speedy_dw_modal', $data);
+				break;
+			}
+		}
+	    ]]></add>
+	    </operation>
+    </file>
+    <file path="catalog/view/theme/*/template/common/footer.twig">
+	    <operation>
+	    <search trim="true"><![CDATA[<footer>]]></search>
+	    <add position="before"><![CDATA[
+	        {{ dw_quick_modal }}
+	    ]]></add>
+	    </operation>
+    </file>
+</modification>

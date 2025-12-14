@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]><html {{ tc_og_prefix }} {# microdatapro 8.1 #} dir="{{ direction }}" lang="{{ lang }}" class="ie8"><![endif]-->
+<!--[if IE 9 ]><html {{ tc_og_prefix }} {# microdatapro 8.1 #} dir="{{ direction }}" lang="{{ lang }}" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html {{ tc_og_prefix }} {# microdatapro 8.1 #} dir="{{ direction }}" lang="{{ lang }}">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{{ title }}</title>
+{% if robots %}
+<meta name="robots" content="{{ robots }}" />
+{% endif %}
+<base href="{{ base }}" />
+{% if description %}
+<meta name="description" content="{{ description }}" />
+{% endif %}
+{% if keywords %}
+<meta name="keywords" content="{{ keywords }}" />
+{% endif %}
+{% if og_image %}
+{% else %}
+{% endif %}
+<script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+<link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="catalog/view/theme/default/stylesheet/stylesheet.css{% if developer_mode %}?={{ developer_mode }}{% endif %}" rel="stylesheet">
+{% if code_header_css %}<style>{{ code_header_css }}</style>{% endif %}
+{% for style in styles %}
+<link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
+{% endfor %}
+{% if code_header_css_link %}<link href="catalog/view/theme/default/stylesheet/{{ code_header_css_link }}.css{% if developer_mode %}?={{ developer_mode }}{% endif %}" rel="stylesheet">{% endif %}
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+<script src="catalog/view/javascript/common.js" type="text/javascript"></script>
+{% for link in links %}
+<link href="{{ link.href }}" rel="{{ link.rel }}" />
+{% endfor %}
+{% for analytic in analytics %}
+{{ analytic }}
+{% endfor %}
+{% if code_header_js %}<script>{{ code_header_js }}</script>{% endif %}
+{{ tc_og }} {# microdatapro 8.1 #}
+</head>
+<body>
+<nav id="top">
+  <div class="container">
+  {% if header_currency %}{{ currency }}{% endif %}
+  {% if header_language %}{{ language }}{% endif %}
+	{{ blog_menu }}
+<div class="pull-left">
+    <div class="btn-group">
+      <button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+      <i class="fa fa-info-circle"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_information_menu }}</span>
+      <i class="fa fa-caret-down"></i></button>
+      <ul class="dropdown-menu">
+        {% for information in informations %}
+          <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+</div>
+    <div id="top-links" class="nav pull-right">
+      <ul class="list-inline">
+        <li{% if header_phones or header_messengers or header_email %} class="dropdown"{% endif %}><a href="tel:{{ telephone }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-phone"></i> <span class="hidden-xs hidden-sm hidden-md">{{ telephone }}</span> {% if header_phones or header_messengers or header_email %}<span class="caret"></span>{% endif %}</a> 
+          {% if header_phones or header_messengers or header_email %}
+          <ul class="dropdown-menu dropdown-menu-right">
+            {% if header_phones %}
+            <li><a href="tel:{{ telephone }}">{{ telephone }}</a></li>
+            {% if telephone_2 %}<li><a href="tel:{{ telephone }}">{{ telephone_2 }}</a></li>{% endif %}
+            {% if telephone_3 %}<li><a href="tel:{{ telephone }}">{{ telephone_3 }}</a></li>{% endif %}
+            {% if telephone_4 %}<li><a href="tel:{{ telephone }}">{{ telephone_4 }}</a></li>{% endif %}
+            {% endif %}
+            {% if header_messengers %}
+            <li class="divider"></li>
+            <span class="messenger_links">
+              {% if telegram %}<li class="telegram"><a href="https://t.me/{{ telegram }}"></a></li>{% endif %}
+              {% if viber %}<li class="viber"><a href="viber://chat?number={{ viber }}"></a></li>{% endif %}
+              {% if whatsapp %}<li class="whatsapp"><a href="whatsapp://send?phone={{ whatsapp }}"></a></li>{% endif %}
+            </span>
+            {% endif %}
+            {% if header_email %}
+            <li class="divider"></li>
+            <li><a href="mailto:test@gmail.com">test@gmail.com</a></li>
+            {% endif %}
+          </ul>
+          {% endif %}
+        </li>
+        
+        {% if header_account %}
+        <li class="dropdown"><a href="{{ account }}" title="{{ text_account }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_account }}</span> <span class="caret"></span></a>
+          <ul class="dropdown-menu dropdown-menu-right">
+            {% if logged %}
+            <li><a href="{{ account }}">{{ text_account }}</a></li>
+            <li><a href="{{ order }}">{{ text_order }}</a></li>
+            <li><a href="{{ transaction }}">{{ text_transaction }}</a></li>
+            <li><a href="{{ download }}">{{ text_download }}</a></li>
+            <li><a href="{{ logout }}">{{ text_logout }}</a></li>
+            {% else %}
+            <li><a href="{{ register }}">{{ text_register }}</a></li>
+            <li><a href="{{ login }}">{{ text_login }}</a></li>
+            {% endif %}
+          </ul>
+        </li>
+        {% endif %}
+        {% if header_wishlist %}<li><a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}"><i class="fa fa-heart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_wishlist_desc }} ({{ text_wishlist }})</span></a></li>{% endif %}
+        {% if header_compare %}<li><a href="{{ compare }}" id="compare-total" title="{{ text_compare }}"><i class="fa fa-exchange"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_compare_desc }} ({{ text_compare }})</span></a></li>{% endif %}
+        <!-- <li><a href="{{ shopping_cart }}" title="{{ text_shopping_cart }}"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_shopping_cart }}</span></a></li> -->
+        <!-- <li><a href="{{ checkout }}" title="{{ text_checkout }}"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_checkout }}</span></a></li> -->
+      </ul>
+    </div>
+  </div>
+</nav>
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+    		<div id="logo">
+              {% if logo %}
+                {% if home == og_url %}
+                  <img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" />
+                {% else %}
+                  <a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a>
+                {% endif %}
+              {% else %}
+                <h1><a href="{{ home }}">{{ name }}</a></h1>
+              {% endif %}
+    		</div>
+      </div>
+      <div class="col-sm-5">{{ search }}</div>
+      <div class="col-sm-3">{{ cart }}</div>
+    </div>
+  </div>
+</header>
+{{ menu }}

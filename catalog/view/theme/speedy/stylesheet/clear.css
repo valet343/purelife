@@ -1,0 +1,13 @@
+/* default_clear */
+.swiper-viewport {
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+    margin: initial;
+}
+.swiper-pager {
+    width: initial;
+}
+.swiper-slide {
+    display: flex;
+}

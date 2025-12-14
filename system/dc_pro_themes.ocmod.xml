@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<name>Default Theme for DEVCART PRO</name>
+	<version>1</version>
+	<link>https://dev-opencart.com</link>
+	<author>DEV-OPENCART.COM</author>
+	<code>default_theme_devcart_pro</code>
+
+	<!--- Добавление стилей PRO THEMES в COMMON/HEADER -->
+	<file path="admin/controller/common/header.php">
+	    <operation error="skip">
+	    	<search><![CDATA[public function index() {]]></search>
+	  		<add position="after"><![CDATA[
+				$this->document->addStyle('view/stylesheet/dc_templates.css');
+	      	]]></add>
+	    </operation>
+	</file>
+
+	<!--- Переводы в админке для PRO THEMES, если это не Devcart -->
+		<!--- EN -->
+			<file path="admin/language/en-gb/common/column_left.php">
+			    <operation error="skip">
+			    	<search><![CDATA[// Text]]></search>
+			  		<add position="after"><![CDATA[
+			  			if(VERSION_CORE != "DEVCART") {
+			  				$_['text_setting_template'] = 'Theme Setting';
+			  			}
+			      	]]></add>
+			    </operation>
+			</file>
+		<!--- RU -->
+			<file path="admin/language/ru-ru/common/column_left.php">
+			    <operation error="skip">
+			    	<search><![CDATA[// Text]]></search>
+			  		<add position="after"><![CDATA[
+			  			if(VERSION_CORE != "DEVCART") {
+			  				$_['text_setting_template'] = 'Настройки шаблона';
+			  			}
+			      	]]></add>
+			    </operation>
+			</file>
+		<!--- UA -->
+			<file path="admin/language/uk-ua/common/column_left.php">
+			    <operation error="skip">
+			    	<search><![CDATA[// Text]]></search>
+			  		<add position="after"><![CDATA[
+			  			if(VERSION_CORE != "DEVCART") {
+			  				$_['text_setting_template'] = 'Налаштування шаблону';
+			  			}
+			      	]]></add>
+			    </operation>
+			</file>
+
+	<!--- Функционал PRO в COMMON/HEADER + проверка темы -->
+	<file path="catalog/controller/common/header.php">
+		<operation>
+			<search><![CDATA[return $this->load->view('common/header', $data);]]></search>
+			<add position="before"><![CDATA[
+			$data['header_currency'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_header_currency');
+			$data['header_language'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_header_language');
+			$data['header_compare'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_header_compare');
+			$data['header_wishlist'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_header_wishlist');
+			$data['header_account'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_header_account');
+			$data['header_phones'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_header_phones');
+			$data['header_messengers'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_header_messengers');
+			$data['header_email'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_header_email');
+
+			// dc_custom_code_default
+			$data['code_header_css'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_code_header_css');
+			$data['code_header_js'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_code_header_js');
+
+			$data['developer_theme'] = $this->config->get('developer_theme');
+			$data['developer_mode'] = $this->config->get('config_developer');
+			if($data['developer_mode'] == 1) {
+				$data['developer_mode'] = time();
+			} elseif ($data['developer_mode'] == 0 && $data['developer_theme'] == 0) {
+				$data['developer_mode'] = rand(1, 25);
+			}
+			]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[$data['cart'] = $this->load->controller('common/cart');]]></search>
+			<add position="before"><![CDATA[
+			$data['informations'] = array();
+			foreach ($this->model_catalog_information->getInformations() as $result) {
+				if ($result['top']) {
+					$data['informations'][] = array(
+						'title' => $result['title'],
+						'href'  => $this->url->link('information/information', 'information_id=' . $result['information_id'])
+					);
+				}
+			}
+			$data['informations'] = array_slice($data['informations'], 0, 5);
+			]]></add>
+		</operation>
+	</file>
+
+	<!--- Функционал PRO в COMMON/FOOTER -->
+	<file path="catalog/controller/common/footer.php">
+		<operation>
+			<search><![CDATA[return $this->load->view('common/footer', $data);]]></search>
+			<add position="before"><![CDATA[
+				$data['footer_payments_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_footer_payments_status');
+				$data['footer_phones'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_footer_phones');
+				$data['footer_messengers'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_footer_messengers');
+				$data['footer_email'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_footer_email');
+				$data['footer_socials'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_footer_socials');
+
+				$data['footer_payments'] = array();
+
+				$footer_payments = $this->config->get('theme_speedy_footer_payment');
+
+				$this->load->model('tool/image');
+
+				if($footer_payments) {
+					foreach ($footer_payments as $footer_payment) {
+						if ($footer_payment['image']) {
+							$image = $this->model_tool_image->resize($footer_payment['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_height'));
+						} else {
+							$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_height'));
+						}
+						$data['footer_payments'][] = array(
+							'image'  => $image
+						);
+					}
+				}
+
+				$data['code_footer_js'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_code_footer_js');
+				$data['widgets_messenger_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_widgets_messenger_status');
+				$data['widgets_modal_cookie_description'] = html_entity_decode($this->config->get('theme_' . $this->config->get('config_theme') . '_widgets_modal_cookie_description')[$this->config->get('config_language_id')], ENT_QUOTES, 'UTF-8');
+			]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[$data['styles'] = $this->document->getStyles('footer');]]></search>
+			<add position="after"><![CDATA[
+			$data['developer_theme'] = $this->config->get('developer_theme');
+			$data['developer_mode'] = $this->config->get('config_developer');
+			if($data['developer_mode'] == 1) {
+				$data['developer_mode'] = time();
+			} elseif ($data['developer_mode'] == 0 && $data['developer_theme'] == 0) {
+				$data['developer_mode'] = rand(1, 25);
+			}
+			]]></add>
+		</operation>
+	</file>
+
+	<!--- Функционал PRO в блоках с товарами -->
+	<file path="catalog/controller/product/{category,manufacturer,search,special}.php|catalog/controller/extension/module/{bestseller,featured,featured_product,latest,recently_viewed,special}.php">
+		<operation>
+			<search><![CDATA[// dc_template_pro]]></search>
+			<add position="after"><![CDATA[
+			// dc_pro_default
+			$data['catalog_stickers_text'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_catalog_stickers_text');
+			//$data['catalog_stickers_image'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_catalog_stickers_image');
+			$data['catalog_button_cart'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_catalog_button_cart');
+
+			$data['sticker_new_background'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_new_background');
+			$data['sticker_new_name'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_new_name')[$this->config->get('config_language_id')];
+			$data['sticker_new_days'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_new_days');
+			$date_available = $result['date_available'];
+		    $sticker_new_status = (int)date('d.m.Y') - (int)date('d.m.Y', strtotime($date_available));
+		    if($sticker_new_status <= $data['sticker_new_days']) {
+		    	$sticker_new_status = true;
+		    } else {
+		    	$sticker_new_status = false;
+		    }
+
+
+		    $data['sticker_special_background'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_special_background');
+			$data['sticker_special_name'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_special_name')[$this->config->get('config_language_id')];
+		    if($result['special']) {
+				$sticker_special_status = true;
+			} else {
+				$sticker_special_status = false;
+			}
+
+			$data['sticker_sale_background'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_sale_background');
+			$data['sticker_sale_name'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_sale_name')[$this->config->get('config_language_id')];
+			$data['sticker_sale_count'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_sale_count');
+			$data['purchased_count'] = $this->model_catalog_product->getProductPurchased($result['product_id']);
+			if($data['sticker_sale_count'] <= $data['purchased_count']) {
+				$sticker_sale_status = true;
+			} else {
+				$sticker_sale_status = false;
+			}
+
+			$data['sticker_hot_background'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_hot_background');
+			$data['sticker_hot_name'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_hot_name')[$this->config->get('config_language_id')];
+			$data['sticker_hot_count'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_hot_count');
+			if($data['sticker_hot_count'] <= $result['viewed']) {
+				$sticker_hot_status = true;
+			} else {
+				$sticker_hot_status = false;
+			}
+			]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[$data['products'][] = array(]]></search>
+			<add position="after"><![CDATA[
+			'sticker_new_status'  => $sticker_new_status,
+			'sticker_special_status'  => $sticker_special_status,
+			'sticker_sale_status'  => $sticker_sale_status,
+			'sticker_hot_status'  => $sticker_hot_status,
+			]]></add>
+		</operation>
+	</file>
+
+	<!--- Функционал PRO в PRODUCT/PRODUCT -->
+	<file path="catalog/controller/product/product.php">
+		<operation>
+			<search><![CDATA[$data['languages'] = $this->model_localisation_language->getLanguages();]]></search>
+			<add position="after"><![CDATA[
+			$data['shipping_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_shipping_status');
+			$data['payment_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_payment_status');
+			$data['guarantee_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_guarantee_status');
+			$data['edges_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_edges_status');
+			$data['shipping_description'] = html_entity_decode($this->config->get('theme_' . $this->config->get('config_theme') . '_product_shipping_description')[$this->config->get('config_language_id')], ENT_QUOTES, 'UTF-8');
+			$data['payment_description'] = html_entity_decode($this->config->get('theme_' . $this->config->get('config_theme') . '_product_payment_description')[$this->config->get('config_language_id')], ENT_QUOTES, 'UTF-8');
+			$data['guarantee_description'] = html_entity_decode($this->config->get('theme_' . $this->config->get('config_theme') . '_product_guarantee_description')[$this->config->get('config_language_id')], ENT_QUOTES, 'UTF-8');
+
+			$data['shipping_items'] = array();
+
+			$shipping_items = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_shipping_item')[$this->config->get('config_language_id')];
+
+			if($shipping_items) {
+				foreach ($shipping_items as $shipping_item) {
+					if ($shipping_item['image']) {
+						$image = $this->model_tool_image->resize($shipping_item['image'], 50, 50);
+					} else {
+						$image = $this->model_tool_image->resize('placeholder.png', 50, 50);
+					}
+					$data['shipping_items'][] = array(
+						'title'  => $shipping_item['title'],
+						'image'  => $image
+					);
+				}
+			}
+
+			$data['payment_items'] = array();
+
+			$payment_items = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_payment_item')[$this->config->get('config_language_id')];
+
+			if($payment_items) {
+				foreach ($payment_items as $payment_item) {
+					if ($payment_item['image']) {
+						$image = $this->model_tool_image->resize($payment_item['image'], 50, 50);
+					} else {
+						$image = $this->model_tool_image->resize('placeholder.png', 50, 50);
+					}
+					$data['payment_items'][] = array(
+						'title'  => $payment_item['title'],
+						'image'  => $image
+					);
+				}
+			}
+
+			$data['edges_items'] = array();
+
+			$edges_items = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_edges_item')[$this->config->get('config_language_id')];
+
+			if($edges_items) {
+				foreach ($edges_items as $edges_item) {
+					if ($edges_item['image']) {
+						$image = $this->model_tool_image->resize($edges_item['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_height'));
+					} else {
+						$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_height'));
+					}
+					$data['edges_items'][] = array(
+						'title'  => $edges_item['title'],
+						'image'  => $image
+					);
+				}
+			}
+
+			$data['fixed_thumbnails'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_fixed_scroll_thumbs');
+			$data['manufacturer_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_manufacturer');
+			$data['model_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_model');
+			$data['purchased_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_purchased_product');
+			$data['sku'] = $product_info['sku'];
+			$data['view_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_viewed');
+			$data['sku_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sku');
+			$data['stock_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_stock');
+			$data['button_cart_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_button_cart');
+			$data['fixed_nav_tabs'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_fixed_nav_tabs');
+			$data['sticker_text_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_text_status');
+
+				$data['sticker_new_background'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_new_background');
+				$data['sticker_new_name'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_new_name')[$this->config->get('config_language_id')];
+				$data['sticker_new_days'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_new_days');
+				$data['date_available'] = $product_info['date_available'];
+			    $stickerNewStatus = (int)date('d.m.Y') - (int)date('d.m.Y', strtotime($data['date_available']));
+			    if($stickerNewStatus <= $data['sticker_new_days']) {
+			    	$data['sticker_new_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_new_status');
+			    }
+
+				
+				$data['sticker_special_background'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_special_background');
+				$data['sticker_special_name'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_special_name')[$this->config->get('config_language_id')];
+				if($product_info['special']) {
+					$data['sticker_special_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_special_status');
+				}
+
+				$data['sticker_sale_background'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_sale_background');
+				$data['sticker_sale_name'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_sale_name')[$this->config->get('config_language_id')];
+				$data['sticker_sale_count'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_sale_count');
+				if($data['sticker_sale_count'] <= $data['purchased_count']) {
+					$data['sticker_sale_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_sale_status');
+				}
+
+				$data['sticker_hot_background'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_hot_background');
+				$data['sticker_hot_name'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_hot_name')[$this->config->get('config_language_id')];
+				$data['sticker_hot_count'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_hot_count');
+				if($data['sticker_hot_count'] <= $data['view']) {
+					$data['sticker_hot_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_sticker_hot_status');
+				}
+			
+			]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[if ($product_info['image']) {]]></search>
+			<add position="before"><![CDATA[
+			if ($product_info['image']) {
+				$data['dc_pro_modules_thumb'] = $this->model_tool_image->resize($product_info['image'], 74, 74);
+			} else {
+				$data['dc_pro_modules_thumb'] = '';
+			}
+			]]></add>
+		</operation>
+	</file>
+
+	<!--- Функционал PRO в CHECKOUT/SIMPLECHECKOUT + SIMPLEREGISTER -->
+	<file path="catalog/controller/checkout/simplecheckout_cart.php">
+		<operation>
+			<search><![CDATA[$this->_templateData['products'] = array();]]></search>
+			<add position="before"><![CDATA[
+			$this->_templateData['checkout_fixed_cart'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_checkout_fixed_cart');
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/checkout/simplecheckout.php">
+		<operation>
+			<search><![CDATA[$this->language->load('checkout/simplecheckout');]]></search>
+			<add position="after"><![CDATA[
+			$this->_templateData['checkout_label_view'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_checkout_label_view');
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/account/simpleregister.php">
+		<operation>
+			<search><![CDATA[$this->loadLibrary('simple/simpleregister');]]></search>
+			<add position="after"><![CDATA[
+			$this->_templateData['checkout_label_view'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_checkout_label_view');
+			]]></add>
+		</operation>
+	</file>
+
+	<!--- Функционал PRO в CHECKOUT/CART -->
+	<file path="catalog/controller/checkout/cart.php">
+		<operation>
+			<search index="0"><![CDATA[$json['total']]]></search>
+			<add position="after"><![CDATA[
+				$json['cart_alert_type'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_push_cart_alert_type');
+			]]></add>
+		</operation>
+	</file>
+
+	<!--- Функционал PRO в ACCOUNT/WISHLIST -->
+	<file path="catalog/controller/account/wishlist.php">
+		<operation>
+			<search><![CDATA[$json['total']]]></search>
+			<add position="after"><![CDATA[
+				$json['alert_type'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_push_alert_type');
+			]]></add>
+		</operation>
+	</file>
+
+	<!--- Функционал PRO в PRODUCT/COMPARE -->
+	<file path="catalog/controller/product/compare.php">
+		<operation>
+			<search><![CDATA[$json['total']]]></search>
+			<add position="after"><![CDATA[
+				$json['alert_type'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_push_alert_type');
+			]]></add>
+		</operation>
+	</file>
+
+	<!--- Функционал PRO в INFORMATION/CONTACT -->
+	<file path="catalog/controller/information/contact.php">
+		<operation>
+			<search><![CDATA[$data['locations'] = array();]]></search>
+			<add position="after"><![CDATA[
+				$data['contact_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_contacts_contact_status');
+				$data['locations_status'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_contacts_shops_status');
+			]]></add>
+		</operation>
+	</file>
+
+	<!--- Функционал PRO в BLOG/ARTICLE -->
+	<file path="catalog/controller/blog/article.php">
+		<operation>
+			<search><![CDATA[$this->load->model('tool/image');]]></search>
+			<add position="after"><![CDATA[
+			if ($article_info['image']) {
+				$data['popup'] = $this->model_tool_image->resize($article_info['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_height'));
+			} else {
+				$data['popup'] = '';
+			}
+
+			if ($article_info['image']) {
+				$data['thumb'] = $this->model_tool_image->resize($article_info['image'], $this->config->get('configblog_image_article_width'), $this->config->get('configblog_image_article_height'));
+			} else {
+				$data['thumb'] = '';
+			}
+			]]></add>
+		</operation>
+	</file>
+
+	<!--- Переводы -->
+		<!--- EN -->
+			<file path="catalog\language\en-gb\blog\article.php">
+				<operation>
+					<search><![CDATA[// Text]]></search>
+					<add position="after"><![CDATA[
+					$_['text_review'] = 'Reviews to';
+					$_['text_write_tab'] = 'Write a review to';
+					]]></add>
+				</operation>
+			</file>
+			<file path="admin/language/en-gb/sale/order.php">
+				<operation>
+					<search><![CDATA[// Text]]></search>
+					<add position="after"><![CDATA[
+					$_['column_telephone']               = 'Phone';
+					$_['column_email']             = 'E-mail';
+					]]></add>
+				</operation>
+			</file>
+	    <!--- RU -->
+	    	<file path="catalog\language\ru-ru\blog\article.php">
+				<operation>
+					<search><![CDATA[// Text]]></search>
+					<add position="after"><![CDATA[
+					$_['text_review'] = 'Отзывы к';
+					$_['text_write_tab'] = 'Написать отзыв к';
+					]]></add>
+				</operation>
+			</file>
+			<file path="admin/language/ru-ru/sale/order.php">
+				<operation>
+					<search><![CDATA[// Text]]></search>
+					<add position="after"><![CDATA[
+					$_['column_telephone']               = 'Телефон';
+					$_['column_email']             = 'E-mail';
+					]]></add>
+				</operation>
+			</file>
+		<!--- UA -->
+			<file path="catalog\language\uk-ua\blog\article.php">
+				<operation>
+					<search><![CDATA[// Text]]></search>
+					<add position="after"><![CDATA[
+					$_['text_review'] = 'Відгуки до';
+					$_['text_write_tab'] = 'Написати відгук до';
+					]]></add>
+				</operation>
+			</file>
+			<file path="admin/language/uk-ua/sale/order.php">
+				<operation>
+					<search><![CDATA[// Text]]></search>
+					<add position="after"><![CDATA[
+					$_['column_telephone']               = 'Телефон';
+					$_['column_email']             = 'E-mail';
+					]]></add>
+				</operation>
+			</file>
+	    
+</modification>

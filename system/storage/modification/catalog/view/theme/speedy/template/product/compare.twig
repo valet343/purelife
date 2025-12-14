@@ -1,0 +1,152 @@
+{{ header }}
+<div id="product-compare" class="container">
+  <div class="columns">
+    {{ column_left }}
+    <div id="content" class="{{ class }}">
+      <ul itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+        
+            {% set last_crumb = breadcrumbs|last %}
+            {% set breadcrumbs = breadcrumbs|slice(0,-1) %}
+            {% set i = 1 %}
+            {% for breadcrumb in breadcrumbs %}
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ breadcrumb.href }}" itemprop="item"><span itemprop="name">{{ breadcrumb.text }}</span></a><meta itemprop="position" content="{{ i }}" /></li>
+                {% set i = i + 1 %}
+            {% endfor %}
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><link href="{{ last_crumb.href }}" itemprop="item"/><span itemprop="name">{{ last_crumb.text|striptags }}</span><meta itemprop="position" content="{{ i }}" /></li>
+            {% for breadcrumb in breadcrumbs123 %}
+            
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+      {% if success %}
+      <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+      {% endif %}
+      <h1>{{ heading_title }}</h1>
+      {{ content_top }}
+      {% if products %}
+      <div class="compare_items">
+        <div class="compare_items_inner">
+            <div>
+              <div>{{ text_name }}</div>
+              {% for product in products %}
+              <div><a href="{{ product.href }}">{{ product.name }}</a></div>
+              {% endfor %}
+            </div>
+            <div>
+              <div>{{ text_image }}</div>
+              {% for product in products %}
+              <div class="text-center">{% if product.thumb %} <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-thumbnail" /> {% endif %}</div>
+              {% endfor %}
+            </div>
+            <div>
+              <div>{{ text_price }}</div>
+              {% for product in products %}
+              <div>{% if product.price %}
+                {% if not product.special %}
+                {{ product.price }}
+                {% else %}
+                <span class="price-new">{{ product.special }}</span>
+                <span class="price-old">{{ product.price }}</span>
+                {% endif %}
+                {% endif %}
+              </div>
+              {% endfor %}
+            </div>
+            <div>
+              <div>{{ text_model }}</div>
+              {% for product in products %}
+              <div>{{ product.model }}</div>
+              {% endfor %}
+            </div>
+            <div>
+              <div>{{ text_manufacturer }}</div>
+              {% for product in products %}
+              <div>{{ product.manufacturer }}</div>
+              {% endfor %}
+            </div>
+            <div>
+              <div>{{ text_availability }}</div>
+              {% for product in products %}
+              <div>{{ product.availability }}</div>
+              {% endfor %}
+            </div>
+            {% if review_status %}
+            <div>
+              <div>{{ text_rating }}</div>
+              {% for product in products %}
+              <div class="rating">
+                <div class="rating_inner">
+                  {% for i in 1..5 %}
+                  {% if product.rating < i %}
+                  <span></span>
+                  {% else %}
+                  <span class="active"></span>
+                  {% endif %}
+                  {% endfor %}
+                </div>
+                <p>{{ product.reviews }}</p>
+              </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+          <div>
+            <div>{{ text_summary }}</div>
+            {% for product in products %}
+            <div class="description">{{ product.description }}</div>
+            {% endfor %}
+          </div>
+          <div>
+            <div>{{ text_weight }}</div>
+            {% for product in products %}
+            <div>{{ product.weight }}</div>
+            {% endfor %}
+          </div>
+          <div>
+            <div>{{ text_dimension }}</div>
+            {% for product in products %}
+            <div>{{ product.length }} x {{ product.width }} x {{ product.height }}</div>
+            {% endfor %}
+          </div>
+          {% for adivivibute_group in adivivibute_groups %}
+          <span>
+            <div>
+              <div colspan="{{ products|length + 1 }}"><sdivong>{{ adivivibute_group.name }}</sdivong></div>
+            </div>
+          </span>
+          {% for key, adivivibute in adivivibute_group.adivivibute %}
+
+            <div>
+              <div>{{ adivivibute.name }}</div>
+              {% for product in products %}
+              {% if product.adivivibute[key] %}
+              <div> {{ product.adivivibute[key] }}</div>
+              {% else %}
+              <div></div>
+              {% endif %}
+              {% endfor %}
+            </div>
+          {% endfor %}
+          {% endfor %}
+          <div>
+            <div></div>
+            {% for product in products %}
+            <div><input type="button" value="{{ button_cart }}" class="btn btn-primary" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');" />
+              <a href="{{ product.remove }}" class="btn btn-gray">{{ button_remove }}</a></div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <p>{{ text_empty }}</p>
+      <div class="buttons">
+        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {% endif %}
+      {{ content_bottom }}
+    </div>
+    {{ column_right }}
+  </div>
+</div>
+{{ footer }} 

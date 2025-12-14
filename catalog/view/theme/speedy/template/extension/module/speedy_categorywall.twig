@@ -1,0 +1,40 @@
+{% if categories %}
+<section class="category_wall">
+  <!-- <div class="section_title">{{ heading_title }}</div> -->
+  <div id="category_wall" class="swiper">
+    <ul class="swiper-wrapper">
+      {% for category in categories %}
+        {% if category.children %} 
+        <li class="swiper-slide item">
+          <a href="{{ category.href }}"><img src="{{ category.image }}" /></a>
+          <div class="caption"><p><a href="{{ category.href }}">{{ category.name }}</a></p><span class="category_wall_open"></span></div>
+          <ul class="category_wall_hover">
+            {% for child in category.children %}
+              <li><a href="{{ child.href }}">{{ child.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% else %}
+        <li class="swiper-slide item">
+          <a href="{{ category.href }}"><img src="{{ category.image }}" /></a>
+          <div class="caption"><p><a href="{{ category.href }}">{{ category.name }}</a></p></div>
+        </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  <script>
+    $(".category_wall_open").on("click", function() {
+      $(".category_wall_hover").removeClass("active");
+      $(this).parent().parent().find(".category_wall_hover").addClass("active");
+    })
+  </script>
+  <script>
+    var swiperCategoryWall = new Swiper("#category_wall", {
+      slidesPerView: "auto",
+      spaceBetween: 10,
+      freeMode: true,
+    });
+  </script>
+</section>
+{% endif %}

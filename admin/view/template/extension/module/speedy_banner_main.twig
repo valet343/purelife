@@ -1,0 +1,580 @@
+{{ header }}{{ column_left }}
+<div id="content" class="dc_pro_theme">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title_text }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="input-status">{{ entry_status }}</label>
+            <div class="col-sm-9">
+              <select name="status" id="input-status" class="form-control">
+                {% if status %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+              <div class="alert alert-warning alert-bottom" style="margin-bottom: 0px;">Этот баннер является главным и в большинстве случаях подходит только для работы под верхушкой (header) сайта.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="input-name">{{ entry_name }}</label>
+            <div class="col-sm-9">
+              <input type="text" name="name" value="{{ name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control" />
+              {% if error_name %}
+              <div class="text-danger">{{ error_name }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <!-- <div class="form-group">
+            <label class="col-sm-3 control-label" for="input-container">{{ entry_after_header }}</label>
+            <div class="col-sm-9">
+              <label class="radio-inline">
+                {% if after_header %}
+                <input type="radio" name="after_header" value="1" checked="checked" />
+                {{ text_yes }}
+                {% else %}
+                <input type="radio" name="after_header" value="1" />
+                {{ text_yes }}
+                {% endif %}
+              </label>
+              <label class="radio-inline">
+                {% if not after_header %}
+                <input type="radio" name="after_header" value="0" checked="checked" />
+                {{ text_no }}
+                {% else %}
+                <input type="radio" name="after_header" value="0" />
+                {{ text_no }}
+                {% endif %}
+              </label>
+            </div>
+          </div> -->
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="input-container">{{ entry_container }}</label>
+            <div class="col-sm-9">
+              <select name="container" id="type_container" class="form-control">
+              {% if container == 'fixed' %}
+                  <option value="fixed" selected="selected">{{ text_fixed }}</option>
+                  <option value="adaptive">{{ text_adaptive }}</option>
+              {% else %}
+                  <option value="fixed" selected="selected">{{ text_fixed }}</option>
+                  <option value="adaptive" selected="selected">{{ text_adaptive }}</option>
+              {% endif %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="input-type">{{ entry_type }}</label>
+            <div class="col-sm-9">
+              <select name="type" id="type_banner_main" class="form-control">
+              {% if type == 'slider' %}
+                  <option value="slider" selected="selected">{{ text_slider }}</option>
+                  <option value="carousel">{{ text_carousel }}</option>
+              {% else %}
+                  <option value="slider">{{ text_slider }}</option>
+                  <option value="carousel" selected="selected">{{ text_carousel }}</option>
+              {% endif %}
+              </select>
+              <br>
+              {% if type == 'slider' %}
+              <img style="display: none;" class="type_carousel" src="view/image/banner_main_carousel.png" alt="">
+              <img class="type_slider" src="view/image/banner_main_slider.png" alt="">
+              {% else %}
+              <img class="type_carousel" src="view/image/banner_main_carousel.png" alt="">
+              <img style="display: none;" class="type_slider" src="view/image/banner_main_slider.png" alt="">
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group required type_slider">
+            <label class="col-sm-3 control-label" for="input-container">Тип слайдера</label>
+            <div class="col-sm-9">
+              <select name="slider_type" id="slider_type" class="form-control">
+              {% if slider_type == 'image_and_text' %}
+                  <option value="image_and_text" selected="selected">Картинка + текст</option>
+                  <option value="image">Картинка</option>
+              {% else %}
+                  <option value="image_and_text">Картинка + текст</option>
+                  <option value="image" selected="selected">Картинка</option>
+              {% endif %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group required type_slider">
+            <label class="col-sm-3 control-label" for="input-image-size-pc">Размеры изображений для PC</label>
+            <div class="col-sm-9">
+              <div class="row">
+                <div class="col-sm-6">
+                  <input type="text" name="width_slider_pc" value="{{ width_slider_pc }}" placeholder="{{ entry_width }}" id="input-image-size-pc" class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" name="height_slider_pc" value="{{ height_slider_pc }}" placeholder="{{ entry_height }}" class="form-control" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group required type_slider">
+            <label class="col-sm-3 control-label" for="input-image-size-height">Размеры изображений для Mobile</label>
+            <div class="col-sm-9">
+              <div class="row">
+                <div class="col-sm-6">
+                  <input type="text" name="width_slider_mob" value="{{ width_slider_mob }}" placeholder="{{ entry_width }}" id="input-image-size-height" class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" name="height_slider_mob" value="{{ height_slider_mob }}" placeholder="{{ entry_height }}" class="form-control" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group required type_carousel">
+            <label class="col-sm-3 control-label" for="input-image-size-height">Размеры изображений</label>
+            <div class="col-sm-9">
+              <div class="row">
+                <div class="col-sm-6">
+                  <input type="text" name="width_carousel" value="{{ width_carousel }}" placeholder="{{ entry_width }}" id="input-image-size-height" class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" name="height_carousel" value="{{ height_carousel }}" placeholder="{{ entry_height }}" class="form-control" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group required type_carousel">
+            <label class="col-sm-3 control-label" for="input-carousel-items">{{ entry_carousel_items }}</label>
+            <div class="col-sm-9">
+              <select name="carousel_items" class="form-control">
+              {% if carousel_items == '4' %}
+                  <option value="4" selected="selected">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+              {% elseif carousel_items == '5' %}
+                  <option value="4">4</option>
+                  <option value="5" selected="selected">5</option>
+                  <option value="6">6</option>
+              {% else %}
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6" selected="selected">6</option>
+              {% endif %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="input-container">{{ entry_autoplay }}</label>
+            <div class="col-sm-9">
+              <label class="radio-inline">
+                {% if autoplay %}
+                <input type="radio" name="autoplay" value="1" checked="checked" />
+                {{ text_yes }}
+                {% else %}
+                <input type="radio" name="autoplay" value="1" />
+                {{ text_yes }}
+                {% endif %}
+              </label>
+              <label class="radio-inline">
+                {% if not autoplay %}
+                <input type="radio" name="autoplay" value="0" checked="checked" />
+                {{ text_no }}
+                {% else %}
+                <input type="radio" name="autoplay" value="0" />
+                {{ text_no }}
+                {% endif %}
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="input-autoplay-time">{{ entry_autoplay_time }}</label>
+            <div class="col-sm-9">
+              <input type="text" name="autoplay_time" value="{{ autoplay_time }}" placeholder="{{ entry_autoplay_time }}" id="input-autoplay-time" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="input-container">{{ entry_arrows }}</label>
+            <div class="col-sm-9">
+              <label class="radio-inline">
+                {% if arrows %}
+                <input type="radio" name="arrows" value="1" checked="checked" />
+                {{ text_yes }}
+                {% else %}
+                <input type="radio" name="arrows" value="1" />
+                {{ text_yes }}
+                {% endif %}
+              </label>
+              <label class="radio-inline">
+                {% if not arrows %}
+                <input type="radio" name="arrows" value="0" checked="checked" />
+                {{ text_no }}
+                {% else %}
+                <input type="radio" name="arrows" value="0" />
+                {{ text_no }}
+                {% endif %}
+              </label>
+            </div>
+          </div>
+          <div class="form-group type_carousel">
+            <label class="col-sm-3 control-label" for="input-container">{{ entry_freemode }}</label>
+            <div class="col-sm-9">
+              <label class="radio-inline">
+                {% if freemode %}
+                <input type="radio" name="freemode" value="1" checked="checked" />
+                {{ text_yes }}
+                {% else %}
+                <input type="radio" name="freemode" value="1" />
+                {{ text_yes }}
+                {% endif %}
+              </label>
+              <label class="radio-inline">
+                {% if not freemode %}
+                <input type="radio" name="freemode" value="0" checked="checked" />
+                {{ text_no }}
+                {% else %}
+                <input type="radio" name="freemode" value="0" />
+                {{ text_no }}
+                {% endif %}
+              </label>
+            </div>
+          </div>
+          <div class="form-group type_slider">
+              <div class="tab-pane type_slider_text_tab">
+                <ul class="nav nav-tabs" id="language">
+                  {% for language in languages %}
+                  <li><a href="#language{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                  {% endfor %}
+                </ul>
+                <div class="tab-content">
+                {% set image_row = 0 %}
+                  {% for language in languages %}
+                  <div class="tab-pane" id="language{{ language.language_id }}">
+                    <div class="form-group">
+                    <div class="col-sm-12">
+                      <table id="images{{ language.language_id }}" class="table table-striped table-bordered table-hover">
+                            <tbody>
+                              {% if banner_description[language.language_id].blocks %}
+                              {% for block in banner_description[language.language_id].blocks %}
+                              <tr id="image-row{{ image_row }}">
+                                <!--- Image --->
+                                <td class="text-center" style="width:120px">
+                                  <p>PC</p>
+                                  <a href="" id="thumb-image{{ image_row }}" data-toggle="image" class="img-thumbnail">
+                                    <img src="{% if block.image %}../image/{{ block.image }}{% else %}{{ placeholder }}{% endif %}" alt="" title="" data-placeholder="Image" class="img-responsive" width="100" height="100"/></a>
+                                    <input type="hidden" name="banner_description[{{ language.language_id }}][blocks][{{ image_row }}][image]" value="{{ block.image }}" id="input-image{{ image_row }}" />
+                                </td>
+                                <td class="text-center" style="width:120px">
+                                  <p>Mob</p>
+                                  <a href="" id="thumb-image-mob{{ image_row }}" data-toggle="image" class="img-thumbnail">
+                                    <img src="{% if block.image_mob %}../image/{{ block.image_mob }}{% else %}{{ placeholder }}{% endif %}" alt="" title="" data-placeholder="Image" class="img-responsive" width="100" height="100"/></a>
+                                    <input type="hidden" name="banner_description[{{ language.language_id }}][blocks][{{ image_row }}][image_mob]" value="{{ block.image_mob }}" id="input-image-mob{{ image_row }}" />
+                                </td>
+                                <td class="text-left">
+                                  <p>Ссылка</p>
+                                  <p><input type="text" name="banner_description[{{ language.language_id }}][blocks][{{ image_row }}][link]" value="{{ block.link }}" placeholder="{{ text_link }}" class="form-control" /></p>
+                                </td>
+                                <!--- --->
+                                <td class="text-left" style="width:56px">
+                                  <button type="button" onclick="$('#image-row{{ image_row }}, .tooltip').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+                                </td>
+                              </tr>
+                              {% set image_row = image_row + 1 %}
+                              {% endfor %}
+                              {% endif %}
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                <td class="text-left" style="width:56px"><button type="button" onclick="addImage('{{ language.language_id }}');" data-toggle="tooltip" title="{{ button_banner_add }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+                              </tr>
+                            </tfoot>
+                          </table>
+                        </div>
+                    </div>
+                  </div>
+                {% endfor %}
+                </div>
+              </div>
+              <div class="tab-pane type_slider_image_and_text_tab">
+                <ul class="nav nav-tabs" id="language-image-and-text">
+                  {% for language in languages %}
+                  <li><a href="#language-image-and-text{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                  {% endfor %}
+                </ul>
+                <div class="tab-content">
+                {% set image_row_and_text = 0 %}
+                  {% for language in languages %}
+                  <div class="tab-pane" id="language-image-and-text{{ language.language_id }}">
+                    <div class="form-group">
+                    <div class="col-sm-12">
+                      <table id="images_and_text{{ language.language_id }}" class="table table-striped table-bordered table-hover">
+                            <tbody>
+                              {% if banner_it_description[language.language_id].blocks %}
+                              {% for block in banner_it_description[language.language_id].blocks %}
+                              <tr id="image-row-and-text{{ image_row_and_text }}">
+                                <!--- Image + Text --->
+                                <td class="text-center" style="width:120px">
+                                  <p>PC</p>
+                                  <a href="" id="thumb-it-image{{ image_row_and_text }}" data-toggle="image" class="img-thumbnail">
+                                    <img src="{% if block.it_image %}../image/{{ block.it_image }}{% else %}{{ placeholder }}{% endif %}" alt="" title="" data-placeholder="Image" class="img-responsive" width="100" height="100"/></a>
+                                    <input type="hidden" name="banner_it_description[{{ language.language_id }}][blocks][{{ image_row_and_text }}][it_image]" value="{{ block.it_image }}" id="input-it-image{{ image_row_and_text }}" />
+                                </td>
+                                <td class="text-center" style="width:120px">
+                                  <p>Mob</p>
+                                  <a href="" id="thumb-it-image-mob{{ image_row_and_text }}" data-toggle="image" class="img-thumbnail">
+                                    <img src="{% if block.it_image_mob %}../image/{{ block.it_image_mob }}{% else %}{{ placeholder }}{% endif %}" alt="" title="" data-placeholder="Image" class="img-responsive" width="100" height="100"/></a>
+                                    <input type="hidden" name="banner_it_description[{{ language.language_id }}][blocks][{{ image_row_and_text }}][it_image_mob]" value="{{ block.it_image_mob }}" id="input-it-image-mob{{ image_row_and_text }}" />
+                                </td>
+                                <td class="text-left">
+                                  <p>Ссылка</p>
+                                  <p><input type="text" name="banner_it_description[{{ language.language_id }}][blocks][{{ image_row_and_text }}][it_link]" value="{{ block.it_link }}" placeholder="{{ text_link }}" class="form-control" /></p>
+                                </td>
+                                <td class="text-left">
+                                  <p>Позиция информации</p>
+                                  <p>
+                                    <select name="banner_it_description[{{ language.language_id }}][blocks][{{ image_row_and_text }}][it_position]" class="form-control">
+                                        {% if block.it_position %}
+                                          <option value="1" selected="selected">Слева</option>
+                                          <option value="0">Справа</option>
+                                        {% else %}
+                                          <option value="1">Слева</option>
+                                          <option value="0" selected="selected">Справа</option>
+                                        {% endif %}
+                                      </select>
+                                  </p>
+                                </td>
+                                <td class="text-left">
+                                  <p>Заголовок</p>
+                                  <p><input type="text" name="banner_it_description[{{ language.language_id }}][blocks][{{ image_row_and_text }}][it_title]" value="{{ block.it_title }}" placeholder="Заголовок" class="form-control" /></p>
+                                </td>
+                                <td class="text-left">
+                                  <p>Описание</p>
+                                  <textarea name="banner_it_description[{{ language.language_id }}][blocks][{{ image_row_and_text }}][it_description]" rows="5" placeholder="Описание" class="form-control">{{ block.it_description }}</textarea>
+                                </td>
+                                <td class="text-left">
+                                  <p>Текст кнопки</p>
+                                  <p><input type="text" name="banner_it_description[{{ language.language_id }}][blocks][{{ image_row_and_text }}][it_button_text]" value="{{ block.it_button_text }}" placeholder="Текст кнопки" class="form-control" /></p>
+                                  <small>Кнопка будет ссылкой, если она указана</small>
+                                </td>
+                                <td class="text-left">
+                                  <p>Фон</p>
+                                  <p><input type="text" name="banner_it_description[{{ language.language_id }}][blocks][{{ image_row_and_text }}][it_background_color]" value="{{ block.it_background_color }}" placeholder="Фон" class="form-control colorpicker" /></p>
+                                  <small>Не сработает, если ширина контейнера фиксированного размера</small>
+                                </td>
+                                <!--- --->
+                                <td class="text-left" style="width:56px">
+                                  <button type="button" onclick="$('#image-row-and-text{{ image_row_and_text }}, .tooltip').removeImageAndText();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+                                </td>
+                              </tr>
+                              {% set image_row_and_text = image_row_and_text + 1 %}
+                              {% endfor %}
+                              {% endif %}
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                <td class="text-left" style="width:56px"><button type="button" onclick="addImageAndText('{{ language.language_id }}');" data-toggle="tooltip" title="{{ button_banner_add }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+                              </tr>
+                            </tfoot>
+                          </table>
+                        </div>
+                    </div>
+                  </div>
+                {% endfor %}
+                </div>
+              </div>
+          </div>
+          <div class="form-group type_carousel">
+              <div class="tab-pane">
+                <ul class="nav nav-tabs" id="language_carousel">
+                  {% for language in languages %}
+                  <li><a href="#language_carousel{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                  {% endfor %}
+                </ul>
+                <div class="tab-content">
+                {% set image_row_carousel = 0 %}
+                  {% for language in languages %}
+                  <div class="tab-pane" id="language_carousel{{ language.language_id }}">
+                    <div class="form-group">
+                    <!-- <label class="col-sm-2 control-label" >{{ entry_blocks }}</label> -->
+                    <div class="col-sm-12">
+                      <table id="images_carousel{{ language.language_id }}" class="table table-striped table-bordered table-hover">
+                            <tbody>
+                              {% if banner_carousel_description[language.language_id].blocks %}
+                              {% for block in banner_carousel_description[language.language_id].blocks %}
+                              <tr id="image-row-carousel{{ image_row_carousel }}">
+                                <td class="text-center" style="width:120px">
+                                  <p>Carousel</p>
+                                  <a href="" id="thumb-image-carousel{{ image_row_carousel }}" data-toggle="image" class="img-thumbnail">
+                                    <img src="{% if block.image_carousel %}../image/{{ block.image_carousel }}{% else %}{{ placeholder }}{% endif %}" alt="" title="" data-placeholder="Image" class="img-responsive" width="100" height="100"/></a>
+                                    <input type="hidden" name="banner_carousel_description[{{ language.language_id }}][blocks][{{ image_row_carousel }}][image_carousel]" value="{{ block.image_carousel }}" id="input-image-carousel{{ image_row_carousel }}" />
+                                </td>
+                                <td class="text-left">
+                                  <p><input type="text" name="banner_carousel_description[{{ language.language_id }}][blocks][{{ image_row_carousel }}][link_carousel]" value="{{ block.link_carousel }}" placeholder="{{ text_link }}" class="form-control" /></p>
+                                </td>
+                                <td class="text-left" style="width:56px">
+                                  <button type="button" onclick="$('#image-row-carousel{{ image_row_carousel }}, .tooltip').removeImage();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+                                </td>
+                              </tr>
+                              {% set image_row_carousel = image_row_carousel + 1 %}
+                              {% endfor %}
+                              {% endif %}
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                <td class="text-left" style="width:56px"><button type="button" onclick="addImageCarousel('{{ language.language_id }}');" data-toggle="tooltip" title="{{ button_banner_add }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+                              </tr>
+                            </tfoot>
+                          </table>
+                        </div>
+                    </div>
+                  </div>
+                {% endfor %}
+                </div>
+              </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript"><!--
+var image_row = {{ image_row }};
+
+function addImage(language_id) {
+  html  = '<tr id="image-row' + image_row + '">';
+  //Image
+  html += '  <td class="text-center type_slider" style="width:120px"><p>PC</p><a href="" id="thumb-image' + image_row + '" data-toggle="image" class="img-thumbnail"><img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a><input type="hidden" name="banner_description[' + language_id + '][blocks][' + image_row + '][image]" value="" id="input-image' + image_row + '" /></td>';
+  html += '  <td class="text-center type_slider" style="width:120px"><p>Mobile</p><a href="" id="thumb-image-mob' + image_row + '" data-toggle="image" class="img-thumbnail"><img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a><input type="hidden" name="banner_description[' + language_id + '][blocks][' + image_row + '][image_mob]" value="" id="input-image-mob' + image_row + '" /></td>';
+  html += '  <td class="text-left"><p>Ссылка</p><p><input type="text" name="banner_description[' + language_id + '][blocks][' + image_row + '][link]" value="" placeholder="{{ text_link }}" class="form-control" /></p></td>';
+  //
+  html += '  <td class="text-left" style="width:56px"><button type="button" onclick="$(\'#image-row' + image_row  + ', .tooltip\').removeImage();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+  html += '</tr>';
+  $('#images' + language_id + ' tbody').append(html);
+  
+  image_row++;
+}
+//--></script>
+<script type="text/javascript"><!--
+var image_row_and_text = {{ image_row_and_text }};
+
+function addImageAndText(language_id) {
+  html  = '<tr id="image-row-and-text' + image_row_and_text + '">';
+  //Image + Text
+  html += '  <td class="text-center type_slider_image_and_text" style="width:120px"><p>PC</p><a href="" id="thumb-it-image' + image_row_and_text + '" data-toggle="image" class="img-thumbnail"><img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a><input type="hidden" name="banner_it_description[' + language_id + '][blocks][' + image_row_and_text + '][it_image]" value="" id="input-it-image' + image_row_and_text + '" /></td>';
+  html += '  <td class="text-center type_slider_image_and_text" style="width:120px"><p>Mobile</p><a href="" id="thumb-it-image-mob' + image_row_and_text + '" data-toggle="image" class="img-thumbnail"><img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a><input type="hidden" name="banner_it_description[' + language_id + '][blocks][' + image_row_and_text + '][it_image_mob]" value="" id="input-it-image-mob' + image_row_and_text + '" /></td>';
+  html += '  <td class="text-left"><p>Ссылка</p><p><input type="text" name="banner_it_description[' + language_id + '][blocks][' + image_row_and_text + '][it_link]" value="" placeholder="{{ text_link }}" class="form-control" /></p></td>';
+  html += '  <td class="text-left"><p>Позиция информации</p><p><select name="banner_it_description[' + language_id + '][blocks][' + image_row_and_text + '][it_position]" class="form-control">';
+  html += '    <option value="1">{{ text_yes }}</option>';
+  html += '    <option value="0">{{ text_no }}</option>';
+  html += '  </select></p></td>';
+  html += ' <td class="text-left type_slider_image_and_text"><p>Заголовок</p><p><input type="text" name="banner_it_description[' + language_id + '][blocks][' + image_row_and_text + '][it_title]" value="{{ block.it_title }}" placeholder="Заголовок" class="form-control" /></p></td>';
+  html += ' <td class="text-left type_slider_image_and_text"><p>Описание</p><textarea name="banner_it_description[' + language_id + '][blocks][' + image_row_and_text + '][it_description]" rows="5" placeholder="Описание" class="form-control"></textarea></td>';
+  html += ' <td class="text-left type_slider_image_and_text"><p>Текст кнопки</p><p><input type="text" name="banner_it_description[' + language_id + '][blocks][' + image_row_and_text + '][it_button_text]" value="{{ block.it_button_text }}" placeholder="Текст кнопки" class="form-control" /></p><small>Кнопка будет ссылкой, если она указана</small></td>';
+  html += ' <td class="text-left type_slider_image_and_text"><p>Фон</p><p><input type="text" name="banner_it_description[' + language_id + '][blocks][' + image_row_and_text + '][it_background_color]" value="{{ block.it_background_color }}" placeholder="Фон" class="form-control colorpicker" /></p><small>Не сработает, если ширина контейнера фиксированного размера</small></td>';
+  html += '  <td class="text-left" style="width:56px"><button type="button" onclick="$(\'#image-row-and-text' + image_row_and_text  + ', .tooltip\').removeImageAndText();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+  html += '</tr>';
+  $('#images_and_text' + language_id + ' tbody').append(html);
+  
+  image_row_and_text++;
+
+  $('.colorpicker').spectrum({type: "component"});
+}
+//--></script>
+<script type="text/javascript"><!--
+var image_row_carousel = {{ image_row_carousel }};
+
+function addImageCarousel(language_id) {
+  html  = '<tr id="image-row-carousel' + image_row_carousel + '">';
+  html += '  <td class="text-center type_slider" style="width:120px"><p>Carousel</p><a href="" id="thumb-image-carousel' + image_row_carousel + '" data-toggle="image" class="img-thumbnail"><img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a><input type="hidden" name="banner_carousel_description[' + language_id + '][blocks][' + image_row_carousel + '][image_carousel]" value="" id="input-image-carousel' + image_row_carousel + '" /></td>';
+  html += '  <td class="text-left" style="width:100%"><p><input type="text" name="banner_carousel_description[' + language_id + '][blocks][' + image_row_carousel + '][link_carousel]" value="" placeholder="{{ text_link }}" class="form-control" /></p></td>';    
+  html += '  <td class="text-left" style="width:56px"><button type="button" onclick="$(\'#image-row-carousel' + image_row_carousel  + ', .tooltip\').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+  html += '</tr>';
+  
+  $('#images_carousel' + language_id + ' tbody').append(html);
+  
+  image_row_carousel++;
+}
+//--></script> 
+  <script type="text/javascript"><!--
+$('#language a:first').tab('show');
+$('#language-image-and-text a:first').tab('show');
+$('#language_carousel a:first').tab('show');
+//--></script>
+<script>
+  // Проверка при старте
+    // Проверка типа баннера
+    if($("#type_banner_main :selected").val() == 'slider') {
+      $(".type_carousel").css({"display":"none"});
+      $(".type_slider").css({"display":"revert"});
+    } else {
+      $(".type_carousel").css({"display":"revert"});
+      $(".type_slider").css({"display":"none"});
+    }
+    // Проверка на ширину баннера
+    if($("#type_container :selected").val() == 'adaptive') {
+      $(".for_adaptive").removeClass('form-group-item-hidden');
+    } else {
+      $(".for_adaptive").addClass('form-group-item-hidden');
+    }
+    // Проверка на тип слайдера (картинка или картинка + текст)
+    if($("#slider_type :selected").val() == 'image_and_text') {
+      $(".type_slider_image_and_text_tab").css({"display":"revert"});
+      $(".type_slider_text_tab").css({"display":"none"});
+    } else {
+      $(".type_slider_text_tab").css({"display":"revert"});
+      $(".type_slider_image_and_text_tab").css({"display":"none"});
+    }
+  //
+
+  // Проверка при клике
+    // Проверка типа баннера
+    $("#type_banner_main").on('change', function() {
+      if($("#type_banner_main :selected").val() == 'slider') {
+        $(".type_carousel").css({"display":"none"});
+        $(".type_slider").css({"display":"revert"});
+      } else {
+        $(".type_carousel").css({"display":"revert"});
+        $(".type_slider").css({"display":"none"});
+      }
+    });
+    // Проверка на ширину баннера
+    $("#type_container").on('change', function() {
+      if($("#type_container :selected").val() == 'adaptive') {
+        $(".for_adaptive").removeClass('form-group-item-hidden');
+      } else {
+        $(".for_adaptive").addClass('form-group-item-hidden');
+      }
+    });
+    // Проверка на тип слайдера (картинка или картинка + текст)
+    $("#slider_type").on('change', function() {
+      if($("#slider_type :selected").val() == 'image_and_text') {
+        $(".type_slider_image_and_text_tab").css({"display":"revert"});
+        $(".type_slider_text_tab").css({"display":"none"});
+      } else {
+        $(".type_slider_text_tab").css({"display":"revert"});
+        $(".type_slider_image_and_text_tab").css({"display":"none"});
+      }
+    });
+  //
+</script>
+<script>
+  $('.colorpicker').spectrum({type: "component"});
+</script>
+</div>
+{{ footer }}

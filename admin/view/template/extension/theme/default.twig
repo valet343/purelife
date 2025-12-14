@@ -1,0 +1,1840 @@
+{{ header }}{{ column_left }}
+<div id="content" class="dc_pro_theme">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-theme" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body" style="position: relative;">
+        <div class="load">
+          <img src="../image/catalog/favicon.svg" alt="">
+        </div>
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-theme" class="form-horizontal">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab-general" data-toggle="tab">{{ tab_general }}</a></li>
+            <li><a href="#tab-pages" data-toggle="tab">{{ tab_pages }}</a></li>
+            <li><a href="#tab-images" data-toggle="tab">{{ tab_images }}</a></li>
+            <li><a href="#tab-widgets" data-toggle="tab">{{ tab_widgets }}</a></li>
+            <li><a href="#tab-help" data-toggle="tab">{{ tab_help }}</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab-general">
+              <fieldset class="row">
+                <div class="col-sm-3">
+                  <ul class="tab-general_left">
+                    <li class="main active"><a href="#tab-main" data-toggle="tab">{{ tab_main }}</a></li>
+                    <li class="header"><a href="#tab-header" data-toggle="tab">{{ tab_header }}</a></li>
+                    <li class="footer"><a href="#tab-footer" data-toggle="tab">{{ tab_footer }}</a></li>
+                    <li class="code"><a href="#tab-code" data-toggle="tab">{{ tab_code }}</a></li>
+                  </ul>
+                </div>
+                <div class="col-sm-9">
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="tab-main">
+                      <fieldset>
+                        <legend>{{ text_general }}</legend>
+                        <div class="form-group" style="display: none">
+                          <label class="col-sm-2 control-label" for="input-directory"><span data-toggle="tooltip" title="{{ help_directory }}">{{ entry_directory }}</span></label>
+                          <div class="col-sm-10">
+                            <select name="theme_default_directory" id="input-directory" class="form-control">
+                              {% for directory in directories %}
+                              {% if directory == theme_default_directory %}
+                              <option value="{{ directory }}" selected="selected">{{ directory }}</option>
+                              {% else %}
+                              <option value="{{ directory }}">{{ directory }}</option>
+                              {% endif %}
+                              {% endfor %}
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group" style="border-top: none;">
+                          <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+                          <div class="col-sm-10">
+                            <select name="theme_default_status" id="input-status" class="form-control">
+                              {% if theme_default_status %}
+                              <option value="1" selected="selected">{{ text_enabled }}</option>
+                              <option value="0">{{ text_disabled }}</option>
+                              {% else %}
+                              <option value="1">{{ text_enabled }}</option>
+                              <option value="0" selected="selected">{{ text_disabled }}</option>
+                              {% endif %}
+                            </select>
+                            <div class="alert alert-warning">Это базовый шаблон для версии PRO, на его основе удобно разрабатывать свою тему с нуля.<br><b>Внимание!</b> Использование шаблонов не для DEVCART с вероятностью 95% навредит системе.</div>
+                          </div>
+                        </div>
+                      </fieldset>
+                      <fieldset>
+                        <legend>{{ text_templates }}</legend>
+                        <div class="form-group">
+                          <div class="col-sm-12">
+                            <div class="dc_templates_list">
+                              <div class="item speedy">
+                                <div class="template_logo">
+                                  <img src="../image/template_speedy_icon.svg" alt="">
+                                </div>
+                                <div class="caption">
+                                  <p>Speedy</p>
+                                  <span>Максимально универсальное решение для всех типов товаров</span>
+                                  <a class="link" href="https://dev-opencart.com/shablony-dlya-devcart-pro/speedy" target="_blank">Подробнее</a>
+                                </div>
+                              </div>
+                              <div class="item halos">
+                                <div class="template_logo">
+                                  <img src="../image/template_halos_icon.svg" alt="">
+                                </div>
+                                <div class="caption">
+                                  <p>Halos</p>
+                                  <span>Больше подходит для женских товаров, зоотоваров, мебельной фурнитуры</span>
+                                  <a class="link" href="https://dev-opencart.com/shablony-dlya-devcart-pro/halos" target="_blank">Подробнее</a>
+                                </div>
+                              </div>
+                              <div class="item techmax">
+                                <div class="template_logo">
+                                  <img src="../image/template_techmax_icon.svg" alt="">
+                                </div>
+                                <div class="caption">
+                                  <p>Techmax</p>
+                                  <span>Отлично подходит для каталога электроники, инновационных или диджитал-товаров</span>
+                                  <a class="link" href="https://dev-opencart.com/shablony-dlya-devcart-pro/techmax" target="_blank">Подробнее</a>
+                                </div>
+                              </div>
+                              <div class="item intense">
+                                <div class="template_logo">
+                                  <img src="../image/template_intense_icon.svg" alt="">
+                                </div>
+                                <div class="caption">
+                                  <p>Intense</p>
+                                  <span>Хорошо подойдет для сантехнических, строительных товаров, а также для других магазинов с большим количеством товаров</span>
+                                  <a class="link" href="https://dev-opencart.com/shablony-dlya-devcart-pro/intense" target="_blank">Подробнее</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                    <div class="tab-pane" id="tab-header">
+                      <fieldset>
+                        <legend>{{ text_header_elements }}</legend>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-header-currency">{{ entry_header_currency }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_header_currency %}
+                              <input type="radio" name="theme_default_header_currency" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_header_currency" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_header_currency %}
+                              <input type="radio" name="theme_default_header_currency" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_header_currency" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-header-language">{{ entry_header_language }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_header_language %}
+                              <input type="radio" name="theme_default_header_language" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_header_language" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_header_language %}
+                              <input type="radio" name="theme_default_header_language" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_header_language" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-header-compare">{{ entry_header_compare }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_header_compare %}
+                              <input type="radio" name="theme_default_header_compare" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_header_compare" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_header_compare %}
+                              <input type="radio" name="theme_default_header_compare" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_header_compare" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-header-wishlist">{{ entry_header_wishlist }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_header_wishlist %}
+                              <input type="radio" name="theme_default_header_wishlist" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_header_wishlist" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_header_wishlist %}
+                              <input type="radio" name="theme_default_header_wishlist" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_header_wishlist" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-header-account">{{ entry_header_account }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_header_account %}
+                              <input type="radio" name="theme_default_header_account" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_header_account" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_header_account %}
+                              <input type="radio" name="theme_default_header_account" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_header_account" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                      </fieldset>
+                      <fieldset>
+                        <legend>{{ text_contacts_elements }}</legend>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-header-phones">{{ entry_contacts_phones }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_header_phones %}
+                              <input type="radio" name="theme_default_header_phones" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_header_phones" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_header_phones %}
+                              <input type="radio" name="theme_default_header_phones" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_header_phones" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-header-messengers">{{ entry_contacts_messengers }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_header_messengers %}
+                              <input type="radio" name="theme_default_header_messengers" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_header_messengers" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_header_messengers %}
+                              <input type="radio" name="theme_default_header_messengers" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_header_messengers" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-header-email">E-mail</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_header_email %}
+                              <input type="radio" name="theme_default_header_email" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_header_email" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_header_email %}
+                              <input type="radio" name="theme_default_header_email" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_header_email" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                    <div class="tab-pane" id="tab-footer">
+                      <fieldset>
+                        <legend>{{ text_contacts_elements }}</legend>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-footer-phones">{{ entry_contacts_phones }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_footer_phones %}
+                              <input type="radio" name="theme_default_footer_phones" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_footer_phones" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_footer_phones %}
+                              <input type="radio" name="theme_default_footer_phones" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_footer_phones" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-footer-messengers">{{ entry_contacts_messengers }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_footer_messengers %}
+                              <input type="radio" name="theme_default_footer_messengers" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_footer_messengers" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_footer_messengers %}
+                              <input type="radio" name="theme_default_footer_messengers" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_footer_messengers" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-footer-email">E-mail</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_footer_email %}
+                              <input type="radio" name="theme_default_footer_email" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_footer_email" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_footer_email %}
+                              <input type="radio" name="theme_default_footer_email" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_footer_email" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-footer-socials">{{ entry_footer_socials }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_footer_socials %}
+                              <input type="radio" name="theme_default_footer_socials" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_footer_socials" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_footer_socials %}
+                              <input type="radio" name="theme_default_footer_socials" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_footer_socials" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                      </fieldset>
+                      <fieldset>
+                        <legend>{{ text_footer_elements }}</legend>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-footer-payments-status">{{ entry_see }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_footer_payments_status %}
+                              <input type="radio" name="theme_default_footer_payments_status" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_footer_payments_status" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_footer_payments_status %}
+                              <input type="radio" name="theme_default_footer_payments_status" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_footer_payments_status" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-footer-payment-icons-items">{{ entry_footer_payments }}</label>
+                          <div class="col-sm-10">
+                            {% set footer_payments_row = 0 %}
+                              <table id="footer-payment-icons" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                  <tr>
+                                    <td class="text-center">{{ entry_image }}</td>
+                                    <td class="text-right">{{ entry_sort_order }}</td>
+                                    <td></td>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% set footer_payment_row = 0 %}
+                                  {% for theme_default_footer_payment in theme_default_footer_payments %}
+                                    <tr id="footer-payment-row{{ footer_payment_row }}">
+                                      <td class="text-left"><a href="" id="thumb-image{{ footer_payment_row }}" data-toggle="image" class="img-thumbnail"><img src="{{ theme_default_footer_payment.thumb }}" alt="" title="" data-placeholder="{{ placeholder }}"/></a> <input type="hidden" name="theme_default_footer_payment[{{ footer_payment_row }}][image]" value="{{ theme_default_footer_payment.image }}" id="input-image{{ footer_payment_row }}"/></td>
+                                      <td class="text-right"><input type="text" name="theme_default_footer_payment[{{ footer_payment_row }}][sort_order]" value="{{ theme_default_footer_payment.sort_order }}" placeholder="{{ entry_sort_order }}" class="form-control"/></td>
+                                      <td class="text-left"><button type="button" onclick="$('#footer-payment-row{{ footer_payment_row }}').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                                    </tr>
+                                    {% set footer_payment_row = footer_payment_row + 1 %}
+                                  {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                  <tr>
+                                    <td colspan="1"></td>
+                                    <td class="text-left"><button type="button" onclick="AddFooterPaymentRow();" data-toggle="tooltip" title="{{ button_banner_add }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+                                  </tr>
+                                </tfoot>
+                              </table>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                    <div class="tab-pane" id="tab-code">
+                      <fieldset>
+                        <legend>Подключение файлов</legend>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-code-css-link">Название файла стилей</label>
+                          <div class="col-sm-10">
+                            <input type="text" name="theme_default_code_header_css_link" value="{{ theme_default_code_header_css_link }}" placeholder="my_styles" id="input-code-css-link" class="form-control" />
+                            <div class="alert alert-warning alert-dismissible">Расположить в catalog/view/theme/default/stylesheet/</div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-code-footer-js-link">Название файла скриптов</label>
+                          <div class="col-sm-10">
+                            <input type="text" name="theme_default_code_footer_js_link" value="{{ theme_default_code_footer_js_link }}" placeholder="my_scripts" id="input-code-footer-js-link" class="form-control" />
+                            <div class="alert alert-warning alert-dismissible">Расположить в catalog/view/javascript/</div>
+                          </div>
+                        </div>
+                      </fieldset>
+                      <fieldset>
+                        <legend>{{ text_code_js_css }}</legend>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-code-css">{{ entry_code_css }}</label>
+                          <div class="col-sm-10">
+                            <textarea name="theme_default_code_header_css" rows="5" placeholder="{{ help_code_empty }}" id="input-code-header-css" class="form-control">{{ theme_default_code_header_css }}</textarea>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-code-header-js">{{ entry_code_header_js }}</label>
+                          <div class="col-sm-10">
+                            <textarea name="theme_default_code_header_js" rows="5" placeholder="{{ help_code_empty }}" id="input-code-header-js" class="form-control">{{ theme_default_code_header_js }}</textarea>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-code-footer-js">{{ entry_code_footer_js }}</label>
+                          <div class="col-sm-10">
+                            <textarea name="theme_default_code_footer_js" rows="5" placeholder="{{ help_code_empty }}" id="input-code-footer-js" class="form-control">{{ theme_default_code_footer_js }}</textarea>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="tab-pane tab_pages" id="tab-pages">
+              <fieldset>
+                <ul>
+                  <li class="disable">
+                    <a href="#tab-home" data-toggle="tab">
+                      <span class="icon icon_page_home"></span>
+                      <p>{{ tab_home }}</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#tab-catalog" data-toggle="tab">
+                      <span class="icon icon_page_catalog"></span>
+                      <p>{{ tab_catalog }}</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#tab-product" data-toggle="tab">
+                      <span class="icon icon_page_product"></span>
+                      <p>{{ tab_product }}</p>
+                    </a>
+                  </li>
+                  <li class="disable">
+                    <a href="#tab-information" data-toggle="tab">
+                      <span class="icon icon_page_info"></span>
+                      <p>{{ tab_information }}</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#tab-contacts" data-toggle="tab">
+                      <span class="icon icon_page_contact"></span>
+                      <p>{{ tab_contacts }}</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#tab-checkout" data-toggle="tab">
+                      <span class="icon icon_page_checkout"></span>
+                      <p>{{ tab_checkout }}</p>
+                    </a>
+                  </li>
+                </ul>
+                <div class="tab-content" style="display: none;">
+                  <div class="tab-pane tab-pane-flex active" id="tab-home">
+                    <div class="tab-pane-left-50">
+                      <p class="back_to_tab_pages"><i class="fa fa-angle-left" aria-hidden="true"></i></p>
+                    </div>
+                    <div class="tab-pane-right">
+                      <fieldset class="row">
+                        <div class="col-lg-12">
+                          <legend>{{ text_home_setting }}</legend>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div class="tab-pane tab-pane-flex" id="tab-catalog">
+                    <div class="tab-pane-left-50">
+                      <p class="back_to_tab_pages"><i class="fa fa-angle-left" aria-hidden="true"></i></p>
+                    </div>
+                    <div class="tab-pane-right">
+                      <fieldset>
+                        <legend>{{ text_catalog_setting }}</legend>
+                        <div class="form-group required">
+                          <label class="col-sm-2 control-label" for="input-description-limit"><span data-toggle="tooltip" title="{{ help_product_description_length }}">{{ entry_product_description_length }}</span></label>
+                          <div class="col-sm-10">
+                            <input type="text" name="theme_default_product_description_length" value="{{ theme_default_product_description_length }}" placeholder="{{ entry_product_description_length }}" id="input-description-limit" class="form-control" />
+                            {% if error_product_description_length %}
+                            <div class="text-danger">{{ error_product_description_length }}</div>
+                            {% endif %}
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-catalog-stickers-text">{{ entry_catalog_stickers_text }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_catalog_stickers_text %}
+                              <input type="radio" name="theme_default_catalog_stickers_text" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_catalog_stickers_text" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_catalog_stickers_text %}
+                              <input type="radio" name="theme_default_catalog_stickers_text" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_catalog_stickers_text" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                        <div class="form-group form-group-item-hidden">
+                          <label class="col-sm-2 control-label" for="input-catalog-stickers-image">{{ entry_catalog_stickers_image }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_catalog_stickers_image %}
+                              <input type="radio" name="theme_default_catalog_stickers_image" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_catalog_stickers_image" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_catalog_stickers_image %}
+                              <input type="radio" name="theme_default_catalog_stickers_image" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_catalog_stickers_image" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-catalog-stock">{{ entry_catalog_stock }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_catalog_stock %}
+                              <input type="radio" name="theme_default_catalog_stock" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_catalog_stock" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_catalog_stock %}
+                              <input type="radio" name="theme_default_catalog_stock" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_catalog_stock" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-catalog-button-cart">{{ entry_catalog_stock_buy_button }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_catalog_button_cart %}
+                              <input type="radio" name="theme_default_catalog_button_cart" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_catalog_button_cart" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_catalog_button_cart %}
+                              <input type="radio" name="theme_default_catalog_button_cart" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_catalog_button_cart" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                      </fieldset>
+                      <fieldset>
+                        <legend>{{ text_navigation_catalog }}</legend>
+                        <div class="form-group required">
+                          <label class="col-sm-2 control-label" for="input-catalog-limit"><span data-toggle="tooltip" title="{{ help_product_limit }}">{{ entry_product_limit }}</span></label>
+                          <div class="col-sm-10">
+                            <input type="text" name="theme_default_product_limit" value="{{ theme_default_product_limit }}" placeholder="{{ entry_product_limit }}" id="input-catalog-limit" class="form-control" />
+                            {% if error_product_limit %}
+                            <div class="text-danger">{{ error_product_limit }}</div>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div class="tab-pane tab-pane-flex" id="tab-product">
+                    <div class="tab-pane-left-50">
+                      <p class="back_to_tab_pages"><i class="fa fa-angle-left" aria-hidden="true"></i></p>
+                    </div>
+                    <div class="tab-pane-right">
+                      <fieldset class="row">
+                        <div class="col-sm-3">
+                          <ul class="tab-general_left">
+                            <li class="main active"><a href="#tab-product-main" data-toggle="tab" aria-expanded="false">{{ tab_product_main }}</a></li>
+                            <li class="product-shipping"><a href="#tab-product-shipping" data-toggle="tab" aria-expanded="false">{{ tab_product_shipping }}</a></li>
+                            <li class="product-payment"><a href="#tab-product-payment" data-toggle="tab" aria-expanded="false">{{ tab_product_payment }}</a></li>
+                            <li class="product-guarantee"><a href="#tab-product-guarantee" data-toggle="tab" aria-expanded="false">{{ tab_product_guarantee }}</a></li>
+                            <li class="product-edges"><a href="#tab-product-edges" data-toggle="tab" aria-expanded="false">{{ tab_product_edges }}</a></li>
+                            <li class="product-questions"><a href="#tab-product-questions" data-toggle="tab" aria-expanded="false">{{ tab_product_questions }}</a></li>
+                            <li class="product-sticker-text"><a href="#tab-product-sticker-text" data-toggle="tab" aria-expanded="false">Стикеры</a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-9">
+                          <div class="tab-content">
+                            <div class="tab-pane active" id="tab-product-main">
+                              <fieldset>
+                                <legend>{{ text_product_setting }}</legend>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-fixed-scroll-thumbs">{{ entry_product_fixed_scroll_thumbs }}</label>
+                                  <div class="col-sm-9">
+                                    <label class="radio-inline"> {% if theme_default_product_fixed_scroll_thumbs %}
+                                      <input type="radio" name="theme_default_product_fixed_scroll_thumbs" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_fixed_scroll_thumbs" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_fixed_scroll_thumbs %}
+                                      <input type="radio" name="theme_default_product_fixed_scroll_thumbs" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_fixed_scroll_thumbs" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-manufacturer">{{ entry_product_manufacturer }}</label>
+                                  <div class="col-sm-9">
+                                    <label class="radio-inline"> {% if theme_default_product_manufacturer %}
+                                      <input type="radio" name="theme_default_product_manufacturer" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_manufacturer" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_manufacturer %}
+                                      <input type="radio" name="theme_default_product_manufacturer" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_manufacturer" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-model">{{ entry_product_model }}</label>
+                                  <div class="col-sm-9">
+                                    <label class="radio-inline"> {% if theme_default_product_model %}
+                                      <input type="radio" name="theme_default_product_model" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_model" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_model %}
+                                      <input type="radio" name="theme_default_product_model" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_model" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-sku">{{ entry_product_sku }}</label>
+                                  <div class="col-sm-9">
+                                    <label class="radio-inline"> {% if theme_default_product_sku %}
+                                      <input type="radio" name="theme_default_product_sku" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_sku" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_sku %}
+                                      <input type="radio" name="theme_default_product_sku" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_sku" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-stock">{{ entry_product_stock }}</label>
+                                  <div class="col-sm-9">
+                                    <label class="radio-inline"> {% if theme_default_product_stock %}
+                                      <input type="radio" name="theme_default_product_stock" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_stock" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_stock %}
+                                      <input type="radio" name="theme_default_product_stock" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_stock" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-purchased-product"><span data-toggle="tooltip" title="{{ help_purchased_product }}">{{ entry_purchased_product }}</span></label>
+                                  <div class="col-sm-9">
+                                    <label class="radio-inline"> {% if theme_default_product_purchased_product == 2 %}
+                                      <input type="radio" name="theme_default_product_purchased_product" value="2" checked="checked" />
+                                      {{ text_yes }}{{ help_2_purchased_product }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_purchased_product" value="2" />
+                                      {{ text_yes }}{{ help_2_purchased_product }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if theme_default_product_purchased_product == 1 %}
+                                      <input type="radio" name="theme_default_product_purchased_product" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_purchased_product" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_purchased_product %}
+                                      <input type="radio" name="theme_default_product_purchased_product" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_purchased_product" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-fixed-nav-tabs">{{ entry_product_fixed_nav_tabs }}</label>
+                                  <div class="col-sm-9">
+                                    <label class="radio-inline"> {% if theme_default_product_fixed_nav_tabs %}
+                                      <input type="radio" name="theme_default_product_fixed_nav_tabs" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_fixed_nav_tabs" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_fixed_nav_tabs %}
+                                      <input type="radio" name="theme_default_product_fixed_nav_tabs" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_fixed_nav_tabs" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-button-cart">{{ entry_product_stock_buy_button }}</label>
+                                  <div class="col-sm-9">
+                                    <label class="radio-inline"> {% if theme_default_product_button_cart %}
+                                      <input type="radio" name="theme_default_product_button_cart" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_button_cart" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_button_cart %}
+                                      <input type="radio" name="theme_default_product_button_cart" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_button_cart" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                              </fieldset>
+                            </div>
+                            <div class="tab-pane" id="tab-product-shipping">
+                              <fieldset>
+                                <legend>{{ text_shipping }}</legend>
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="input-product-shipping-status">{{ entry_see }}</label>
+                                  <div class="col-sm-10">
+                                    <label class="radio-inline"> {% if theme_default_product_shipping_status %}
+                                      <input type="radio" name="theme_default_product_shipping_status" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_shipping_status" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_shipping_status %}
+                                      <input type="radio" name="theme_default_product_shipping_status" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_shipping_status" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="input-product-shipping-description">{{ entry_product_shipping_description }}</label>
+                                  <div class="col-sm-10">
+                                    <ul class="nav nav-tabs" id="language_shipping">
+                                      {% for language in languages %}
+                                        <li><a href="#language_shipping{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}"/> {{ language.name }}</a></li>
+                                      {% endfor %}
+                                    </ul>
+                                    <div class="tab-content">{% for language in languages %}
+                                      <div class="tab-pane" id="language_shipping{{ language.language_id }}">
+                                        <div class="form-group">
+                                          <textarea name="theme_default_product_shipping_description[{{ language['language_id'] }}]" id="input-product-shipping-description{{ language['language_id'] }}" data-toggle="summernote" data-lang="{{ summernote }}" class="form-control">{{ theme_default_product_shipping_description[language['language_id']] is defined ? theme_default_product_shipping_description[language['language_id']] : '' }}</textarea>
+                                        </div>
+                                      </div>
+                                    {% endfor %}</div>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="input-product-shipping-items">{{ entry_product_shipping_items }}</label>
+                                  <div class="col-sm-10">
+                                    <ul class="nav nav-tabs" id="language_shipping_items">
+                                      {% for language in languages %}
+                                      <li><a href="#language_shipping_items{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                                      {% endfor %}
+                                    </ul>
+                                    <div class="tab-content">
+                                      {% set shipping_row = 0 %}
+                                      {% for language in languages %}
+                                      <div class="tab-pane" id="language_shipping_items{{ language.language_id }}">
+                                        <table id="shipping_items{{ language.language_id }}" class="table table-striped table-bordered table-hover">
+                                          <thead>
+                                            <tr>
+                                              <td class="text-left">{{ entry_title }}</td>
+                                              <td class="text-center">{{ entry_image }}</td>
+                                              <td></td>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            {% if theme_default_product_shipping_items[language.language_id] %}
+                                            {% for theme_default_product_shipping_item in theme_default_product_shipping_items[language.language_id] %}
+                                            <tr id="shipping-row{{ shipping_row }}">
+                                              <td class="text-left"><input type="text" name="theme_default_product_shipping_item[{{ language.language_id }}][{{ shipping_row }}][title]" value="{{ theme_default_product_shipping_item.title }}" placeholder="{{ entry_title }}" class="form-control" />
+                                                {% if error_theme_default_product_shipping_item[language.language_id][shipping_row] %}
+                                                <div class="text-danger">{{ error_theme_default_product_shipping_item[language.language_id][shipping_row] }}</div>
+                                                {% endif %}</td>
+                                              <td class="text-center"><a href="" id="shipping-image{{ shipping_row }}" data-toggle="image" class="img-thumbnail"><img src="{{ theme_default_product_shipping_item.thumb }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a>
+                                                <input type="hidden" name="theme_default_product_shipping_item[{{ language.language_id }}][{{ shipping_row }}][image]" value="{{ theme_default_product_shipping_item.image }}" id="input-image-shipping{{ shipping_row }}" /></td>
+                                              <td class="text-left"><button type="button" onclick="$('#shipping-row{{ shipping_row }}, .tooltip').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                                            </tr>
+                                            {% set shipping_row = shipping_row + 1 %}
+                                            {% endfor %}
+                                            {% endif %}
+                                          </tbody>
+                                          <tfoot>
+                                            <tr>
+                                              <td colspan="2"></td>
+                                              <td class="text-left"><button type="button" onclick="addShippingRow('{{ language.language_id }}');" data-toggle="tooltip" title="{{ button_banner_add }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+                                            </tr>
+                                          </tfoot>
+                                        </table>
+                                      </div>
+                                      {% endfor %}
+                                    </div>
+                                  </div>
+                                </div>
+                              </fieldset>
+                            </div>
+                            <div class="tab-pane" id="tab-product-payment">
+                              <fieldset>
+                                <legend>{{ text_payment }}</legend>
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="input-product-payment-status">{{ entry_see }}</label>
+                                  <div class="col-sm-10">
+                                    <label class="radio-inline"> {% if theme_default_product_payment_status %}
+                                      <input type="radio" name="theme_default_product_payment_status" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_payment_status" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_payment_status %}
+                                      <input type="radio" name="theme_default_product_payment_status" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_payment_status" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="input-product-payment-description">{{ entry_product_payment_description }}</label>
+                                  <div class="col-sm-10">
+                                    <ul class="nav nav-tabs" id="language_payment">
+                                      {% for language in languages %}
+                                        <li><a href="#language_payment{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}"/> {{ language.name }}</a></li>
+                                      {% endfor %}
+                                    </ul>
+                                    <div class="tab-content">{% for language in languages %}
+                                      <div class="tab-pane" id="language_payment{{ language.language_id }}">
+                                        <div class="form-group">
+                                          <textarea name="theme_default_product_payment_description[{{ language['language_id'] }}]" id="input-product-payment-description{{ language['language_id'] }}" data-toggle="summernote" data-lang="{{ summernote }}" class="form-control">{{ theme_default_product_payment_description[language['language_id']] is defined ? theme_default_product_payment_description[language['language_id']] : '' }}</textarea>
+                                        </div>
+                                      </div>
+                                    {% endfor %}</div>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="input-product-payment-items">{{ entry_product_payment_items }}</label>
+                                  <div class="col-sm-10">
+                                    <ul class="nav nav-tabs" id="language_payment_items">
+                                      {% for language in languages %}
+                                      <li><a href="#language_payment_items{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                                      {% endfor %}
+                                    </ul>
+                                    <div class="tab-content">
+                                      {% set payment_row = 0 %}
+                                      {% for language in languages %}
+                                      <div class="tab-pane" id="language_payment_items{{ language.language_id }}">
+                                        <table id="payment_items{{ language.language_id }}" class="table table-striped table-bordered table-hover">
+                                          <thead>
+                                            <tr>
+                                              <td class="text-left">{{ entry_title }}</td>
+                                              <td class="text-center">{{ entry_image }}</td>
+                                              <td></td>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            {% if theme_default_product_payment_items[language.language_id] %}
+                                            {% for theme_default_product_payment_item in theme_default_product_payment_items[language.language_id] %}
+                                            <tr id="payment-row{{ payment_row }}">
+                                              <td class="text-left"><input type="text" name="theme_default_product_payment_item[{{ language.language_id }}][{{ payment_row }}][title]" value="{{ theme_default_product_payment_item.title }}" placeholder="{{ entry_title }}" class="form-control" />
+                                                {% if error_theme_default_product_payment_item[language.language_id][payment_row] %}
+                                                <div class="text-danger">{{ error_theme_default_product_payment_item[language.language_id][payment_row] }}</div>
+                                                {% endif %}</td>
+                                              <td class="text-center"><a href="" id="payment-image{{ payment_row }}" data-toggle="image" class="img-thumbnail"><img src="{{ theme_default_product_payment_item.thumb }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a>
+                                                <input type="hidden" name="theme_default_product_payment_item[{{ language.language_id }}][{{ payment_row }}][image]" value="{{ theme_default_product_payment_item.image }}" id="input-image-payment{{ payment_row }}" /></td>
+                                              <td class="text-left"><button type="button" onclick="$('#payment-row{{ payment_row }}, .tooltip').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                                            </tr>
+                                            {% set payment_row = payment_row + 1 %}
+                                            {% endfor %}
+                                            {% endif %}
+                                          </tbody>
+                                          <tfoot>
+                                            <tr>
+                                              <td colspan="2"></td>
+                                              <td class="text-left"><button type="button" onclick="addPaymentRow('{{ language.language_id }}');" data-toggle="tooltip" title="{{ button_banner_add }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+                                            </tr>
+                                          </tfoot>
+                                        </table>
+                                      </div>
+                                      {% endfor %}
+                                    </div>
+                                  </div>
+                                </div>
+                              </fieldset>
+                            </div>
+                            <div class="tab-pane" id="tab-product-guarantee">
+                              <fieldset>
+                                <legend>{{ text_guarantee }}</legend>
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="input-product-guarantee-status">{{ entry_see }}</label>
+                                  <div class="col-sm-10">
+                                    <label class="radio-inline"> {% if theme_default_product_guarantee_status %}
+                                      <input type="radio" name="theme_default_product_guarantee_status" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_guarantee_status" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_guarantee_status %}
+                                      <input type="radio" name="theme_default_product_guarantee_status" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_guarantee_status" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="input-product-guarantee-description">{{ entry_product_guarantee_description }}</label>
+                                  <div class="col-sm-10">
+                                    <ul class="nav nav-tabs" id="language_guarantee">
+                                      {% for language in languages %}
+                                        <li><a href="#language_guarantee{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}"/> {{ language.name }}</a></li>
+                                      {% endfor %}
+                                    </ul>
+                                    <div class="tab-content">{% for language in languages %}
+                                      <div class="tab-pane" id="language_guarantee{{ language.language_id }}">
+                                        <div class="form-group">
+                                          <textarea name="theme_default_product_guarantee_description[{{ language['language_id'] }}]" id="input-product-guarantee-description{{ language['language_id'] }}" data-toggle="summernote" data-lang="{{ summernote }}" class="form-control">{{ theme_default_product_guarantee_description[language['language_id']] is defined ? theme_default_product_guarantee_description[language['language_id']] : '' }}</textarea>
+                                        </div>
+                                      </div>
+                                    {% endfor %}</div>
+                                  </div>
+                                </div>
+                              </fieldset>
+                            </div>
+                            <div class="tab-pane" id="tab-product-edges">
+                              <fieldset>
+                                <legend>{{ text_edges }}</legend>
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="input-product-edges-status">{{ entry_see }}</label>
+                                  <div class="col-sm-10">
+                                    <label class="radio-inline"> {% if theme_default_product_edges_status %}
+                                      <input type="radio" name="theme_default_product_edges_status" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_edges_status" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_edges_status %}
+                                      <input type="radio" name="theme_default_product_edges_status" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_edges_status" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="input-product-edges-items">{{ entry_product_edges_items }}</label>
+                                  <div class="col-sm-10">
+                                    <ul class="nav nav-tabs" id="language_edges_items">
+                                      {% for language in languages %}
+                                      <li><a href="#language_edges_items{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                                      {% endfor %}
+                                    </ul>
+                                    <div class="tab-content">
+                                      {% set edges_row = 0 %}
+                                      {% for language in languages %}
+                                      <div class="tab-pane" id="language_edges_items{{ language.language_id }}">
+                                        <table id="edges_items{{ language.language_id }}" class="table table-striped table-bordered table-hover">
+                                          <thead>
+                                            <tr>
+                                              <td class="text-left">{{ entry_title }}</td>
+                                              <td class="text-center">{{ entry_image }}</td>
+                                              <td></td>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            {% if theme_default_product_edges_items[language.language_id] %}
+                                            {% for theme_default_product_edges_item in theme_default_product_edges_items[language.language_id] %}
+                                            <tr id="edges-row{{ edges_row }}">
+                                              <td class="text-left"><input type="text" name="theme_default_product_edges_item[{{ language.language_id }}][{{ edges_row }}][title]" value="{{ theme_default_product_edges_item.title }}" placeholder="{{ entry_title }}" class="form-control" />
+                                                {% if error_theme_default_product_edges_item[language.language_id][edges_row] %}
+                                                <div class="text-danger">{{ error_theme_default_product_edges_item[language.language_id][edges_row] }}</div>
+                                                {% endif %}</td>
+                                              <td class="text-center"><a href="" id="edges-image{{ edges_row }}" data-toggle="image" class="img-thumbnail"><img src="{{ theme_default_product_edges_item.thumb }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a>
+                                                <input type="hidden" name="theme_default_product_edges_item[{{ language.language_id }}][{{ edges_row }}][image]" value="{{ theme_default_product_edges_item.image }}" id="input-image-edges{{ edges_row }}" /></td>
+                                              <td class="text-left"><button type="button" onclick="$('#edges-row{{ edges_row }}, .tooltip').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                                            </tr>
+                                            {% set edges_row = edges_row + 1 %}
+                                            {% endfor %}
+                                            {% endif %}
+                                          </tbody>
+                                          <tfoot>
+                                            <tr>
+                                              <td colspan="2"></td>
+                                              <td class="text-left"><button type="button" onclick="addEdgesRow('{{ language.language_id }}');" data-toggle="tooltip" title="{{ button_banner_add }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+                                            </tr>
+                                          </tfoot>
+                                        </table>
+                                      </div>
+                                      {% endfor %}
+                                    </div>
+                                  </div>
+                                </div>
+                              </fieldset>
+                            </div>
+                            <div class="tab-pane" id="tab-product-questions">
+                              <fieldset>
+                                <legend>{{ tab_product_questions }}</legend>
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="input-product-questions-status">{{ entry_see }}</label>
+                                  <div class="col-sm-10">
+                                    <label class="radio-inline"> {% if theme_default_product_questions_status %}
+                                      <input type="radio" name="theme_default_product_questions_status" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_questions_status" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_questions_status %}
+                                      <input type="radio" name="theme_default_product_questions_status" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_questions_status" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                              </fieldset>
+                            </div>
+                            <div class="tab-pane" id="tab-product-sticker-text">
+                              <fieldset>
+                                <legend>Стикеры (текстовые)</legend>
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="input-product-sticker-text-status">{{ entry_see }}</label>
+                                  <div class="col-sm-10">
+                                    <label class="radio-inline"> {% if theme_default_product_sticker_text_status %}
+                                      <input type="radio" name="theme_default_product_sticker_text_status" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_sticker_text_status" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_sticker_text_status %}
+                                      <input type="radio" name="theme_default_product_sticker_text_status" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_sticker_text_status" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                              </fieldset>
+                              <fieldset>
+                                <legend>Стикер "Новинка"</legend>
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="input-product-sticker-new-status">{{ entry_see }}</label>
+                                  <div class="col-sm-10">
+                                    <label class="radio-inline"> {% if theme_default_product_sticker_new_status %}
+                                      <input type="radio" name="theme_default_product_sticker_new_status" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_sticker_new_status" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_sticker_new_status %}
+                                      <input type="radio" name="theme_default_product_sticker_new_status" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_sticker_new_status" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-sticker-new-background">Фон стикера</label>
+                                  <div class="col-sm-9">
+                                    <input type="text" name="theme_default_product_sticker_new_background" value="{{ theme_default_product_sticker_new_background }}" placeholder="#000000" id="input-product-sticker-new-background" class="form-control colorpicker" />
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-sticker-new-name">Текст на стикере</label>
+                                  <div class="col-sm-9">
+                                    {% for language in languages %}
+                                    <div class="input-group input-group-last">
+                                      <input type="text" name="theme_default_product_sticker_new_name[{{ language.language_id }}]" value="{{ theme_default_product_sticker_new_name[language.language_id] ? theme_default_product_sticker_new_name[language.language_id] }}" placeholder="{{ entry_name }}" class="form-control" />
+                                      <span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
+                                    </div>
+                                    {% endfor %}
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-sticker-new-days">Количество дней обозначающее товар как новый</label>
+                                  <div class="col-sm-9">
+                                    <input type="text" name="theme_default_product_sticker_new_days" value="{{ theme_default_product_sticker_new_days }}" placeholder="5" id="input-product-sticker-new-days" class="form-control" />
+                                  </div>
+                                </div>
+                              </fieldset>
+                              <fieldset>
+                                <legend>Стикер "Со скидкой"</legend>
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="input-product-sticker-special-status">{{ entry_see }}</label>
+                                  <div class="col-sm-10">
+                                    <label class="radio-inline"> {% if theme_default_product_sticker_special_status %}
+                                      <input type="radio" name="theme_default_product_sticker_special_status" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_sticker_special_status" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_sticker_special_status %}
+                                      <input type="radio" name="theme_default_product_sticker_special_status" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_sticker_special_status" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-sticker-special-background">Фон стикера</label>
+                                  <div class="col-sm-9">
+                                    <input type="text" name="theme_default_product_sticker_special_background" value="{{ theme_default_product_sticker_special_background }}" placeholder="#000000" id="input-product-sticker-special-background" class="form-control colorpicker" />
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-sticker-special-name">Текст на стикере</label>
+                                  <div class="col-sm-9">
+                                    {% for language in languages %}
+                                    <div class="input-group input-group-last">
+                                      <input type="text" name="theme_default_product_sticker_special_name[{{ language.language_id }}]" value="{{ theme_default_product_sticker_special_name[language.language_id] ? theme_default_product_sticker_special_name[language.language_id] }}" placeholder="{{ entry_name }}" class="form-control" />
+                                      <span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
+                                    </div>
+                                    {% endfor %}
+                                  </div>
+                                </div>
+                              </fieldset>
+                              <fieldset>
+                                <legend>Стикер "Хит продаж"</legend>
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="input-product-sticker-sale-status">{{ entry_see }}</label>
+                                  <div class="col-sm-10">
+                                    <label class="radio-inline"> {% if theme_default_product_sticker_sale_status %}
+                                      <input type="radio" name="theme_default_product_sticker_sale_status" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_sticker_sale_status" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_sticker_sale_status %}
+                                      <input type="radio" name="theme_default_product_sticker_sale_status" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_sticker_sale_status" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-sticker-sale-background">Фон стикера</label>
+                                  <div class="col-sm-9">
+                                    <input type="text" name="theme_default_product_sticker_sale_background" value="{{ theme_default_product_sticker_sale_background }}" placeholder="#000000" id="input-product-sticker-sale-background" class="form-control colorpicker" />
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-sticker-sale-name">Текст на стикере</label>
+                                  <div class="col-sm-9">
+                                    {% for language in languages %}
+                                    <div class="input-group input-group-last">
+                                      <input type="text" name="theme_default_product_sticker_sale_name[{{ language.language_id }}]" value="{{ theme_default_product_sticker_sale_name[language.language_id] ? theme_default_product_sticker_sale_name[language.language_id] }}" placeholder="{{ entry_name }}" class="form-control" />
+                                      <span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
+                                    </div>
+                                    {% endfor %}
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-sticker-sale-count">Количество продаж товара, чтоб он считался хитом продаж</label>
+                                  <div class="col-sm-9">
+                                    <input type="text" name="theme_default_product_sticker_sale_count" value="{{ theme_default_product_sticker_sale_count }}" placeholder="15" id="input-product-sticker-sale-count" class="form-control" />
+                                  </div>
+                                </div>
+                              </fieldset>
+                              <fieldset>
+                                <legend>Стикер "Популярный"</legend>
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="input-product-sticker-hot-status">{{ entry_see }}</label>
+                                  <div class="col-sm-10">
+                                    <label class="radio-inline"> {% if theme_default_product_sticker_hot_status %}
+                                      <input type="radio" name="theme_default_product_sticker_hot_status" value="1" checked="checked" />
+                                      {{ text_yes }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_sticker_hot_status" value="1" />
+                                      {{ text_yes }}
+                                      {% endif %} </label>
+                                    <label class="radio-inline"> {% if not theme_default_product_sticker_hot_status %}
+                                      <input type="radio" name="theme_default_product_sticker_hot_status" value="0" checked="checked" />
+                                      {{ text_no }}
+                                      {% else %}
+                                      <input type="radio" name="theme_default_product_sticker_hot_status" value="0" />
+                                      {{ text_no }}
+                                      {% endif %} </label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-sticker-hot-background">Фон стикера</label>
+                                  <div class="col-sm-9">
+                                    <input type="text" name="theme_default_product_sticker_hot_background" value="{{ theme_default_product_sticker_hot_background }}" placeholder="#000000" id="input-product-sticker-hot-background" class="form-control colorpicker" />
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-sticker-hot-name">Текст на стикере</label>
+                                  <div class="col-sm-9">
+                                    {% for language in languages %}
+                                    <div class="input-group input-group-last">
+                                      <input type="text" name="theme_default_product_sticker_hot_name[{{ language.language_id }}]" value="{{ theme_default_product_sticker_hot_name[language.language_id] ? theme_default_product_sticker_hot_name[language.language_id] }}" placeholder="{{ entry_name }}" class="form-control" />
+                                      <span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
+                                    </div>
+                                    {% endfor %}
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-3 control-label" for="input-product-sticker-hot-count">Количество просмотров товара, чтоб он считался популярным</label>
+                                  <div class="col-sm-9">
+                                    <input type="text" name="theme_default_product_sticker_hot_count" value="{{ theme_default_product_sticker_hot_count }}" placeholder="15" id="input-product-sticker-hot-count" class="form-control" />
+                                  </div>
+                                </div>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div class="tab-pane tab-pane-flex" id="tab-information">
+                    <div class="tab-pane-left-50">
+                      <p class="back_to_tab_pages"><i class="fa fa-angle-left" aria-hidden="true"></i></p>
+                    </div>
+                    <div class="tab-pane-right">
+                      <fieldset class="row">
+                        <div class="col-lg-12">
+                          <legend>{{ text_information_setting }}</legend>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div class="tab-pane tab-pane-flex" id="tab-contacts">
+                    <div class="tab-pane-left-50">
+                      <p class="back_to_tab_pages"><i class="fa fa-angle-left" aria-hidden="true"></i></p>
+                    </div>
+                    <div class="tab-pane-right">
+                      <fieldset class="row">
+                        <div class="col-lg-12">
+                          <legend>{{ text_contacts_contact_setting }}</legend>
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-contacts-contact-status">{{ entry_see }}</label>
+                            <div class="col-sm-10">
+                              <label class="radio-inline"> {% if theme_default_contacts_contact_status %}
+                                <input type="radio" name="theme_default_contacts_contact_status" value="1" checked="checked" />
+                                {{ text_yes }}
+                                {% else %}
+                                <input type="radio" name="theme_default_contacts_contact_status" value="1" />
+                                {{ text_yes }}
+                                {% endif %} </label>
+                              <label class="radio-inline"> {% if not theme_default_contacts_contact_status %}
+                                <input type="radio" name="theme_default_contacts_contact_status" value="0" checked="checked" />
+                                {{ text_no }}
+                                {% else %}
+                                <input type="radio" name="theme_default_contacts_contact_status" value="0" />
+                                {{ text_no }}
+                                {% endif %} </label>
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                      <fieldset class="row">
+                        <div class="col-lg-12">
+                          <legend>{{ text_contacts_shops_setting }}</legend>
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-contacts-shops-status">{{ entry_see }}</label>
+                            <div class="col-sm-10">
+                              <label class="radio-inline"> {% if theme_default_contacts_shops_status %}
+                                <input type="radio" name="theme_default_contacts_shops_status" value="1" checked="checked" />
+                                {{ text_yes }}
+                                {% else %}
+                                <input type="radio" name="theme_default_contacts_shops_status" value="1" />
+                                {{ text_yes }}
+                                {% endif %} </label>
+                              <label class="radio-inline"> {% if not theme_default_contacts_shops_status %}
+                                <input type="radio" name="theme_default_contacts_shops_status" value="0" checked="checked" />
+                                {{ text_no }}
+                                {% else %}
+                                <input type="radio" name="theme_default_contacts_shops_status" value="0" />
+                                {{ text_no }}
+                                {% endif %} </label>
+                                <br>
+                                <br>
+                                <a href="{{ shops_link }}" class="link link-20" target="_blank">{{ text_shops_link }}</a>
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div class="tab-pane tab-pane-flex" id="tab-checkout">
+                    <div class="tab-pane-left-50">
+                      <p class="back_to_tab_pages"><i class="fa fa-angle-left" aria-hidden="true"></i></p>
+                    </div>
+                    <div class="tab-pane-right">
+                      <fieldset>
+                        <legend>{{ text_checkout_setting }}</legend>
+                        <div class="form-group required">
+                          <label class="col-sm-3 control-label">{{ text_checkout_main_setting }}</label>
+                          <div class="col-sm-9">
+                            <a href="{{ simple_link }}" class="link link-20" target="_blank">{{ text_checkout_main_description }}</a>
+                            <div class="alert alert-warning alert-dismissible">{{ text_checkout_main_help }}</div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="tab-pane" id="tab-images">
+              <fieldset>
+                <legend>{{ text_image }}</legend>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-image-category-width">{{ entry_image_category }}</label>
+                  <div class="col-sm-10">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_category_width" value="{{ theme_default_image_category_width }}" placeholder="{{ entry_width }}" id="input-image-category-width" class="form-control" />
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_category_height" value="{{ theme_default_image_category_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                      </div>
+                    </div>
+                    {% if error_image_category %}
+                    <div class="text-danger">{{ error_image_category }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-image-manufacturer-width">{{ entry_image_manufacturer }}</label>
+                  <div class="col-sm-10">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_manufacturer_width" value="{{ theme_default_image_manufacturer_width }}" placeholder="{{ entry_width }}" id="input-image-manufacturer-width" class="form-control" />
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_manufacturer_height" value="{{ theme_default_image_manufacturer_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                      </div>
+                    </div>
+                    {% if error_image_manufacturer %}
+                    <div class="text-danger">{{ error_image_manufacturer }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-image-thumb-width">{{ entry_image_thumb }}</label>
+                  <div class="col-sm-10">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_thumb_width" value="{{ theme_default_image_thumb_width }}" placeholder="{{ entry_width }}" id="input-image-thumb-width" class="form-control" />
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_thumb_height" value="{{ theme_default_image_thumb_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                      </div>
+                    </div>
+                    {% if error_image_thumb %}
+                    <div class="text-danger">{{ error_image_thumb }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-image-popup-width">{{ entry_image_popup }}</label>
+                  <div class="col-sm-10">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_popup_width" value="{{ theme_default_image_popup_width }}" placeholder="{{ entry_width }}" id="input-image-popup-width" class="form-control" />
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_popup_height" value="{{ theme_default_image_popup_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                      </div>
+                    </div>
+                    {% if error_image_popup %}
+                    <div class="text-danger">{{ error_image_popup }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-image-product-width">{{ entry_image_product }}</label>
+                  <div class="col-sm-10">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_product_width" value="{{ theme_default_image_product_width }}" placeholder="{{ entry_width }}" id="input-image-product-width" class="form-control" />
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_product_height" value="{{ theme_default_image_product_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                      </div>
+                    </div>
+                    {% if error_image_product %}
+                    <div class="text-danger">{{ error_image_product }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-image-additional-width">{{ entry_image_additional }}</label>
+                  <div class="col-sm-10">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_additional_width" value="{{ theme_default_image_additional_width }}" placeholder="{{ entry_width }}" id="input-image-additional-width" class="form-control" />
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_additional_height" value="{{ theme_default_image_additional_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                      </div>
+                    </div>
+                    {% if error_image_additional %}
+                    <div class="text-danger">{{ error_image_additional }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-image-related">{{ entry_image_related }}</label>
+                  <div class="col-sm-10">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_related_width" value="{{ theme_default_image_related_width }}" placeholder="{{ entry_width }}" id="input-image-related" class="form-control" />
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_related_height" value="{{ theme_default_image_related_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                      </div>
+                    </div>
+                    {% if error_image_related %}
+                    <div class="text-danger">{{ error_image_related }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-image-compare">{{ entry_image_compare }}</label>
+                  <div class="col-sm-10">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_compare_width" value="{{ theme_default_image_compare_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_compare_height" value="{{ theme_default_image_compare_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                      </div>
+                    </div>
+                    {% if error_image_compare %}
+                    <div class="text-danger">{{ error_image_compare }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-image-wishlist">{{ entry_image_wishlist }}</label>
+                  <div class="col-sm-10">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_wishlist_width" value="{{ theme_default_image_wishlist_width }}" placeholder="{{ entry_width }}" id="input-image-wishlist" class="form-control" />
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_wishlist_height" value="{{ theme_default_image_wishlist_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                      </div>
+                    </div>
+                    {% if error_image_wishlist %}
+                    <div class="text-danger">{{ error_image_wishlist }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-image-cart">{{ entry_image_cart }}</label>
+                  <div class="col-sm-10">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_cart_width" value="{{ theme_default_image_cart_width }}" placeholder="{{ entry_width }}" id="input-image-cart" class="form-control" />
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_cart_height" value="{{ theme_default_image_cart_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                      </div>
+                    </div>
+                    {% if error_image_cart %}
+                    <div class="text-danger">{{ error_image_cart }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-image-location">{{ entry_image_location }}</label>
+                  <div class="col-sm-10">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_location_width" value="{{ theme_default_image_location_width }}" placeholder="{{ entry_width }}" id="input-image-location" class="form-control" />
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" name="theme_default_image_location_height" value="{{ theme_default_image_location_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                      </div>
+                    </div>
+                    {% if error_image_location %}
+                    <div class="text-danger">{{ error_image_location }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="tab-pane" id="tab-widgets">
+              <fieldset class="row">
+                <div class="col-sm-3">
+                  <ul class="tab-general_left">
+                    <li class="cart active"><a href="#tab-cart" data-toggle="tab">{{ tab_cart }}</a></li>
+                    <li class="messenger"><a href="#tab-messenger" data-toggle="tab">{{ tab_messenger }}</a></li>
+                    <li class="cookie"><a href="#tab-cookie" data-toggle="tab">{{ tab_cookie }}</a></li>
+                  </ul>
+                </div>
+                <div class="col-sm-9">
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="tab-cart">
+                      <fieldset>
+                        <legend>{{ text_cart_sidebar }}</legend>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-widgets-cart-sidebar-status">{{ entry_status }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_widgets_cart_sidebar_status %}
+                              <input type="radio" name="theme_default_widgets_cart_sidebar_status" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_widgets_cart_sidebar_status" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_widgets_cart_sidebar_status %}
+                              <input type="radio" name="theme_default_widgets_cart_sidebar_status" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_widgets_cart_sidebar_status" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-widgets-cart-sidebar-position">{{ entry_widgets_cart_sidebar_position }}</label>
+                          <div class="col-sm-10">
+                            <select name="theme_default_widgets_cart_sidebar_position" id="input-widgets-cart-sidebar-position" class="form-control">
+                            {% if theme_default_widgets_cart_sidebar_position == "right" %}
+                                <option value="right" selected="selected">{{ entry_widgets_cart_sidebar_position_right }}</option>
+                                <option value="left">{{ entry_widgets_cart_sidebar_position_left }}</option>
+                            {% else %}
+                                <option value="right">{{ entry_widgets_cart_sidebar_position_right }}</option>
+                                <option value="left" selected="selected">{{ entry_widgets_cart_sidebar_position_left }}</option>
+                            {% endif %}
+                            </select>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                    <div class="tab-pane" id="tab-messenger">
+                      <fieldset>
+                        <legend>{{ text_messenger }}</legend>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-directory">{{ entry_see }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_widgets_messenger_status %}
+                              <input type="radio" name="theme_default_widgets_messenger_status" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_widgets_messenger_status" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_widgets_messenger_status %}
+                              <input type="radio" name="theme_default_widgets_messenger_status" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_widgets_messenger_status" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                    <div class="tab-pane" id="tab-cookie">
+                      <fieldset>
+                        <legend>{{ text_modal_cookie }}</legend>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-widgets-modal-cookie-status">{{ entry_see }}</label>
+                          <div class="col-sm-10">
+                            <label class="radio-inline"> {% if theme_default_widgets_modal_cookie_status %}
+                              <input type="radio" name="theme_default_widgets_modal_cookie_status" value="1" checked="checked" />
+                              {{ text_yes }}
+                              {% else %}
+                              <input type="radio" name="theme_default_widgets_modal_cookie_status" value="1" />
+                              {{ text_yes }}
+                              {% endif %} </label>
+                            <label class="radio-inline"> {% if not theme_default_widgets_modal_cookie_status %}
+                              <input type="radio" name="theme_default_widgets_modal_cookie_status" value="0" checked="checked" />
+                              {{ text_no }}
+                              {% else %}
+                              <input type="radio" name="theme_default_widgets_modal_cookie_status" value="0" />
+                              {{ text_no }}
+                              {% endif %} </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-widgets-modal-cookie-description">{{ entry_push_modal_cookie_description }}</label>
+                          <div class="col-sm-10">
+                            <ul class="nav nav-tabs" id="language_modal_cookie">
+                              {% for language in languages %}
+                                <li><a href="#language_modal_cookie{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}"/> {{ language.name }}</a></li>
+                              {% endfor %}
+                            </ul>
+                            <div class="tab-content">{% for language in languages %}
+                              <div class="tab-pane" id="language_modal_cookie{{ language.language_id }}">
+                                <div class="form-group">
+                                  <textarea name="theme_default_widgets_modal_cookie_description[{{ language['language_id'] }}]" id="input-widgets-modal-cookie-description{{ language['language_id'] }}" data-toggle="summernote" data-lang="{{ summernote }}" class="form-control">{{ theme_default_widgets_modal_cookie_description[language['language_id']] is defined ? theme_default_widgets_modal_cookie_description[language['language_id']] : '' }}</textarea>
+                                </div>
+                              </div>
+                            {% endfor %}</div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="tab-pane" id="tab-help">
+              <fieldset>
+                <legend>{{ text_support }}</legend>
+                <div class="panel panel-info">
+                  <div class="panel-heading">{{ text_support_links }}</div>
+                  <div class="panel-body">
+                    <p>Чат сообщества DEV-OPENCART.COM в Telegram - <a class="link" target="_blank" href="https://t.me/devopencart">Вступить</a></p>
+                    <p>Это чат сообщества пользователей DEVCART CMS - <a class="link" target="_blank" href="https://t.me/devcart">Вступить</a></p>
+                  </div>
+                </div>
+                <div class="panel panel-info">
+                  <div class="panel-heading">{{ text_support_docs }}</div>
+                  <div class="panel-body">
+                    <p>Документация - <a class="link" target="_blank" href="https://dev-opencart.com/devcart-faq">здесь</a></p>
+                  </div>
+                </div>
+                <div class="panel panel-info">
+                  <div class="panel-heading">{{ text_support_license }}</div>
+                  <div class="panel-body">{{ text_support_license_desc }}</div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}
+<script>
+$(window).on('load', function () {
+  $(".load").remove();
+});
+</script>
+<script>
+  $(document).ready(function() {
+    $(".tab_pages > fieldset > ul > li > a").on("click", function() {
+      $(".tab_pages > fieldset > ul").css({"display":"none"});
+      $(".tab_pages > fieldset > .tab-content").css({"display":"initial"});
+    });
+    $(".back_to_tab_pages").on("click", function() {
+      $(".tab_pages > fieldset > .tab-content").css({"display":"none"});
+      $(".tab_pages > fieldset > ul").css({"display":"grid"});
+    });
+  })
+</script>
+<script>
+  $('.colorpicker').spectrum({
+    type: "component"
+  });
+</script>
+<script>
+  $('#language_shipping a:first, #language_shipping_items a:first, #language_payment a:first, #language_payment_items a:first, #language_guarantee a:first, #language_edges_items a:first, #language_modal_cookie a:first, #footer_payment_icons a:first').tab('show');
+</script>
+<script type="text/javascript"><!--
+var footer_payment_row = {{ footer_payment_row }};
+
+function AddFooterPaymentRow() {
+  html = '<tr id="footer-payment-row' + footer_payment_row + '">';
+  html += '  <td class="text-left"><a href="" id="thumb-image' + footer_payment_row + '"data-toggle="image" class="img-thumbnail"><img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a><input type="hidden" name="theme_default_footer_payment[' + footer_payment_row + '][image]" value="" id="input-image' + footer_payment_row + '" /></td>';
+  html += '  <td class="text-right"><input type="text" name="theme_default_footer_payment[' + footer_payment_row + '][sort_order]" value="" placeholder="{{ entry_sort_order }}" class="form-control" /></td>';
+  html += '  <td class="text-left"><button type="button" onclick="$(\'#footer-payment-row' + footer_payment_row + '\').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+  html += '</tr>';
+
+  $('#footer-payment-icons tbody').append(html);
+
+  footer_payment_row++;
+}
+//--></script>
+<script type="text/javascript"><!--
+var shipping_row = {{ shipping_row }};
+
+function addShippingRow(language_id) {
+  html  = '<tr id="shipping-row' + shipping_row + '">';
+  html += '  <td class="text-left"><input type="text" name="theme_default_product_shipping_item[' + language_id + '][' + shipping_row + '][title]" value="" placeholder="{{ entry_title }}" class="form-control" /></td>';  
+  html += '  <td class="text-center"><a href="" id="shipping-image' + shipping_row + '" data-toggle="image" class="img-thumbnail"><img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a><input type="hidden" name="theme_default_product_shipping_item[' + language_id + '][' + shipping_row + '][image]" value="" id="input-image-shipping' + shipping_row + '" /></td>';
+  html += '  <td class="text-left"><button type="button" onclick="$(\'#shipping-row' + shipping_row  + ', .tooltip\').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+  html += '</tr>';
+  
+  $('#shipping_items' + language_id + ' tbody').append(html);
+  
+  shipping_row++;
+}
+//--></script>
+<script type="text/javascript"><!--
+var payment_row = {{ payment_row }};
+
+function addPaymentRow(language_id) {
+  html  = '<tr id="payment-row' + payment_row + '">';
+  html += '  <td class="text-left"><input type="text" name="theme_default_product_payment_item[' + language_id + '][' + payment_row + '][title]" value="" placeholder="{{ entry_title }}" class="form-control" /></td>';  
+  html += '  <td class="text-center"><a href="" id="payment-image' + payment_row + '" data-toggle="image" class="img-thumbnail"><img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a><input type="hidden" name="theme_default_product_payment_item[' + language_id + '][' + payment_row + '][image]" value="" id="input-image-payment' + payment_row + '" /></td>';
+  html += '  <td class="text-left"><button type="button" onclick="$(\'#payment-row' + payment_row  + ', .tooltip\').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+  html += '</tr>';
+  
+  $('#payment_items' + language_id + ' tbody').append(html);
+  
+  payment_row++;
+}
+//--></script>
+<script type="text/javascript"><!--
+var edges_row = {{ edges_row }};
+
+function addEdgesRow(language_id) {
+  html  = '<tr id="edges-row' + edges_row + '">';
+  html += '  <td class="text-left"><input type="text" name="theme_default_product_edges_item[' + language_id + '][' + edges_row + '][title]" value="" placeholder="{{ entry_title }}" class="form-control" /></td>';
+  html += '  <td class="text-center"><a href="" id="edges-image' + edges_row + '" data-toggle="image" class="img-thumbnail"><img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a><input type="hidden" name="theme_default_product_edges_item[' + language_id + '][' + edges_row + '][image]" value="" id="input-image-edges' + edges_row + '" /></td>';
+  html += '  <td class="text-left"><button type="button" onclick="$(\'#edges-row' + edges_row  + ', .tooltip\').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+  html += '</tr>';
+  
+  $('#edges_items' + language_id + ' tbody').append(html);
+  
+  edges_row++;
+}
+//--></script>
+<script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
+<link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
+<script type="text/javascript" src="view/javascript/summernote/summernote-image-attributes.js"></script>
+<script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>

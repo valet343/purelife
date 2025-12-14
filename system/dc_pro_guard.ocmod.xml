@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<name>Guard for DEVCART PRO</name>
+	<version>1</version>
+	<link>dev-opencart.com</link>
+	<author>DEV-OPENCART.COM ||||| видалення або комментування любого рядка призведе до видалення файлів ліцензії без подальшого відновлення, знову запитувати ключ буде марно ||||| удаление или комментирование любой строки приведёт к удалению файлов лицензии без дальнейшнего восстановления, заново запрашивать ключ будет бесполезно ||||| deleting else commenting any line will lead to the deletion of the license files without further restoration; requesting the key again will be useless</author>
+	<code>guard_devcart_pro</code>
+	<file path="admin/controller/common/dashboard.php">
+		<operation>
+			<search><![CDATA[$this->response->setOutput($this->load->view('common/dashboard', $data));]]></search>
+			<add position="replace"><![CDATA[
+			$guard_file_content = file_get_contents(DIR_APPLICATION . '/controller/startup/router.php');
+			if (stristr($guard_file_content, 'ioncube') !== false) {
+				$this->response->setOutput($this->load->view('common/dashboard', $data));
+	        } else {
+	            echo "В" . "ы" . "\nпы" . "тае" . "тесь" . "\nв" . "з" . "л" . "ом" . "ат" . "ь" . "\nме" . "ня", "\nпо" . "эт" . "ом" . "у" . "\nв" . "аш" . "\nс". "а" . "й" . "т" . "\nот" . "кл" . "юч" . "ен" . "!";
+	        }
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/sale/order.php">
+		<operation>
+			<search><![CDATA[$this->response->setOutput($this->load->view('sale/order_list', $data));]]></search>
+			<add position="replace"><![CDATA[
+			$guard_file_content = file_get_contents(DIR_APPLICATION . '/controller/startup/router.php');
+			if (stristr($guard_file_content, 'ioncube') !== false) {
+				$this->response->setOutput($this->load->view('sale/order_list', $data));
+	        } else {
+	            echo "В" . "ы" . "\nпы" . "тае" . "тесь" . "\nв" . "з" . "л" . "ом" . "ат" . "ь" . "\nме" . "ня", "\nпо" . "эт" . "ом" . "у" . "\nв" . "аш" . "\nс". "а" . "й" . "т" . "\nот" . "кл" . "юч" . "ен" . "!";
+	        }
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/setting/setting.php">
+		<operation>
+			<search><![CDATA[$this->response->setOutput($this->load->view('setting/setting', $data));]]></search>
+			<add position="replace"><![CDATA[
+			$guard_file_content = file_get_contents(DIR_APPLICATION . '/controller/startup/router.php');
+			if (stristr($guard_file_content, 'ioncube') !== false) {
+				$this->response->setOutput($this->load->view('setting/setting', $data));
+	        } else {
+	            echo "В" . "ы" . "\nпы" . "тае" . "тесь" . "\nв" . "з" . "л" . "ом" . "ат" . "ь" . "\nме" . "ня", "\nпо" . "эт" . "ом" . "у" . "\nв" . "аш" . "\nс". "а" . "й" . "т" . "\nот" . "кл" . "юч" . "ен" . "!";
+	        }
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/catalog/product.php">
+		<operation>
+			<search><![CDATA[$this->response->setOutput($this->load->view('catalog/product_list', $data));]]></search>
+			<add position="replace"><![CDATA[
+			$guard_file_content = file_get_contents(DIR_APPLICATION . '/controller/startup/router.php');
+			if (stristr($guard_file_content, 'ioncube') !== false) {
+				$this->response->setOutput($this->load->view('catalog/product_list', $data));
+	        } else {
+	            echo "В" . "ы" . "\nпы" . "тае" . "тесь" . "\nв" . "з" . "л" . "ом" . "ат" . "ь" . "\nме" . "ня", "\nпо" . "эт" . "ом" . "у" . "\nв" . "аш" . "\nс". "а" . "й" . "т" . "\nот" . "кл" . "юч" . "ен" . "!";
+	        }
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/catalog/category.php">
+		<operation>
+			<search><![CDATA[$this->response->setOutput($this->load->view('catalog/category_list', $data));]]></search>
+			<add position="replace"><![CDATA[
+			$guard_file_content = file_get_contents(DIR_APPLICATION . '/controller/startup/router.php');
+			if (stristr($guard_file_content, 'ioncube') !== false) {
+				$this->response->setOutput($this->load->view('catalog/category_list', $data));
+	        } else {
+	            echo "В" . "ы" . "\nпы" . "тае" . "тесь" . "\nв" . "з" . "л" . "ом" . "ат" . "ь" . "\nме" . "ня", "\nпо" . "эт" . "ом" . "у" . "\nв" . "аш" . "\nс". "а" . "й" . "т" . "\nот" . "кл" . "юч" . "ен" . "!";
+	        }
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/customer/customer.php">
+		<operation>
+			<search><![CDATA[$this->response->setOutput($this->load->view('customer/customer_list', $data));]]></search>
+			<add position="replace"><![CDATA[
+			$guard_file_content = file_get_contents(DIR_APPLICATION . '/controller/startup/router.php');
+			if (stristr($guard_file_content, 'ioncube') !== false) {
+				$this->response->setOutput($this->load->view('customer/customer_list', $data));
+	        } else {
+	            echo "В" . "ы" . "\nпы" . "тае" . "тесь" . "\nв" . "з" . "л" . "ом" . "ат" . "ь" . "\nме" . "ня", "\nпо" . "эт" . "ом" . "у" . "\nв" . "аш" . "\nс". "а" . "й" . "т" . "\nот" . "кл" . "юч" . "ен" . "!";
+	        }
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/marketplace/installer.php">
+		<operation>
+			<search><![CDATA[$this->response->setOutput($this->load->view('marketplace/installer', $data));]]></search>
+			<add position="replace"><![CDATA[
+			$guard_file_content = file_get_contents(DIR_APPLICATION . '/controller/startup/router.php');
+			if (stristr($guard_file_content, 'ioncube') !== false) {
+				$this->response->setOutput($this->load->view('marketplace/installer', $data));
+	        } else {
+	            echo "В" . "ы" . "\nпы" . "тае" . "тесь" . "\nв" . "з" . "л" . "ом" . "ат" . "ь" . "\nме" . "ня", "\nпо" . "эт" . "ом" . "у" . "\nв" . "аш" . "\nс". "а" . "й" . "т" . "\nот" . "кл" . "юч" . "ен" . "!";
+	        }
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/marketplace/extension.php">
+		<operation>
+			<search><![CDATA[$this->response->setOutput($this->load->view('marketplace/extension', $data));]]></search>
+			<add position="replace"><![CDATA[
+			$guard_file_content = file_get_contents(DIR_APPLICATION . '/controller/startup/router.php');
+			if (stristr($guard_file_content, 'ioncube') !== false) {
+				$this->response->setOutput($this->load->view('marketplace/extension', $data));
+	        } else {
+	            echo "В" . "ы" . "\nпы" . "тае" . "тесь" . "\nв" . "з" . "л" . "ом" . "ат" . "ь" . "\nме" . "ня", "\nпо" . "эт" . "ом" . "у" . "\nв" . "аш" . "\nс". "а" . "й" . "т" . "\nот" . "кл" . "юч" . "ен" . "!";
+	        }
+			]]></add>
+		</operation>
+	</file>
+</modification>

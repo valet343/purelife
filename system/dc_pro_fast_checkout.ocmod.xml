@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+<name>DEV-OPENCART.COM - Быстрый заказ (DEVCART PRO)</name>
+<version>1</version>
+<link>https://DEV-OPENCART.COM</link>
+<author>DEV-OPENCART.COM</author>
+<code>dev_opencart_com_dc_fast_checkout</code>
+  <file path="catalog/controller/common/header.php">
+    <operation>
+      <search>
+        <![CDATA[
+          $data['telephone'] = $this->config->get('config_telephone');
+        ]]>
+      </search>
+      <add position="after">
+        <![CDATA[
+          $buyoneclick = $this->config->get('buyoneclick');
+          $data['buyoneclick_status_product'] = $buyoneclick["status_product"];
+          $data['buyoneclick_status_category'] = $buyoneclick["status_category"];
+          $data['buyoneclick_status_module'] = $buyoneclick["status_module"];
+
+          $data['buyoneclick_style_status'] = $buyoneclick["style_status"];
+          $data['buyoneclick_validation_type'] = $buyoneclick["validation_type"];
+
+          $data['buyoneclick_exan_status'] = $buyoneclick["exan_status"];
+
+          $data['buyoneclick_ya_status']          = $buyoneclick['ya_status'];
+          $data['buyoneclick_ya_counter']         = $buyoneclick['ya_counter'];
+          $data['buyoneclick_ya_identificator']       = $buyoneclick['ya_identificator'];
+          $data['buyoneclick_ya_identificator_send']    = $buyoneclick['ya_identificator_send'];
+          $data['buyoneclick_ya_identificator_success']   = $buyoneclick['ya_identificator_success'];
+
+          $data['buyoneclick_google_status']        = $buyoneclick['google_status'];
+          $data['buyoneclick_google_category_btn']    = $buyoneclick['google_category_btn'];
+          $data['buyoneclick_google_action_btn']      = $buyoneclick['google_action_btn'];
+          $data['buyoneclick_google_category_send']     = $buyoneclick['google_category_send'];
+          $data['buyoneclick_google_action_send']     = $buyoneclick['google_action_send'];
+          $data['buyoneclick_google_category_success']  = $buyoneclick['google_category_success'];
+          $data['buyoneclick_google_action_success']    = $buyoneclick['google_action_success'];
+        ]]>
+      </add>
+    </operation>
+  </file>
+  <file path="catalog/controller/common/footer.php">
+    <operation>
+      <search>
+        <![CDATA[
+          $this->load->language('common/footer');
+        ]]>
+      </search>
+      <add position="before"><![CDATA[
+        // BuyOneClick
+          $buyoneclick = $this->config->get('buyoneclick');
+          $data['buyoneclick_status_product'] = $buyoneclick["status_product"];
+          $data['buyoneclick_status_category'] = $buyoneclick["status_category"];
+          $data['buyoneclick_status_module'] = $buyoneclick["status_module"];
+
+          $data['buyoneclick_exan_status'] = $buyoneclick["exan_status"];
+
+          $current_language_id = $this->config->get('config_language_id');
+          $data['buyoneclick_success_field'] = isset($buyoneclick["success_field"][$current_language_id]) ? htmlspecialchars_decode($buyoneclick["success_field"][$current_language_id]) : '';
+
+          $this->load->language('extension/module/buyoneclick');
+          if ($data['buyoneclick_success_field'] == '') {
+            $data['buyoneclick_success_field'] = $this->language->get('buyoneclick_success');
+          }
+        // BuyOneClickEnd
+      ]]></add>
+    </operation>
+  </file>
+  <file path="catalog/controller/product/product.php">
+    <operation>
+      <search>
+        <![CDATA[
+          $data['header'] = $this->load->controller('common/header');
+        ]]>
+      </search>
+      <add position="after">
+        <![CDATA[
+        // BuyOneClick
+          $this->load->model('setting/setting');
+          $current_language_id = $this->config->get('config_language_id');
+
+          $buyoneclick = $this->config->get('buyoneclick');
+          $data['buyoneclick_name'] = isset($buyoneclick["name"][$current_language_id]) ? $buyoneclick["name"][$current_language_id] : '';
+          $data['buyoneclick_status_product'] = $buyoneclick["status_product"];
+          $data['buyoneclick_status_module'] = $buyoneclick["status_module"];
+
+          $data['buyoneclick_ya_status']          = $buyoneclick['ya_status'];
+          $data['buyoneclick_ya_counter']         = $buyoneclick['ya_counter'];
+          $data['buyoneclick_ya_identificator']       = $buyoneclick['ya_identificator'];
+          $data['buyoneclick_ya_identificator_send']    = $buyoneclick['ya_identificator_send'];
+          $data['buyoneclick_ya_identificator_success']   = $buyoneclick['ya_identificator_success'];
+
+          $data['buyoneclick_google_status']        = $buyoneclick['google_status'];
+          $data['buyoneclick_google_category_btn']    = $buyoneclick['google_category_btn'];
+          $data['buyoneclick_google_action_btn']      = $buyoneclick['google_action_btn'];
+          $data['buyoneclick_google_category_send']     = $buyoneclick['google_category_send'];
+          $data['buyoneclick_google_action_send']     = $buyoneclick['google_action_send'];
+          $data['buyoneclick_google_category_success']  = $buyoneclick['google_category_success'];
+          $data['buyoneclick_google_action_success']    = $buyoneclick['google_action_success'];
+
+          $this->load->language('extension/module/buyoneclick');
+          if (!isset($data['buyoneclick_name']) or $data['buyoneclick_name'] == '') {
+            $data['buyoneclick_name'] = $this->language->get('buyoneclick_button');
+          }
+          $data['buyoneclick_text_loading'] = $this->language->get('buyoneclick_text_loading');
+        // BuyOneClickEnd
+        ]]>
+      </add>
+    </operation>
+  </file>
+  <file path="catalog/controller/product/{category.php,manufacturer.php,search.php,special.php}">
+  <operation>
+    <search>
+        <![CDATA[
+          $data['products'][] = array(
+        ]]>
+      </search>
+    <add position="before">
+        <![CDATA[
+        // BuyOneClick
+          $this->load->model('setting/setting');
+          $current_language_id = $this->config->get('config_language_id');
+
+          $buyoneclick = $this->config->get('buyoneclick');
+          $data['buyoneclick_name'] = isset($buyoneclick["name"][$current_language_id]) ? $buyoneclick["name"][$current_language_id] : '';
+          $data['buyoneclick_status_category'] = $buyoneclick["status_category"];
+
+          $data['buyoneclick_status_module'] = $buyoneclick["status_module"];
+
+          $data['buyoneclick_google_status']        = $buyoneclick['google_status'];
+          $data['buyoneclick_google_category_btn']    = $buyoneclick['google_category_btn'];
+          $data['buyoneclick_google_action_btn']      = $buyoneclick['google_action_btn'];
+          $data['buyoneclick_google_category_send']     = $buyoneclick['google_category_send'];
+          $data['buyoneclick_google_action_send']     = $buyoneclick['google_action_send'];
+          $data['buyoneclick_google_category_success']  = $buyoneclick['google_category_success'];
+          $data['buyoneclick_google_action_success']    = $buyoneclick['google_action_success'];
+
+          $this->load->language('extension/module/buyoneclick');
+          if (!isset($data['buyoneclick_name']) or $data['buyoneclick_name'] == '') {
+            $data['buyoneclick_name'] = $this->language->get('buyoneclick_button');
+          }
+          $data['buyoneclick_text_loading'] = $this->language->get('buyoneclick_text_loading');
+        // BuyOneClickEnd
+        ]]>
+      </add>
+  </operation>
+  </file>
+  <file path="catalog/controller/extension/module/{bestseller.php,featured.php,latest.php,special.php}">
+  <operation>
+    <search>
+        <![CDATA[
+          $data['products'][] = array(
+        ]]>
+      </search>
+    <add position="before">
+        <![CDATA[
+        // BuyOneClick
+          $this->load->model('setting/setting');
+          $current_language_id = $this->config->get('config_language_id');
+
+          $buyoneclick = $this->config->get('buyoneclick');
+          $data['buyoneclick_name'] = isset($buyoneclick["name"][$current_language_id]) ? $buyoneclick["name"][$current_language_id] : '';
+          $data['buyoneclick_status_module'] = $buyoneclick["status_module"];
+
+          $data['buyoneclick_google_status']        = $buyoneclick['google_status'];
+          $data['buyoneclick_google_category_btn']    = $buyoneclick['google_category_btn'];
+          $data['buyoneclick_google_action_btn']      = $buyoneclick['google_action_btn'];
+          $data['buyoneclick_google_category_send']     = $buyoneclick['google_category_send'];
+          $data['buyoneclick_google_action_send']     = $buyoneclick['google_action_send'];
+          $data['buyoneclick_google_category_success']  = $buyoneclick['google_category_success'];
+          $data['buyoneclick_google_action_success']    = $buyoneclick['google_action_success'];
+
+          $this->load->language('extension/module/buyoneclick');
+          if (!isset($data['buyoneclick_name']) or $data['buyoneclick_name'] == '') {
+            $data['buyoneclick_name'] = $this->language->get('buyoneclick_button');
+          }
+          $data['buyoneclick_text_loading'] = $this->language->get('buyoneclick_text_loading');
+        // BuyOneClickEnd
+        ]]>
+      </add>
+  </operation>
+  </file>
+</modification>

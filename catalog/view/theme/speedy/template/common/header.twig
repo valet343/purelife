@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie8"><![endif]-->
+<!--[if IE 9 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html dir="{{ direction }}" lang="{{ lang }}">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{{ title }}</title>
+{% if robots %}
+<meta name="robots" content="{{ robots }}" />
+{% endif %}
+<base href="{{ base }}" />
+{% if description %}
+<meta name="description" content="{{ description }}" />
+{% endif %}
+{% if keywords %}
+<meta name="keywords" content="{{ keywords }}" />
+{% endif %}
+{% if og_image %}
+{% else %}
+{% endif %}
+<script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+{% if font_family == 1 %}<link href="catalog/view/theme/speedy/stylesheet/fonts_1.css" rel="stylesheet">{% elseif font_family == 2 %}<link href="catalog/view/theme/speedy/stylesheet/fonts_2.css" rel="stylesheet">{% elseif font_family == 3 %}<link href="catalog/view/theme/speedy/stylesheet/fonts_3.css" rel="stylesheet">{% endif %}
+<style>
+:root {
+  --container_width: {{ container_width }}{% if container_width_type %}px{% else %}%{% endif %};
+  --container_width_lg: {{ container_width_lg }}{% if container_width_type_lg %}px{% else %}%{% endif %};
+  --container_width_md: {{ container_width_md }}{% if container_width_type_md %}px{% else %}%{% endif %};
+  --container_width_sm: {{ container_width_sm }}{% if container_width_type_sm %}px{% else %}%{% endif %};
+  --container_width_xs: {{ container_width_xs }}{% if container_width_type_xs %}px{% else %}%{% endif %};
+  --font_size: {{ font_size }}px;
+  {% if main_color_type %}
+  --buttons_color: linear-gradient(45deg, {{ main_color }} 0%, {{ main_color_2 }} 50%, {{ main_color_3 }} 100%);
+  --main_color_2: {{ main_color_2 }};
+  --main_color_3: {{ main_color_3 }};
+  {% else %}
+  --buttons_color: {{ main_color }};
+  {% endif %}
+  --main_color: {{ main_color }};
+  --header_color: {{ header_color }};
+  --special_color: {{ special_color }};
+  --background_color: {{ background_color }};
+  --background_top_color: {{ background_top_color }};
+  --background_footer_color: {{ background_footer_color }};
+  --background_payments_color: {{ background_payments_color }};
+}
+</style>
+<link href="catalog/view/theme/speedy/stylesheet/stylesheet.css{% if developer_mode %}?v={{ developer_mode }}{% endif %}" rel="stylesheet">
+{% for style in styles %}
+<link href="{{ style.href }}{% if developer_mode %}?v={{ developer_mode }}{% endif %}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
+{% endfor %}
+{% if code_header_css_link %}<link href="catalog/view/theme/speedy/stylesheet/{{ code_header_css_link }}.css{% if developer_mode %}?v={{ developer_mode }}{% endif %}" rel="stylesheet">{% endif %}
+{% for script in scripts %}
+<script src="{{ script }}{% if developer_mode %}?v={{ developer_mode }}{% endif %}" type="text/javascript"></script>
+{% endfor %}
+<script src="catalog/view/javascript/common_pro_themes.js{% if developer_mode %}?v={{ developer_mode }}{% endif %}" type="text/javascript"></script>
+{% for link in links %}
+<link href="{{ link.href }}" rel="{{ link.rel }}" />
+{% endfor %}
+{% for analytic in analytics %}
+{{ analytic }}
+{% endfor %}
+{% if code_header_css %}<style>{{ code_header_css }}</style>{% endif %}
+{% if code_header_js %}<script>{{ code_header_js }}</script>{% endif %}
+{% if buyoneclick_status_product or buyoneclick_status_category or buyoneclick_status_module %}
+<script async src="catalog/view/javascript/buyoneclick.js{% if developer_mode %}?v={{ developer_mode }}{% endif %}" type="text/javascript"></script>
+<script>
+  function clickAnalytics(){
+    {% if buyoneclick_google_status and buyoneclick_google_category_btn is defined and buyoneclick_google_category_btn != '' and buyoneclick_google_action_btn is defined and buyoneclick_google_action_btn != '' %}
+      ga('send', 'event', '{{ buyoneclick_google_category_btn }}', '{{ buyoneclick_google_action_btn }}');
+      gtag('event', '{{ buyoneclick_google_action_btn }}', {'event_category': '{{ buyoneclick_google_category_btn }}'});
+    {% endif %}
+    return true;
+  }
+  function clickAnalyticsSend(){
+    {% if buyoneclick_google_status and buyoneclick_google_category_send is defined and buyoneclick_google_category_send != '' and buyoneclick_google_action_send is defined and buyoneclick_google_action_send != '' %}
+      ga('send', 'event', '{{ buyoneclick_google_category_send }}', '{{ buyoneclick_google_action_send }}');
+      gtag('event', '{{ buyoneclick_google_action_send }}', {'event_category': '{{ buyoneclick_google_category_send }}'});
+    {% endif %}
+    return true;
+  }
+  function clickAnalyticsSuccess(){
+    {% if buyoneclick_google_status and buyoneclick_google_category_success is defined and buyoneclick_google_category_success != '' and buyoneclick_google_action_success is defined and buyoneclick_google_action_success != '' %}
+      ga('send', 'event', '{{ buyoneclick_google_category_success }}', '{{ buyoneclick_google_action_success }}');
+      gtag('event', '{{ buyoneclick_google_action_success }}', {'event_category': '{{ buyoneclick_google_category_success }}'});
+    {% endif %}
+    return true;
+  }
+</script>
+  {% if buyoneclick_validation_type %}
+    <script async src="catalog/view/javascript/jquery.mask.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('#boc_phone').mask('{{ buyoneclick_validation_type }}');
+      });
+    </script>
+  {% endif %}
+  {% if buyoneclick_exan_status %}
+    <script async src="catalog/view/javascript/sourcebuster.min.js"></script>
+    <script>
+      sbjs.init({
+        callback: placeData
+      });
+
+      function placeData(sb) {
+        $sb_first_typ   = sb.first.typ;
+        $sb_first_src   = sb.first.src;
+        $sb_first_mdm   = sb.first.mdm;
+        $sb_first_cmp   = sb.first.cmp;
+        $sb_first_cnt   = sb.first.cnt;
+        $sb_first_trm   = sb.first.trm;
+
+        $sb_curr_typ    = sb.current.typ;
+        $sb_curr_src    = sb.current.src;
+        $sb_curr_mdm    = sb.current.mdm;
+        $sb_curr_cmp    = sb.current.cmp;
+        $sb_curr_cnt    = sb.current.cnt;
+        $sb_curr_trm    = sb.current.trm;
+
+        $sb_first_add_fd  = sb.first_add.fd;
+        $sb_first_add_ep  = sb.first_add.ep;
+        $sb_first_add_rf  = sb.first_add.rf;
+
+        $sb_curr_add_fd   = sb.current_add.fd;
+        $sb_curr_add_ep   = sb.current_add.ep;
+        $sb_curr_add_rf   = sb.current_add.rf;
+
+        $sb_session_pgs   = sb.session.pgs;
+        $sb_session_cpg   = sb.session.cpg;
+
+        $sb_udata_vst   = sb.udata.vst;
+        $sb_udata_uip   = sb.udata.uip;
+        $sb_udata_uag   = sb.udata.uag;
+
+        $sb_promo_code    = sb.promo.code;
+      };
+
+      function valueData() {
+        document.getElementById('sb_first_typ').value = $sb_first_typ;
+        document.getElementById('sb_first_src').value = $sb_first_src;
+        document.getElementById('sb_first_mdm').value = $sb_first_mdm;
+        document.getElementById('sb_first_cmp').value = $sb_first_cmp;
+        document.getElementById('sb_first_cnt').value = $sb_first_cnt;
+        document.getElementById('sb_first_trm').value = $sb_first_trm;
+
+        document.getElementById('sb_current_typ').value  = $sb_curr_typ;
+        document.getElementById('sb_current_src').value  = $sb_curr_src;
+        document.getElementById('sb_current_mdm').value  = $sb_curr_mdm;
+        document.getElementById('sb_current_cmp').value  = $sb_curr_cmp;
+        document.getElementById('sb_current_cnt').value  = $sb_curr_cnt;
+        document.getElementById('sb_current_trm').value  = $sb_curr_trm;
+
+        document.getElementById('sb_first_add_fd').value  = $sb_first_add_fd;
+        document.getElementById('sb_first_add_ep').value  = $sb_first_add_ep;
+        document.getElementById('sb_first_add_rf').value  = $sb_first_add_rf;
+
+        document.getElementById('sb_current_add_fd').value = $sb_curr_add_fd;
+        document.getElementById('sb_current_add_ep').value = $sb_curr_add_ep;
+        document.getElementById('sb_current_add_rf').value = $sb_curr_add_rf;
+
+        document.getElementById('sb_session_pgs').value  = $sb_session_pgs;
+        document.getElementById('sb_session_cpg').value  = $sb_session_cpg;
+
+        document.getElementById('sb_udata_vst').value = $sb_udata_vst;
+        document.getElementById('sb_udata_uip').value = $sb_udata_uip;
+        document.getElementById('sb_udata_uag').value = $sb_udata_uag;
+
+        document.getElementById('sb_promo_code').value   = $sb_promo_code;
+      };
+    </script>
+  {% endif %}
+{% endif %}
+</head>
+<body>
+{% if banner_top_status == 1 %}
+<style>
+@media (max-width: 1100px) {
+  .banner_top_body {
+    padding-top: {% if banner_top_type == 'banner' %}{{ banner_top_height }}{% else %}{{ banner_top_info_height }}{% endif %}px;
+  }
+}
+</style>
+{% if banner_top_type == 'banner' %}
+  <div class="banner_top" style="background: {{ banner_top_background }};height: {{ banner_top_height }}px;">
+    {% if banner_top_link %}
+    <a class="banner_top_item" href="{{ banner_top_link }}" target="_blank">
+      <img src="{{ banner_top_image }}" alt="">
+      <p>{{ banner_top_text }}</p>
+    </a>
+    {% else %}
+    <span class="banner_top_item">
+      <img src="{{ banner_top_image }}" alt="">
+      <p>{{ banner_top_text }}</p>
+    </span>
+    {% endif %}
+  </div>
+{% else %}
+  <div class="banner_top banner_top_info" style="background: {{ banner_top_info_background }};height: {{ banner_top_info_height }}px;">
+    {% if banner_top_info_link %}
+    <a class="banner_top_item" href="{{ banner_top_info_link }}" target="_blank">
+      <p>{{ banner_top_info_text }}</p>
+    </a>
+    {% else %}
+    <span class="banner_top_item">
+      <p>{{ banner_top_info_text }}</p>
+    </span>
+    {% endif %}
+    <div class="banner_top_info_close btn-close"></div>
+  </div>
+  <script>
+  if (localStorage.getItem('{{ banner_top_info_id }}') == null) {
+    $("body").addClass("banner_top_body");
+    $(".banner_top_info").addClass("active");
+  }
+  $(".banner_top_info_close").on("click", function() {
+    localStorage.setItem('{{ banner_top_info_id }}', '1');
+    $("body").removeClass("banner_top_body");
+    $(".banner_top_info").remove();
+  });
+</script>
+{% endif %}
+{% endif %}
+<nav id="top">
+  <div class="container">
+    <div id="m_menu">
+      <button class="dropdown-toggle"></button>
+      <div class="dropdown-menu">
+        <div class="m_menu_header">
+          <div class="logo">
+            {% if logo %}
+              {% if home == og_url %}
+                <img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" />
+              {% else %}
+                <a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" /></a>
+              {% endif %}
+            {% endif %}
+          </div>
+          <div class="btn-close"></div>
+        </div>
+        <div class="m_menu_header_nav">
+          
+        </div>
+        <div class="m_menu_content">
+          <ul class="m_menu_content_links">
+            <li class="dropdown dropdown_icon catalog_icon dropdown_catalog"><a href="#"><img src="catalog/view/theme/speedy/image/icons/menu.svg" alt="">{{ link_catalog }}</a></li>
+            {% if m_menu_custom_links %}
+              {% for m_menu_custom_link in m_menu_custom_links %}
+              <li><a href="{{ m_menu_custom_link.link }}"><img wdith="24" height="24" src="{{ m_menu_custom_link.image }}" alt="">{{ m_menu_custom_link.title }}</a></li>
+              {% endfor %}
+            {% endif %}
+            <li class="dropdown dropdown_icon customer_icon dropdown_customer">
+              <a href="#"><img wdith="24" height="24" src="catalog/view/theme/speedy/image/icons/account.svg" alt="">{{ link_customer }}</a>
+              <ul class="dropdown-menu"></ul>
+            </li>
+          </ul>
+        </div>
+        <ul class="m_menu_footer"></ul>
+      </div>
+    </div>
+    <ul class="menu">
+      {% if home == og_url %}
+      <li>{{ text_home }}</li>
+      {% else %}
+      <li><a href="{{ home }}">{{ text_home }}</a></li>
+      {% endif %}
+      <li><a href="{{ blog }}">{{ text_blog }}</a></li>
+      {% if informations %}
+        {% for information in informations %}
+        <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+        {% endfor %}
+      {% endif %}
+      {% if header_menu_links %}
+        {% for header_menu_link in header_menu_links %}
+          {% if header_menu_link.title %}<li><a href="{{ header_menu_link.link }}">{{ header_menu_link.title }}</a></li>{% endif %}
+        {% endfor %}
+      {% endif %}
+    </ul>
+    <div class="top_right">
+      {% if header_language %}{{ language }}{% endif %}
+      {% if header_currency %}{{ currency }}{% endif %}
+      <div class="account">
+        <div class="dropdown-toggle icon_account"><span class="hidden_xs">{{ text_account }}</span></div>
+        <div class="dropdown-menu">
+          <ul>
+            {% if logged %}
+            <li><a href="{{ account }}">{{ text_account }}</a></li>
+            <li><a href="{{ order }}">{{ text_order }}</a></li>
+            <li><a href="{{ transaction }}">{{ text_transaction }}</a></li>
+            <li><a href="{{ download }}">{{ text_download }}</a></li>
+            <li><a href="{{ logout }}">{{ text_logout }}</a></li>
+            {% else %}
+            <li><a href="{{ register }}">{{ text_register }}</a></li>
+            <li><a href="{{ login }}">{{ text_login }}</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<header>
+  <div class="container">
+    <div class="logo">
+      {% if logo %}
+        {% if home == og_url %}
+          <img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" />
+        {% else %}
+          <a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" /></a>
+        {% endif %}
+      {% endif %}
+    </div>
+    {% if speedy_menu_status == 1 %}
+      {{ speedy_menu }}
+    {% else %}
+      {{ menu }}
+    {% endif %}
+    {{ search }}
+    <div class="contacts">
+      <div class="dropdown-toggle icon_contacts">{% if header_phones %}<span>{{ telephone }}</span>{% if telephone_2 %}<span>{{ telephone_2 }}</span>{% endif %}{% else %}<span>{{ text_callback }}</span>{% endif %}</div>
+      <div class="dropdown-menu">
+        {% if header_phones %}
+        <p>{{ text_telephone }}</p>
+        <ul class="phones">
+          <li><a href="tel:{{ telephone }}">{{ telephone }}</a></li>
+          {% if telephone_2 %}<li><a href="tel:{{ telephone_2 }}">{{ telephone_2 }}</a></li>{% endif %}
+          {% if telephone_3 %}<li><a href="tel:{{ telephone_3 }}">{{ telephone_3 }}</a></li>{% endif %}
+          {% if telephone_4 %}<li><a href="tel:{{ telephone_4 }}">{{ telephone_4 }}</a></li>{% endif %}
+        </ul>
+        {% endif %}
+        {% if header_messengers and telegram or viber or whatsapp %}
+        <p>{{ text_messenger }}</p>
+        <ul class="messenger_links">
+          {% if telegram %}<li class="telegram"><a href="https://t.me/{{ telegram }}"></a></li>{% endif %}
+          {% if viber %}<li class="viber"><a href="viber://chat?number={{ viber }}"></a></li>{% endif %}
+          {% if whatsapp %}<li class="whatsapp"><a href="whatsapp://send?phone={{ whatsapp }}"></a></li>{% endif %}
+        </ul>
+        {% endif %}
+        {% if header_email %}
+        <p>{{ text_email }}</p>
+        <ul class="mail">
+          <li><a href="mailto:{{ email }}">{{ email }}</a></li>
+        </ul>
+        {% endif %}
+      </div>
+      {% if header_open and open %}
+        <div class="open">{{ open }}</div>
+      {% endif %}
+    </div>
+    {% if header_compare %}<li class="compare"><a class="icon_compare" href="{{ compare }}"><p>{{ text_compare_desc }}</p><span>{{ text_compare }}</span></a></li>{% endif %}
+    {% if header_wishlist %}<li class="wishlist"><a class="icon_wishlist" href="{{ wishlist }}"><p>{{ text_wishlist_desc }}</p><span>{{ text_wishlist }}</span></a></li>{% endif %}
+    {{ cart }}
+  </div>
+</header>
+{% if bottombar %}
+<div class="bottom_bar">
+  <ul>
+    <li class="bottom_bar_catalog"><span class="link"><p>{{ text_catalog }}</p></span></li>
+    <li class="bottom_bar_cart"><a class="link" href="{{ shopping_cart }}"><p>{{ text_shopping_cart }}</p><span class="cart_count">{{ text_cart_count }}</span></a></li>
+    <li class="bottom_bar_compare"><a class="link" href="{{ compare }}"><p>{{ text_compare_desc }}</p><span class="compare_count">{{ text_compare }}</span></a></li>
+    <li class="bottom_bar_wishlist"><a class="link" href="{{ wishlist }}"><p>{{ text_wishlist_desc }}</p><span class="wishlist_count">{{ text_wishlist }}</span></a></li>
+  </ul>
+</div>
+<script>
+  $(".bottom_bar_catalog").on("click", function() {
+    $("#m_menu > .dropdown-menu").addClass("active").find(".m_menu_nav").addClass("active");
+    $("#top").addClass("active");
+    $(".m_menu_back").fadeOut(0);
+  });
+  //fix_height_other_block
+  $("body").addClass("body_bottombar");
+  $(document).ready(function() {
+    $(".ocf-btn-mobile-fixed, .widgets_messenger_link, .widgets_messenger_content, .product_bar").addClass("up_from_bottom_bar");
+  });
+</script>
+{% endif %}

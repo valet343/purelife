@@ -1,0 +1,31 @@
+<div class="modal quick_view_loading" id="dwquickview-modal">
+	<div class="wsx"></div>		
+	<div class="btn-close"></div>
+</div>
+<script type="text/javascript">
+var dw_data = {"btn":"{% if btnquick %}<a href=\"#\" class=\"dw-icon\"><i class=\"fa fa-eye\"></i></a>{% else %}<a href=\"#\">Быстрый просмотр</a>{% endif %}", "load":"<div class=\"load\"><img src=\"{{ loading_gif }}\" /></div>"};
+</script>
+<script type="text/javascript">
+function livePrice(){
+	$.ajax({
+		type: 'POST',
+		url: 'index.php?route=extension/module/speedy_quick_view/live',
+		data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product  input[type=\'checkbox\']:checked, #product select, #product textarea, #product input[name=\'quantity\']'),
+		dataType: 'json',
+		success: function(json) {
+			if(json.success) {
+				$('.after-price .dw-price-old').html(json.new_price.price);
+				$('.after-price .dw-price-specail').html(json.new_price.special);
+				$('.after-price .dw-price-specail').html('<span class="old-pr">'+json.new_price.price+'</span> '+json.new_price.special);
+				$('.after-price .dw-tax').html(json.new_price.tax);				
+			}
+		}
+	});
+}			
+$('body').on('change', '#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\'], #product input[type=\'checkbox\'], #product select, #product textarea', function(){
+	livePrice();
+});
+$('body').on('keyup', '#product input[name=\'quantity\']', function(){
+	livePrice();
+});
+</script> 

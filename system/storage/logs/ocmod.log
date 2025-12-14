@@ -1,0 +1,3843 @@
+2025-12-12 9:37:12 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+MOD: DEV-OPENCART.COM - Задать вопрос о товаре (DEVCART PRO)
+
+FILE: catalog/controller/product/product.php
+CODE: $data['header'] = $this->load->controller('common/header');
+LINE: 633
+LINE: 719
+
+FILE: catalog/view/theme/default/template/product/product.twig
+CODE: <div class="tab-content" id="product">
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/view/theme/speedy/template/product/product.twig
+CODE: <div class="tab-content" id="product">
+LINE: 29
+CODE: <div class="product_middle_right">
+LINE: 672
+----------------------------------------------------------------
+MOD: DEV-OPENCART.COM — Исправленные хлебные крошки
+
+FILE: catalog/view/theme/default/template/product/category.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/product/compare.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/product/manufacturer_info.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/product/manufacturer_list.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/product/review.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/product/search.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/product/special.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/product/category.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/product/compare.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/product/manufacturer_info.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/product/manufacturer_list.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/product/review.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/product/search.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/product/special.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/information/contact.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/information/information.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/information/sitemap.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/information/contact.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/information/information.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/information/sitemap.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/account.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/address_form.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/address_list.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/affiliate.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/download.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/edit.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/forgotten.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/login.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/newsletter.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/order_info.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/order_list.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/password.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/recurring_info.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/recurring_list.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/register.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/reset.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/return_form.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/return_info.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/return_list.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/reward.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/simpleaddress.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/simpleedit.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/simpleregister.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/tracking.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/transaction.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/voucher.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/account/wishlist.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/account.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/address_form.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/address_list.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/affiliate.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/download.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/edit.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/forgotten.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/login.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/newsletter.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/order_info.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/order_list.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/password.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/recurring_info.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/recurring_list.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/register.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/reset.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/return_form.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/return_info.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/return_list.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/reward.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/simpleaddress.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/simpleedit.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/simpleregister.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/tracking.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/transaction.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/voucher.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/account/wishlist.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/affiliate/login.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/affiliate/register.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/affiliate/login.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/affiliate/register.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/cart.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/checkout.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/confirm.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/guest.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/guest_shipping.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/login.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/payment_address.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/payment_method.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/register.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/shipping_address.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/shipping_method.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/simplecheckout.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/simplecheckout_cart.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/simplecheckout_comment.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/simplecheckout_customer.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/simplecheckout_login.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/simplecheckout_payment.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/simplecheckout_payment_address.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/simplecheckout_shipping.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/simplecheckout_shipping_address.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/simplecheckout_summary.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/checkout/simplecheckout_text.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/cart.twig
+CODE: class="breadcrumb
+LINE: 5
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 6
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/checkout.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/confirm.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/guest.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/guest_shipping.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/login.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/payment_address.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/payment_method.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/register.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/shipping_address.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/shipping_method.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/simplecheckout.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/simplecheckout_cart.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/simplecheckout_comment.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/simplecheckout_customer.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/simplecheckout_login.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/simplecheckout_payment.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/simplecheckout_payment_address.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/simplecheckout_shipping.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/simplecheckout_shipping_address.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/simplecheckout_summary.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/checkout/simplecheckout_text.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/error/not_found.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/error/not_found.twig
+CODE: class="breadcrumb
+LINE: 6
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 7
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/blog/article.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/blog/category.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/blog/latest.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/blog/menu.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/blog/review.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/blog/article.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/blog/category.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/blog/latest.twig
+CODE: class="breadcrumb
+LINE: 2
+CODE: {% for breadcrumb in breadcrumbs %}
+LINE: 3
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/blog/menu.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/blog/review.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/account.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/amazon_login.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/amazon_login_error.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/art_aqa_product.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/art_aqa_product_form.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/art_aqa_product_questions.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/art_aqa_product_success.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/banner.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/bestseller.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/blog_category.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/blog_featured.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/blog_latest.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/carousel.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/category.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/divido_calculator.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/ebay_listing.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/featured.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/featured_article.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/featured_product.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/filter.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/google_hangouts.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/html.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/information.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/klarna_checkout_module.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/latest.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/laybuy_layout.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/newsletter.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/paypal_smart_button.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/pilibaba_button.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/pp_braintree_button.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/recently_viewed.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/sagepay_direct_cards.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/sagepay_server_cards.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/simple.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/slideshow.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/smartsearch.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/special.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/default/template/extension/module/store.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/account.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/amazon_login.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/amazon_login_error.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/art_aqa_product.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/art_aqa_product_form.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/art_aqa_product_questions.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/art_aqa_product_success.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/banner.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/bestseller.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/blog_category.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/blog_featured.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/blog_latest.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/carousel.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/category.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/divido_calculator.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/dw_modal.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/ebay_listing.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/featured.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/featured_article.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/featured_product.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/filter.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/google_hangouts.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/html.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/information.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/klarna_checkout_module.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/latest.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/laybuy_layout.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/newsletter.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/paypal_smart_button.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/pilibaba_button.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/pp_braintree_button.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/recently_viewed.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/sagepay_direct_cards.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/sagepay_server_cards.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/simple.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/slideshow.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/smartsearch.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/special.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/speedy_advantages.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/speedy_banner_main.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/speedy_banner_product.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/speedy_carousel.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/speedy_categorywall.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/speedy_dw_modal.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/speedy_quick_view.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/view/theme/speedy/template/extension/module/store.twig
+CODE: class="breadcrumb
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: {% for i,breadcrumb in breadcrumbs %}
+NOT FOUND - OPERATION SKIPPED!
+CODE: <li><h1 class="inbreadcrumb">{{ heading_title }}</h1></li>
+NOT FOUND - OPERATION SKIPPED!
+CODE: public function index() {
+LINE: 25
+CODE: if ($product_info) {
+LINE: 220
+----------------------------------------------------------------
+MOD: DEV-OPENCART.COM - Быстрый заказ (DEVCART PRO)
+
+FILE: catalog/controller/common/header.php
+CODE: $data['telephone'] = $this->config->get('config_telephone');
+LINE: 120
+
+FILE: catalog/controller/common/footer.php
+CODE: $this->load->language('common/footer');
+LINE: 51
+CODE: $data['header'] = $this->load->controller('common/header');
+LINE: 720
+LINE: 837
+
+FILE: catalog/controller/product/category.php
+CODE: $data['products'][] = array(
+LINE: 292
+
+FILE: catalog/controller/product/manufacturer.php
+CODE: $data['products'][] = array(
+LINE: 262
+
+FILE: catalog/controller/product/search.php
+CODE: $data['products'][] = array(
+LINE: 287
+
+FILE: catalog/controller/product/special.php
+CODE: $data['products'][] = array(
+LINE: 175
+
+FILE: catalog/controller/extension/module/bestseller.php
+CODE: $data['products'][] = array(
+LINE: 86
+
+FILE: catalog/controller/extension/module/featured.php
+CODE: $data['products'][] = array(
+LINE: 93
+
+FILE: catalog/controller/extension/module/latest.php
+CODE: $data['products'][] = array(
+LINE: 86
+
+FILE: catalog/controller/extension/module/special.php
+CODE: $data['products'][] = array(
+LINE: 93
+----------------------------------------------------------------
+MOD: DEV-OPENCART.COM - Нашли дешевле (DEVCART PRO)
+CODE: // dc_template_pro
+LINE: 580
+----------------------------------------------------------------
+MOD: Guard for DEVCART PRO
+
+FILE: admin/controller/common/dashboard.php
+CODE: $this->response->setOutput($this->load->view('common/dashboard', $data));
+LINE: 100
+
+FILE: admin/controller/sale/order.php
+CODE: $this->response->setOutput($this->load->view('sale/order_list', $data));
+LINE: 438
+
+FILE: admin/controller/setting/setting.php
+CODE: $this->response->setOutput($this->load->view('setting/setting', $data));
+LINE: 1546
+
+FILE: admin/controller/catalog/product.php
+CODE: $this->response->setOutput($this->load->view('catalog/product_list', $data));
+LINE: 862
+
+FILE: admin/controller/catalog/category.php
+CODE: $this->response->setOutput($this->load->view('catalog/category_list', $data));
+LINE: 243
+
+FILE: admin/controller/customer/customer.php
+CODE: $this->response->setOutput($this->load->view('customer/customer_list', $data));
+LINE: 535
+
+FILE: admin/controller/marketplace/installer.php
+CODE: $this->response->setOutput($this->load->view('marketplace/installer', $data));
+LINE: 25
+
+FILE: admin/controller/marketplace/extension.php
+CODE: $this->response->setOutput($this->load->view('marketplace/extension', $data));
+LINE: 54
+----------------------------------------------------------------
+MOD: DEV-OPENCART.COM — Микроразметка для SEO (DEVCART PRO)
+
+FILE: admin/controller/common/column_left.php
+CODE: if ($this->user->hasPermission('access', 'design/seo_url')) {
+LINE: 274
+
+FILE: system/library/document.php
+CODE: public function setTitle
+LINE: 38
+CODE: $data['search']
+LINE: 145
+CODE: $data['cart']
+LINE: 145
+
+FILE: catalog/view/theme/default/template/common/header.twig
+CODE: </head>
+LINE: 50
+CODE: <html
+LINE: 2
+LINE: 3
+LINE: 5
+
+FILE: catalog/view/theme/speedy/template/common/header.twig
+CODE: </head>
+LINE: 178
+CODE: <html
+LINE: 2
+LINE: 3
+LINE: 5
+
+FILE: catalog/controller/common/home.php
+CODE: $data['column_left'] = $this->load->controller
+LINE: 33
+CODE: $data['contact'] = $this->url->link(
+LINE: 104
+CODE: $data['powered']
+LINE: 129
+
+FILE: catalog/view/theme/default/template/common/footer.twig
+CODE: </footer>
+LINE: 72
+CODE: </body>
+LINE: 242
+CODE: </html>
+LINE: 243
+
+FILE: catalog/view/theme/speedy/template/common/footer.twig
+CODE: </footer>
+LINE: 75
+CODE: </body>
+LINE: 374
+CODE: </html>
+LINE: 375
+CODE: if ($product_info) {
+LINE: 187
+CODE: $this->model_catalog_product->updateViewed
+LINE: 691
+CODE: $data['column_left']
+LINE: 712
+LINE: 848
+CODE: {{ content_bottom
+LINE: 525
+CODE: {{ footer
+LINE: 944
+CODE: {{content_bottom
+NOT FOUND - OPERATION SKIPPED!
+CODE: {{footer
+NOT FOUND - OPERATION SKIPPED!
+CODE: {{ content_bottom
+LINE: 768
+CODE: {{ footer
+LINE: 1331
+CODE: {{content_bottom
+NOT FOUND - OPERATION SKIPPED!
+CODE: {{footer
+NOT FOUND - OPERATION SKIPPED!
+CODE: $data['header'] = $this->load->controller('common/header');
+LINE: 507
+LINE: 572
+CODE: {{ content_bottom
+LINE: 205
+CODE: {{ footer
+LINE: 209
+CODE: {{content_bottom
+NOT FOUND - OPERATION SKIPPED!
+CODE: {{footer
+NOT FOUND - OPERATION SKIPPED!
+CODE: {{ content_bottom
+LINE: 201
+CODE: {{ footer
+LINE: 216
+CODE: {{content_bottom
+NOT FOUND - OPERATION SKIPPED!
+CODE: {{footer
+NOT FOUND - OPERATION SKIPPED!
+CODE: $pagination = new
+LINE: 391
+CODE: $data['column_left']
+LINE: 65
+LINE: 480
+LINE: 544
+CODE: {{ content_bottom
+LINE: 153
+CODE: {{ footer
+LINE: 157
+CODE: {{content_bottom
+NOT FOUND - OPERATION SKIPPED!
+CODE: {{footer
+NOT FOUND - OPERATIONS ABORTED!
+CODE: {{ content_bottom
+LINE: 159
+CODE: {{ footer
+LINE: 163
+CODE: {{content_bottom
+NOT FOUND - OPERATION SKIPPED!
+CODE: {{footer
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/information/information.php
+CODE: $data['column_left']
+LINE: 70
+LINE: 109
+CODE: {{ content_bottom
+LINE: 28
+CODE: {{ footer
+LINE: 32
+CODE: {{content_bottom
+NOT FOUND - OPERATION SKIPPED!
+CODE: {{footer
+NOT FOUND - OPERATION SKIPPED!
+CODE: {{ content_bottom
+LINE: 24
+CODE: {{ footer
+LINE: 30
+CODE: {{content_bottom
+NOT FOUND - OPERATION SKIPPED!
+CODE: {{footer
+NOT FOUND - OPERATION SKIPPED!
+----------------------------------------------------------------
+MOD: DEV-OPENCART.COM - Кнопки + и - для выбора количества в категории
+CODE: $this->load->language('common/footer');
+LINE: 73
+CODE: </footer>
+LINE: 96
+CODE: </footer>
+LINE: 99
+CODE: $data['products'][] = array(
+LINE: 322
+CODE: $data['products'][] = array(
+LINE: 329
+CODE: $data['products'][] = array(
+LINE: 308
+CODE: $data['products'][] = array(
+LINE: 315
+CODE: $data['products'][] = array(
+LINE: 205
+CODE: $data['products'][] = array(
+LINE: 212
+CODE: $data['products'][] = array(
+LINE: 317
+CODE: $data['products'][] = array(
+LINE: 324
+
+FILE: catalog/language/en-gb/product/category.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/language/ru-ru/product/category.php
+CODE: // Text
+LINE: 13
+
+FILE: catalog/language/uk-ua/product/category.php
+CODE: // Text
+LINE: 11
+
+FILE: catalog/language/en-gb/product/manufacturer.php
+CODE: // Text
+LINE: 13
+
+FILE: catalog/language/ru-ru/product/manufacturer.php
+CODE: // Text
+LINE: 16
+
+FILE: catalog/language/uk-ua/product/manufacturer.php
+CODE: // Text
+LINE: 14
+
+FILE: catalog/language/en-gb/product/special.php
+CODE: // Text
+LINE: 13
+
+FILE: catalog/language/ru-ru/product/special.php
+CODE: // Text
+LINE: 16
+
+FILE: catalog/language/uk-ua/product/special.php
+CODE: // Text
+LINE: 14
+
+FILE: catalog/language/en-gb/product/search.php
+CODE: // Text
+LINE: 14
+
+FILE: catalog/language/ru-ru/product/search.php
+CODE: // Text
+LINE: 17
+
+FILE: catalog/language/uk-ua/product/search.php
+CODE: // Text
+LINE: 15
+CODE: <div class="hover_block">
+NOT FOUND - OPERATION SKIPPED!
+CODE: <div class="price-stock">{{ product.price }}</div>
+NOT FOUND - OPERATION SKIPPED!
+CODE: <button class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock{% endif %}" type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"></button>
+NOT FOUND - OPERATION SKIPPED!
+CODE: <div class="hover_block">
+LINE: 166
+CODE: <div class="price-stock">{{ product.price }}</div>
+LINE: 143
+CODE: <button class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock{% endif %}" type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"></button>
+LINE: 156
+CODE: <div class="hover_block">
+NOT FOUND - OPERATION SKIPPED!
+CODE: <div class="price-stock">{{ product.price }}</div>
+NOT FOUND - OPERATION SKIPPED!
+CODE: <button class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock{% endif %}" type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"></button>
+NOT FOUND - OPERATION SKIPPED!
+CODE: <div class="hover_block">
+LINE: 140
+CODE: <div class="price-stock">{{ product.price }}</div>
+LINE: 117
+CODE: <button class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock{% endif %}" type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"></button>
+LINE: 130
+CODE: <div class="hover_block">
+NOT FOUND - OPERATION SKIPPED!
+CODE: <div class="price-stock">{{ product.price }}</div>
+NOT FOUND - OPERATION SKIPPED!
+CODE: <button class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock{% endif %}" type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"></button>
+NOT FOUND - OPERATION SKIPPED!
+CODE: <div class="hover_block">
+LINE: 130
+CODE: <div class="price-stock">{{ product.price }}</div>
+LINE: 107
+CODE: <button class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock{% endif %}" type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"></button>
+LINE: 120
+CODE: <div class="hover_block">
+NOT FOUND - OPERATION SKIPPED!
+CODE: <div class="price-stock">{{ product.price }}</div>
+NOT FOUND - OPERATION SKIPPED!
+CODE: <button class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock{% endif %}" type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"></button>
+NOT FOUND - OPERATION SKIPPED!
+CODE: <div class="hover_block">
+LINE: 176
+CODE: <div class="price-stock">{{ product.price }}</div>
+LINE: 153
+CODE: <button class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock{% endif %}" type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"></button>
+LINE: 166
+----------------------------------------------------------------
+MOD: DEV-OPENCART.COM — Быстрый просмотр товара
+CODE: $this->load->language('common/footer');
+LINE: 82
+CODE: <footer>
+LINE: 3
+CODE: <footer>
+LINE: 3
+----------------------------------------------------------------
+MOD: Fix for twig
+CODE: $loader = new \Twig_Loader_Array(array($filename . '.twig' => $code));
+NOT FOUND - OPERATION SKIPPED!
+CODE: $loader = new \Twig\Loader\ArrayLoader(array($filename . '.twig' => $code));
+LINE: 34
+----------------------------------------------------------------
+MOD: DEV-OPENCART.COM - Подписка на новости (DEVCART PRO)
+
+FILE: admin/view/template/marketing/contact.twig
+CODE: <option value="product">{{ text_product }}</option>
+LINE: 50
+
+FILE: admin/language/en-gb/marketing/contact.php
+CODE: $_['text_product']
+LINE: 18
+
+FILE: admin/language/ru-ru/marketing/contact.php
+CODE: $_['text_product']
+LINE: 21
+
+FILE: admin/language/uk-ua/marketing/contact.php
+CODE: $_['text_product']
+LINE: 20
+
+FILE: admin/controller/marketing/contact.php
+CODE: $data['text_product'] = $this->language->get('text_product');
+NOT FOUND - OPERATIONS ABORTED!
+CODE: $email_total = $this->model_customer_customer->getTotalCustomers($customer_data);
+LINE: 94
+LINE: 108
+LINE: 123
+CODE: case 'product':
+LINE: 221
+CODE: if ($this->user->hasPermission('access', 'customer/customer_group')) {
+LINE: 422
+
+FILE: admin/model/customer/customer.php
+CODE: public function getTotalCustomers($data = array()) {
+LINE: 311
+----------------------------------------------------------------
+MOD: Speedy Theme for DEVCART PRO
+
+FILE: admin/controller/common/header.php
+CODE: public function index() {
+LINE: 8
+CODE: if ($this->user->hasPermission('access', 'design/banner')) {
+LINE: 340
+
+FILE: admin/view/template/common/column_left.twig
+CODE: <i class="fa {{ menu.icon }} fw"></i>
+LINE: 6
+CODE: $this->response->setOutput($this->load->view('common/home', $data));
+LINE: 45
+CODE: return $this->load->view('common/header', $data);
+LINE: 225
+CODE: if ($this->config->get('configblog_blog_menu')) {
+LINE: 131
+CODE: return $this->load->view('common/footer', $data);
+LINE: 223
+
+FILE: catalog/controller/common/language.php
+CODE: $this->load->language('common/language');
+LINE: 15
+
+FILE: catalog/controller/error/not_found.php
+CODE: $this->response->setOutput($this->load->view('error/not_found', $data));
+LINE: 51
+
+FILE: catalog/controller/checkout/simplecheckout.php
+CODE: $this->_templateData['notification_check_form_text'] = '';
+LINE: 346
+
+FILE: catalog/controller/common/cart.php
+CODE: return $this->load->view('common/cart', $data);
+LINE: 140
+CODE: $data['text_items']
+LINE: 53
+
+FILE: catalog/controller/checkout/cart.php
+CODE: $json['total']
+LINE: 384
+LINE: 487
+LINE: 523
+CODE: $data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_height'));
+LINE: 386
+CODE: $data['special_percent'] = round(100-($product_info['special']/($product_info['price']/100)));
+LINE: 412
+CODE: $data['thumb'] = '';
+LINE: 389
+CODE: $data['products'][] = array(
+LINE: 658
+CODE: $data['zoom_product'] = $this->config->get('config_zoom_product');
+LINE: 331
+CODE: $data['products'][] = array(
+LINE: 328
+CODE: $data['categories'][] = array(
+LINE: 191
+CODE: 'name' => $result['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+LINE: 193
+CODE: $this->load->model('tool/image');
+LINE: 11
+CODE: $this->load->model('tool/image');
+LINE: 11
+
+FILE: catalog/controller/extension/module/featured_product.php
+CODE: $this->load->model('tool/image');
+LINE: 49
+CODE: $this->load->model('tool/image');
+LINE: 11
+
+FILE: catalog/controller/extension/module/recently_viewed.php
+CODE: $this->load->model('tool/image');
+LINE: 13
+CODE: $this->load->model('tool/image');
+LINE: 11
+
+FILE: catalog/controller/extension/module/blog_featured.php
+CODE: $this->load->model('tool/image');
+LINE: 14
+
+FILE: catalog/controller/extension/module/blog_latest.php
+CODE: $this->load->model('tool/image');
+LINE: 14
+
+FILE: catalog/controller/extension/module/featured_article.php
+CODE: $this->load->model('tool/image');
+LINE: 16
+
+FILE: catalog/controller/account/wishlist.php
+CODE: $this->load->model('tool/image');
+LINE: 24
+CODE: $data['products'][] = array(
+LINE: 354
+CODE: $data['products'][] = array(
+LINE: 360
+CODE: $data['products'][] = array(
+LINE: 326
+CODE: $data['products'][] = array(
+LINE: 332
+CODE: $data['products'][] = array(
+LINE: 335
+CODE: $data['products'][] = array(
+LINE: 341
+CODE: $data['products'][] = array(
+LINE: 223
+CODE: $data['products'][] = array(
+LINE: 229
+CODE: $data['products'][] = array(
+LINE: 684
+CODE: $data['products'][] = array(
+LINE: 690
+CODE: $data['products'][] = array(
+LINE: 108
+CODE: $data['products'][] = array(
+LINE: 114
+CODE: $data['products'][] = array(
+LINE: 115
+CODE: $data['products'][] = array(
+LINE: 121
+CODE: $data['products'][] = array(
+LINE: 123
+CODE: $data['products'][] = array(
+LINE: 129
+CODE: $data['products'][] = array(
+LINE: 108
+CODE: $data['products'][] = array(
+LINE: 114
+CODE: $data['products'][] = array(
+LINE: 140
+CODE: $data['products'][] = array(
+LINE: 146
+CODE: $data['products'][] = array(
+LINE: 115
+CODE: $data['products'][] = array(
+LINE: 121
+CODE: $data['products'][] = array(
+LINE: 146
+LINE: 235
+CODE: $data['products'][] = array(
+LINE: 152
+LINE: 247
+CODE: $data['products'][] = array(
+LINE: 359
+CODE: $data['products'][] = array(
+LINE: 331
+CODE: $data['products'][] = array(
+LINE: 340
+CODE: $data['products'][] = array(
+LINE: 228
+CODE: if($this->config->get('config_theme') == 'speedy') {
+LINE: 103
+CODE: if($this->config->get('config_theme') == 'speedy') {
+LINE: 110
+CODE: if($this->config->get('config_theme') == 'speedy') {
+LINE: 118
+CODE: if($this->config->get('config_theme') == 'speedy') {
+LINE: 103
+CODE: if($this->config->get('config_theme') == 'speedy') {
+LINE: 135
+CODE: if($this->config->get('config_theme') == 'speedy') {
+LINE: 110
+CODE: if($this->config->get('config_theme') == 'speedy') {
+LINE: 336
+LINE: 685
+LINE: 703
+
+FILE: catalog/controller/common/menu.php
+CODE: return $this->load->view('common/menu', $data);
+LINE: 128
+
+FILE: catalog/controller/common/menu_footer.php
+CODE: $categories = $this->model_catalog_category->getCategories(0);
+LINE: 16
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 8
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // dc_Translates
+LINE: 62
+
+FILE: catalog/language/en-gb/common/language.php
+CODE: $_['text_language']
+LINE: 8
+
+FILE: catalog/language/en-gb/common/cart.php
+CODE: // Text
+LINE: 5
+
+FILE: catalog/language/en-gb/checkout/cart.php
+CODE: // Text
+LINE: 8
+CODE: $_['error_required']           = '%s required!';
+LINE: 41
+
+FILE: catalog/language/en-gb/checkout/simplecheckout.php
+CODE: // Error
+LINE: 71
+
+FILE: catalog/language/en-gb/common/footer.php
+CODE: // Text
+LINE: 9
+
+FILE: admin/language/en-gb/extension/module/bestseller.php
+CODE: // Entry
+LINE: 14
+
+FILE: admin/language/en-gb/extension/module/featured.php
+CODE: // Entry
+LINE: 14
+
+FILE: admin/language/en-gb/extension/module/featured_product.php
+CODE: // Entry
+LINE: 18
+
+FILE: admin/language/en-gb/extension/module/latest.php
+CODE: // Entry
+LINE: 14
+
+FILE: admin/language/en-gb/extension/module/recently_viewed.php
+CODE: // Entry
+LINE: 13
+
+FILE: admin/language/en-gb/extension/module/special.php
+CODE: // Entry
+LINE: 14
+
+FILE: catalog/language/ru-ru/common/header.php
+CODE: // Text
+LINE: 11
+
+FILE: catalog/language/ru-ru/product/product.php
+CODE: // dc_Translates
+LINE: 66
+
+FILE: catalog/language/ru-ru/common/language.php
+CODE: $_['text_language']
+LINE: 11
+
+FILE: catalog/language/ru-ru/common/cart.php
+CODE: // Text
+LINE: 8
+
+FILE: catalog/language/ru-ru/checkout/cart.php
+CODE: // Text
+LINE: 11
+CODE: $_['error_required']         					= '%s необходим!';
+LINE: 46
+
+FILE: catalog/language/ru-ru/account/simpleregister.php
+CODE: // Text
+LINE: 11
+
+FILE: catalog/language/ru-ru/checkout/simplecheckout.php
+CODE: // Error
+LINE: 71
+
+FILE: catalog/language/ru-ru/common/footer.php
+CODE: // Text
+LINE: 9
+
+FILE: admin/language/ru-ru/extension/module/bestseller.php
+CODE: // Entry
+LINE: 17
+
+FILE: admin/language/ru-ru/extension/module/featured.php
+CODE: // Entry
+LINE: 17
+
+FILE: admin/language/ru-ru/extension/module/featured_product.php
+CODE: // Entry
+LINE: 18
+
+FILE: admin/language/ru-ru/extension/module/latest.php
+CODE: // Entry
+LINE: 17
+
+FILE: admin/language/ru-ru/extension/module/recently_viewed.php
+CODE: // Entry
+LINE: 5
+
+FILE: admin/language/ru-ru/extension/module/special.php
+CODE: // Entry
+LINE: 17
+
+FILE: catalog/language/uk-ua/common/header.php
+CODE: // Text
+LINE: 9
+CODE: $_['text_wishlist_desc']      = 'Вподобання';
+LINE: 12
+CODE: $_['text_compare_desc']       = 'Порівняння';
+LINE: 16
+
+FILE: catalog/language/uk-ua/product/product.php
+CODE: // dc_Translates
+LINE: 64
+
+FILE: catalog/language/uk-ua/common/language.php
+CODE: $_['text_language']
+LINE: 7
+
+FILE: catalog/language/uk-ua/common/cart.php
+CODE: // Text
+LINE: 6
+
+FILE: catalog/language/uk-ua/checkout/cart.php
+CODE: // Text
+LINE: 9
+CODE: $_['error_required']         					= 'Оберіть %s';
+LINE: 44
+
+FILE: catalog/language/uk-ua/account/simpleregister.php
+CODE: // Text
+LINE: 11
+
+FILE: catalog/language/uk-ua/checkout/simplecheckout.php
+CODE: // Error
+LINE: 69
+
+FILE: catalog/language/uk-ua/common/footer.php
+CODE: // Text
+LINE: 7
+
+FILE: admin/language/uk-ua/extension/module/bestseller.php
+CODE: // Entry
+LINE: 16
+
+FILE: admin/language/uk-ua/extension/module/featured.php
+CODE: // Entry
+LINE: 16
+
+FILE: admin/language/uk-ua/extension/module/featured_product.php
+CODE: // Entry
+LINE: 17
+
+FILE: admin/language/uk-ua/extension/module/latest.php
+CODE: // Entry
+LINE: 16
+
+FILE: admin/language/uk-ua/extension/module/recently_viewed.php
+CODE: // Entry
+LINE: 5
+
+FILE: admin/language/uk-ua/extension/module/special.php
+CODE: // Entry
+LINE: 16
+
+FILE: catalog/controller/checkout/simplecheckout_cart.php
+CODE: $this->_templateData['products'] = array();
+LINE: 86
+CODE: $this->language->load('checkout/simplecheckout');
+LINE: 28
+LINE: 374
+
+FILE: catalog/controller/account/simpleregister.php
+CODE: $this->loadLibrary('simple/simpleregister');
+LINE: 19
+
+FILE: admin/view/template/setting/setting.twig
+CODE: <fieldset class="menu_view_stock">
+NOT FOUND - OPERATIONS ABORTED!
+CODE: if($this->config->get('config_theme') == 'speedy') {
+LINE: 172
+----------------------------------------------------------------
+MOD: Default Theme for DEVCART PRO
+CODE: public function index() {
+LINE: 8
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/language/ru-ru/common/column_left.php
+CODE: // Text
+LINE: 9
+
+FILE: admin/language/uk-ua/common/column_left.php
+CODE: // Text
+LINE: 7
+CODE: return $this->load->view('common/header', $data);
+LINE: 262
+CODE: $data['cart'] = $this->load->controller('common/cart');
+LINE: 155
+CODE: return $this->load->view('common/footer', $data);
+LINE: 253
+CODE: $data['styles'] = $this->document->getStyles('footer');
+LINE: 219
+CODE: // dc_template_pro
+LINE: 317
+CODE: $data['products'][] = array(
+LINE: 410
+CODE: // dc_template_pro
+LINE: 295
+CODE: $data['products'][] = array(
+LINE: 382
+CODE: // dc_template_pro
+LINE: 304
+CODE: $data['products'][] = array(
+LINE: 391
+CODE: // dc_template_pro
+LINE: 192
+CODE: $data['products'][] = array(
+LINE: 279
+CODE: // dc_template_pro
+LINE: 109
+CODE: $data['products'][] = array(
+LINE: 171
+CODE: // dc_template_pro
+LINE: 116
+CODE: $data['products'][] = array(
+LINE: 178
+CODE: // dc_template_pro
+LINE: 148
+CODE: $data['products'][] = array(
+LINE: 186
+CODE: // dc_template_pro
+LINE: 109
+CODE: $data['products'][] = array(
+LINE: 171
+CODE: // dc_template_pro
+LINE: 165
+CODE: $data['products'][] = array(
+LINE: 203
+CODE: // dc_template_pro
+LINE: 116
+CODE: $data['products'][] = array(
+LINE: 178
+CODE: $data['languages'] = $this->model_localisation_language->getLanguages();
+LINE: 724
+CODE: if ($product_info['image']) {
+LINE: 405
+LINE: 418
+CODE: $this->_templateData['products'] = array();
+LINE: 89
+CODE: $this->language->load('checkout/simplecheckout');
+LINE: 28
+LINE: 377
+CODE: $this->loadLibrary('simple/simpleregister');
+LINE: 17
+CODE: $json['total']
+LINE: 387
+CODE: $json['total']
+LINE: 313
+LINE: 335
+
+FILE: catalog/controller/product/compare.php
+CODE: $json['total']
+LINE: 176
+
+FILE: catalog/controller/information/contact.php
+CODE: $data['locations'] = array();
+LINE: 96
+
+FILE: catalog/controller/blog/article.php
+CODE: $this->load->model('tool/image');
+LINE: 222
+LINE: 265
+
+FILE: catalog/language/en-gb/blog/article.php
+CODE: // Text
+LINE: 8
+
+FILE: admin/language/en-gb/sale/order.php
+CODE: // Text
+LINE: 8
+
+FILE: catalog/language/ru-ru/blog/article.php
+CODE: // Text
+LINE: 8
+
+FILE: admin/language/ru-ru/sale/order.php
+CODE: // Text
+LINE: 11
+
+FILE: catalog/language/uk-ua/blog/article.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/language/uk-ua/sale/order.php
+CODE: // Text
+LINE: 10
+----------------------------------------------------------------
+MOD: DEV-OPENCART.COM — Уведомления в Telegram (DEVCART PRO)
+CODE: $mail->send();
+LINE: 58
+
+FILE: catalog/model/account/customer.php
+CODE: $customer_id = $this->db->getLastId();
+LINE: 49
+
+FILE: catalog/model/catalog/review.php
+CODE: $review_id = $this->db->getLastId();
+LINE: 46
+
+FILE: catalog/model/checkout/order.php
+CODE: $order_info = $this->getOrder($order_id);
+LINE: 283
+CODE: return $order_id;
+LINE: 57
+
+FILE: catalog/controller/checkout/success.php
+CODE: unset($this->session->data['shipping_method']);
+LINE: 21
+
+FILE: catalog/model/account/return.php
+CODE: return $this->db->getLastId();
+LINE: 50
+----------------------------------------------------------------
+MOD: Update Theme for DEVCART PRO
+CODE: public function index() {
+LINE: 15
+
+FILE: admin/view/template/common/header.twig
+CODE: <body>
+LINE: 59
+----------------------------------------------------------------
+MOD: DEV-OPENCART.COM - Видео в товаре (DEVCART PRO)
+
+FILE: admin/language/en-gb/catalog/product.php
+CODE: // Text
+LINE: 12
+
+FILE: admin/language/ru-ru/catalog/product.php
+CODE: // Text
+LINE: 12
+
+FILE: admin/language/uk-ua/catalog/product.php
+CODE: // Text
+LINE: 11
+CODE: $this->response->setOutput($this->load->view('catalog/product_form', $data));
+LINE: 1647
+CODE: // Downloads
+LINE: 1551
+
+FILE: admin/model/catalog/product.php
+CODE: if (isset($data['product_image'])) {
+LINE: 87
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");
+LINE: 269
+CODE: $data['product_image'] = $this->getProductImages($product_id);
+LINE: 407
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");
+LINE: 462
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");
+LINE: 496
+CODE: public function getProductImages($product_id) {
+LINE: 793
+
+FILE: admin/view/template/catalog/product_form.twig
+CODE: <li><a href="#tab-image" data-toggle="tab">{{ tab_image }}</a></li>
+LINE: 38
+CODE: <div class="tab-pane" id="tab-reward">
+LINE: 1180
+CODE: {{ footer }}
+LINE: 1857
+CODE: // dc_Translates
+LINE: 57
+CODE: // dc_Translates
+LINE: 61
+CODE: // dc_Translates
+LINE: 59
+CODE: $data['column_left'] = $this->load->controller('common/column_left');
+LINE: 939
+LINE: 1099
+
+FILE: catalog/model/catalog/product.php
+CODE: public function getProductImages($product_id) {
+LINE: 412
+----------------------------------------------------------------
+MOD: DEV-OPENCART.COM — Watermark (DEVCART PRO)
+CODE: public function index
+LINE: 3
+CODE: $image = $this->model_tool_image->resize(
+LINE: 21
+LINE: 23
+CODE: $image2 = $this->model_tool_image->resize(
+LINE: 155
+CODE: public function index
+LINE: 3
+CODE: $image = $this->model_tool_image->resize(
+LINE: 21
+LINE: 23
+CODE: $image2 = $this->model_tool_image->resize(
+LINE: 155
+CODE: public function index
+LINE: 3
+CODE: $image = $this->model_tool_image->resize(
+LINE: 28
+LINE: 30
+CODE: $image2 = $this->model_tool_image->resize(
+LINE: 162
+CODE: public function index
+LINE: 6
+CODE: $image = $this->model_tool_image->resize(
+LINE: 187
+LINE: 189
+LINE: 229
+LINE: 231
+CODE: $image2 = $this->model_tool_image->resize(
+LINE: 389
+CODE: public function index
+LINE: 6
+CODE: $image = $this->model_tool_image->resize(
+LINE: 218
+LINE: 220
+CODE: $image2 = $this->model_tool_image->resize(
+LINE: 370
+CODE: public function index
+LINE: 3
+CODE: $image = $this->model_tool_image->resize(
+LINE: 104
+LINE: 106
+CODE: $image2 = $this->model_tool_image->resize(
+LINE: 258
+CODE: public function index
+LINE: 3
+CODE: $image = $this->model_tool_image->resize(
+LINE: 59
+CODE: $image2 = $this->model_tool_image->resize(
+NOT FOUND - OPERATION SKIPPED!
+CODE: public function index
+LINE: 6
+CODE: $image = $this->model_tool_image->resize(
+LINE: 85
+LINE: 180
+CODE: $image2 = $this->model_tool_image->resize(
+LINE: 136
+LINE: 231
+CODE: public function index
+LINE: 3
+CODE: $image = $this->model_tool_image->resize(
+LINE: 28
+LINE: 30
+CODE: $image2 = $this->model_tool_image->resize(
+LINE: 162
+CODE: public function index
+LINE: 6
+CODE: $image = $this->model_tool_image->resize(
+LINE: 60
+LINE: 62
+CODE: $image2 = $this->model_tool_image->resize(
+LINE: 170
+CODE: public function info
+LINE: 76
+CODE: $image = $this->model_tool_image->resize(
+LINE: 220
+LINE: 222
+CODE: $image2 = $this->model_tool_image->resize(
+LINE: 361
+CODE: public function index
+LINE: 26
+CODE: $image = $this->model_tool_image->resize(
+LINE: 650
+LINE: 652
+LINE: 668
+LINE: 670
+LINE: 686
+LINE: 688
+CODE: $image2 = $this->model_tool_image->resize(
+LINE: 830
+CODE: $data['thumb'] = $this->model_tool_image->resize(
+LINE: 420
+CODE: $data['thumb_small'] = $this->model_tool_image->resize(
+LINE: 421
+CODE: 'popup' => $this->model_tool_image->resize(
+LINE: 435
+CODE: $data['popup'] = $this->model_tool_image->resize(
+LINE: 407
+CODE: 'thumb' => $this->model_tool_image->resize(
+LINE: 436
+CODE: $this->model_tool_image->resize($option_value['image']
+LINE: 572
+CODE: public function index
+LINE: 6
+CODE: $image = $this->model_tool_image->resize(
+LINE: 78
+CODE: public function index
+LINE: 3
+CODE: $image = $this->model_tool_image->resize(
+LINE: 63
+LINE: 65
+
+FILE: catalog/controller/extension/module/carousel.php
+CODE: public function index
+LINE: 3
+CODE: $this->model_tool_image->resize(
+LINE: 22
+
+FILE: catalog/controller/extension/module/banner.php
+CODE: public function index
+LINE: 3
+CODE: $this->model_tool_image->resize(
+LINE: 22
+
+FILE: catalog/controller/extension/module/slideshow.php
+CODE: public function index
+LINE: 3
+CODE: $this->model_tool_image->resize(
+LINE: 22
+----------------------------------------------------------------
+MOD: OCFilter Modification
+CODE: $this->load->model('design/layout')
+LINE: 1656
+CODE: if ($this->user->hasPermission('access', 'catalog/filter'))
+LINE: 89
+
+FILE: admin/controller/design/layout.php
+CODE: 'module/' . $code
+NOT FOUND - OPERATIONS ABORTED!
+CODE: $results = $this->model_catalog_category->getCategories($filter_data);
+LINE: 712
+CODE: if (isset($data['product_layout']))
+LINE: 166
+LINE: 376
+CODE: $this->getProductAttributes($product_id);
+LINE: 421
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "product WHERE product_id
+LINE: 480
+LINE: 519
+CODE: editProduct($product_id, $data) {
+LINE: 189
+
+FILE: catalog/controller/startup/seo_url.php
+CODE: $this->url->addRewrite($this);
+LINE: 25
+CODE: if ($url[0] == 'information_id')
+LINE: 75
+CODE: $data['sorts'] = array
+LINE: 464
+CODE: $data['limits'] = array
+LINE: 547
+CODE: $pagination = new Pagination
+LINE: 590
+CODE: $data['limit'] = $limit;
+LINE: 651
+CODE: $data['sorts'] = array
+LINE: 328
+CODE: $data['limits'] = array
+LINE: 407
+CODE: $pagination = new Pagination
+LINE: 446
+CODE: $data['limit'] = $limit;
+LINE: 507
+CODE: $data['sorts'] = array
+LINE: 459
+CODE: $data['limits'] = array
+LINE: 558
+CODE: $pagination = new Pagination
+LINE: 617
+CODE: $data['limit'] = $limit;
+LINE: 670
+CODE: $data['sorts'] = array
+LINE: 427
+CODE: $data['limits'] = array
+LINE: 506
+CODE: $pagination = new Pagination
+LINE: 558
+CODE: $data['limit'] = $limit;
+LINE: 618
+CODE: $product_total =
+LINE: 230
+CODE: $data['column_left']
+LINE: 947
+LINE: 1114
+
+FILE: catalog/controller/common/column_left.php
+CODE: $this->load->model('extension/module');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/common/column_right.php
+CODE: $this->load->model('extension/module');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/common/content_bottom.php
+CODE: $this->load->model('extension/module');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/common/content_top.php
+CODE: $this->load->model('extension/module');
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('setting/module');
+LINE: 59
+CODE: $this->load->model('setting/module');
+LINE: 59
+CODE: $this->load->model('setting/module');
+LINE: 59
+CODE: $this->load->model('setting/module');
+LINE: 59
+CODE: $data['modules'][] = $this->load->controller('module/' . $part[0]);
+NOT FOUND - OPERATION SKIPPED!
+CODE: $data['modules'][] = $this->load->controller('module/' . $part[0]);
+NOT FOUND - OPERATION SKIPPED!
+CODE: $data['modules'][] = $this->load->controller('module/' . $part[0]);
+NOT FOUND - OPERATION SKIPPED!
+CODE: $data['modules'][] = $this->load->controller('module/' . $part[0]);
+NOT FOUND - OPERATION SKIPPED!
+CODE: $module_data = $this->load->controller('module/' . $part[0]);
+NOT FOUND - OPERATION SKIPPED!
+CODE: $module_data = $this->load->controller('module/' . $part[0]);
+NOT FOUND - OPERATION SKIPPED!
+CODE: $module_data = $this->load->controller('module/' . $part[0]);
+NOT FOUND - OPERATION SKIPPED!
+CODE: $module_data = $this->load->controller('module/' . $part[0]);
+NOT FOUND - OPERATION SKIPPED!
+CODE: $query = $this->db->query($
+LINE: 221
+LINE: 278
+LINE: 564
+CODE: if (!empty($data['filter_manufacturer_id']))
+LINE: 173
+LINE: 567
+CODE: getTotalProductSpecials() {
+LINE: 602
+REGEX: ~(\{% if \(?products\)? %\})~
+LINE: 62
+REGEX: ~(\{\{\s?content_bottom\s?\}\})~
+LINE: 233
+REGEX: ~(\{% if \(?products\)? %\})~
+LINE: 59
+REGEX: ~(\{\{\s?content_bottom\s?\}\})~
+LINE: 255
+REGEX: ~(\{% if \(?products\)? %\})~
+LINE: 88
+REGEX: ~(\{% if \(?products\)? %\})~
+LINE: 85
+REGEX: ~(\{% if \(?products\)? %\})~
+LINE: 80
+REGEX: ~(\{% if \(?products\)? %\})~
+LINE: 70
+REGEX: ~(\{% if \(?products\)? %\})~
+LINE: 28
+REGEX: ~(\{% if \(?products\)? %\})~
+LINE: 23
+
+FILE: system/engine/router.php
+CODE: public function __construct($registry) {
+LINE: 33
+CODE: public function getLinks
+LINE: 126
+
+FILE: system/library/seopro.php
+CODE: validate() {
+LINE: 480
+CODE: $loader = new \Twig\Loader\ArrayLoader(array($filename . '.twig' => $code));
+NOT FOUND - OPERATIONS ABORTED!
+----------------------------------------------------------------
+MOD: Universal Import Export Pro
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "customer SET
+LINE: 3
+
+FILE: admin/model/catalog/category.php
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category SET
+LINE: 6
+CODE: $this->db->query("UPDATE " . DB_PREFIX . "category SET parent_id = '" . (int)$data['parent_id'] . "',
+LINE: 106
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET
+LINE: 39
+LINE: 135
+CODE: if (isset($this->request->post['sort_order'])) {
+LINE: 461
+
+FILE: admin/view/template/catalog/category_form.twig
+CODE: <div class="tab-pane" id="tab-data">
+LINE: 99
+
+FILE: admin/model/catalog/information.php
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "information SET
+LINE: 6
+CODE: $this->db->query("UPDATE " . DB_PREFIX . "information SET sort_order = '" . (int)$data['sort_order'] . "',
+LINE: 63
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "information_description SET
+LINE: 31
+LINE: 84
+CODE: protected function getList() {
+LINE: 390
+CODE: $url .= '&filter_name='
+LINE: 37
+LINE: 125
+LINE: 230
+LINE: 320
+LINE: 582
+LINE: 752
+LINE: 828
+LINE: 976
+CODE: 'filter_name'	  => $filter_name,
+LINE: 663
+CODE: $this->response->setOutput($this->load->view('catalog/product_form
+LINE: 1745
+CODE: {{ entry_sort_order }}</label>
+LINE: 455
+
+FILE: admin/view/template/catalog/product_list.twig
+CODE: <button type="button" id="button-filter" class="btn btn-default"><i class="fa fa-filter"></i> {{ button_filter }}</button>
+LINE: 238
+CODE: var filter_name = $('input[name=\'filter_name\']').val();
+LINE: 322
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_filter SET
+LINE: 132
+LINE: 350
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product SET
+LINE: 6
+CODE: public function editProduct(
+LINE: 234
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET
+LINE: 35
+LINE: 251
+CODE: SET product_option_id = '" . (int)$product_option['product_option_id'] . "',
+LINE: 313
+LINE: 327
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "product_option_value SET product_option_value_id =
+LINE: 323
+CODE: if (!empty($data['filter_name'])) {
+LINE: 685
+LINE: 1061
+
+FILE: admin/model/catalog/manufacturer.php
+CODE: $this->db->query("INSERT INTO " . DB_PREFIX . "manufacturer SET
+LINE: 6
+CODE: $this->db->escape(sha1($salt . sha1($salt . sha1($data['password']))))
+LINE: 15
+LINE: 42
+CODE: $this->db->escape($salt = token(9))
+LINE: 15
+LINE: 42
+CODE: if ($this->user->hasPermission('access', 'marketplace/event')) {
+LINE: 262
+CODE: if ($this->user->hasPermission('access', 'extension/event')) {
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: admin/controller/extension/extension/module.php
+CODE: $files = glob(DIR_APPLICATION . 'controller/extension/module/*.php');
+LINE: 139
+CODE: $data['extensions'][] = array(
+LINE: 190
+----------------------------------------------------------------
+MOD: 2 simple url rewrite
+
+FILE: catalog/controller/startup/startup.php
+CODE: $this->registry->set('url'
+LINE: 47
+----------------------------------------------------------------
+MOD: DEV-OPENCART.COM - SEO Tags Generator — автогенерация мета-тегов Title и Description
+CODE: if ($category_info['meta_title']) {
+LINE: 125
+CODE: if ($product_info['meta_title']) {
+LINE: 313
+CODE: if ($manufacturer_info) {
+LINE: 152
+CODE: $this->document->setTitle($manufacturer_info['name']);
+LINE: 157
+
+FILE: admin/controller/startup/startup.php
+CODE: $this->registry->set('currency', new Cart\Currency($this->registry));
+LINE: 68
+
+FILE: admin/model/localisation/language.php
+CODE: return $language_id;
+LINE: 221
+CODE: $data['heading_title'] = $data['category_description'][$language_id]['name'];
+LINE: 357
+CODE: if (!isset($this->request->get['category_id'])) {
+LINE: 320
+CODE: $this->load->model('catalog/filter');
+LINE: 436
+CODE: $category_id = $this->db->getLastId();
+LINE: 42
+CODE: $this->db->query("UPDATE " . DB_PREFIX . "category SET parent_id
+LINE: 159
+CODE: <label class="col-sm-2 control-label" for="input-description{{ language.language_id }}">{{ entry_description }}</label>
+LINE: 125
+CODE: <div class="tab-pane" id="tab-data">
+LINE: 151
+CODE: if (!isset($this->request->get['product_id'])) {
+LINE: 1063
+CODE: // Categories
+LINE: 1464
+CODE: <label class="col-sm-2 control-label" for="input-description{{ language.language_id }}">{{ entry_description }}</label>
+LINE: 191
+CODE: <input type="text" name="product_description[{{ language.language_id }}][tag]" value="{{ product_description[language.language_id] ? product_description[language.language_id].tag }}" placeholder="{{ entry_tag }}" id="input-tag{{ language.language_id }}" class="form-control"
+LINE: 216
+
+FILE: admin/controller/catalog/manufacturer.php
+CODE: $this->load->model('setting/store');
+LINE: 403
+
+FILE: admin/view/template/catalog/manufacturer_form.twig
+CODE: <label class="col-sm-2 control-label" for="input-description{{ language.language_id }}">{{ entry_description }}</label>
+LINE: 115
+CODE: $product_id = $this->db->getLastId();
+LINE: 38
+CODE: public function editProduct($product_id, $data) {
+LINE: 247
+CODE: if (isset($this->error['name'])) {
+LINE: 282
+CODE: $this->load->model('catalog/filter');
+LINE: 474
+CODE: foreach ($this->request->post['category_description']
+LINE: 680
+CODE: if (isset($data['image'])) {
+LINE: 48
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "category_description
+LINE: 174
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "category_description WHERE category_id = '" . (int)$category_id . "'");
+LINE: 331
+CODE: <div class="text-danger">{{ error_name[language.language_id] }}</div>
+LINE: 96
+CODE: $this->load->model('catalog/filter');
+LINE: 482
+CODE: if (isset($data['image'])) {
+LINE: 54
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "category_description
+LINE: 187
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "category_description WHERE category_id = '" . (int)$category_id . "'");
+LINE: 348
+CODE: <li><a href="#tab-design" data-toggle="tab">{{ tab_design }}</a></li>
+LINE: 35
+CODE: <div class="tab-pane" id="tab-design">
+LINE: 372
+CODE: foreach ($this->request->post['category_description'] as $language_id => $value) {
+LINE: 698
+CODE: if (isset($this->error['name'])) {
+LINE: 290
+----------------------------------------------------------------
+MOD: DEV-OPENCART.COM - SEO URL Generator PRO
+CODE: $parts = explode('/', $this->request->get['_route_']);
+LINE: 37
+CODE: $this->request->get['route'] = 'error/not_found';
+LINE: 198
+CODE: public function prepareRoute($parts) {
+LINE: 59
+CODE: $this->request->get['route'] = 'error/not_found';
+LINE: 208
+CODE: if (isset($this->request->post['category_seo_url'])) {
+LINE: 695
+CODE: if (isset($this->error['keyword'])) {
+LINE: 316
+CODE: if ($this->request->post['category_seo_url']) {
+LINE: 803
+CODE: if (isset($data['category_seo_url'])) {
+LINE: 171
+CODE: $this->db->query("DELETE FROM `" . DB_PREFIX . "seo_url` WHERE query = 'category_id=
+LINE: 563
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "category WHERE category_id = '" . (int)$category_id . "'");
+LINE: 635
+CODE: <input type="text" name="category_seo_url[{{ store.store_id }}][{{ language.language_id }}]" value="{% if category_seo_url[store.store_id][language.language_id] %}{{ category_seo_url[store.store_id][language.language_id] }}{% endif %}" placeholder="{{ entry_keyword }}" class="form-control" />
+LINE: 312
+CODE: {{ footer }}
+LINE: 828
+CODE: if (isset($this->request->post['product_seo_url'])) {
+LINE: 1847
+CODE: if (isset($this->error['keyword'])) {
+LINE: 971
+CODE: if ($this->request->post['product_seo_url']) {
+LINE: 1943
+CODE: $data['keyword'] = '';
+LINE: 542
+CODE: if (isset($data['product_seo_url'])) {
+LINE: 279
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "seo_url WHERE query =
+LINE: 785
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "'");
+LINE: 914
+LINE: 956
+CODE: <input type="text" name="product_seo_url[{{ store.store_id }}][{{ language.language_id }}]" value="{% if product_seo_url[store.store_id][language.language_id] %}{{ product_seo_url[store.store_id][language.language_id] }}{% endif %}" placeholder="{{ entry_keyword }}" class="form-control"/>
+NOT FOUND - OPERATIONS ABORTED!
+CODE: if (isset($this->request->post['manufacturer_seo_url'])) {
+LINE: 575
+CODE: if (isset($this->error['keyword'])) {
+LINE: 288
+CODE: if ($this->request->post['manufacturer_seo_url']) {
+LINE: 631
+CODE: if (isset($data['manufacturer_seo_url'])) {
+LINE: 131
+CODE: $this->db->query("DELETE FROM `" . DB_PREFIX . "seo_url` WHERE query = 'manufacturer_id=
+LINE: 416
+CODE: <input type="text" name="manufacturer_seo_url[{{ store.store_id }}][{{ language.language_id }}]" value="{% if manufacturer_seo_url[store.store_id][language.language_id] %}{{ manufacturer_seo_url[store.store_id][language.language_id] }}{% endif %}" placeholder="{{ entry_keyword }}" class="form-control" />
+LINE: 170
+CODE: {{ footer }}
+LINE: 610
+
+FILE: admin/controller/catalog/information.php
+CODE: if (isset($this->request->post['information_seo_url'])) {
+LINE: 468
+CODE: if (isset($this->error['keyword'])) {
+LINE: 296
+CODE: if ($this->request->post['information_seo_url']) {
+LINE: 540
+CODE: if (isset($data['information_seo_url'])) {
+LINE: 125
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "seo_url WHERE query = 'information_id=
+LINE: 408
+
+FILE: admin/view/template/catalog/information_form.twig
+CODE: <input type="text" name="information_seo_url[{{ store.store_id }}][{{ language.language_id }}]" value="{% if information_seo_url[store.store_id][language.language_id] %}{{ information_seo_url[store.store_id][language.language_id] }}{% endif %}" placeholder="{{ entry_keyword }}" class="form-control" />
+LINE: 168
+CODE: {{ footer }}
+LINE: 535
+
+FILE: admin/model/extension/module/seo_url_generator.php
+CODE: $array_custom_tabs = array();
+LINE: 60
+CODE: // Example for customization . end
+LINE: 297
+CODE: $sql = "SELECT `language_id`, `$column_name` FROM `" . DB_PREFIX . $essence . "_description` WHERE `" . $primary_key . "` = '" . (int)$essence_id . "'";
+LINE: 344
+
+FILE: admin/controller/blog/category.php
+CODE: if (isset($this->request->post['category_seo_url'])) {
+LINE: 431
+CODE: if (isset($this->error['keyword'])) {
+LINE: 241
+CODE: if ($this->request->post['category_seo_url']) {
+LINE: 515
+
+FILE: admin/model/blog/category.php
+CODE: if (isset($data['category_seo_url'])) {
+LINE: 99
+CODE: $this->db->query("DELETE FROM `" . DB_PREFIX . "seo_url` WHERE query = 'blog_category_id=
+LINE: 392
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "category WHERE blog_category_id = '" . (int)$blog_category_id . "'");
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/view/template/blog/category_form.twig
+CODE: <input type="text" name="category_seo_url[{{ store.store_id }}][{{ language.language_id }}]" value="{% if category_seo_url[store.store_id][language.language_id] %}{{ category_seo_url[store.store_id][language.language_id] }}{% endif %}" placeholder="{{ entry_keyword }}" class="form-control" />
+LINE: 174
+CODE: {{ footer }}
+LINE: 570
+
+FILE: admin/controller/blog/article.php
+CODE: if (isset($this->request->post['article_seo_url'])) {
+LINE: 762
+CODE: if (isset($this->error['keyword'])) {
+LINE: 446
+CODE: if ($this->request->post['article_seo_url']) {
+LINE: 830
+
+FILE: admin/model/blog/article.php
+CODE: if (isset($data['article_seo_url'])) {
+LINE: 138
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "seo_url WHERE query = 'article_id=
+LINE: 455
+
+FILE: admin/view/template/blog/article_form.twig
+CODE: <input type="text" name="article_seo_url[{{ store.store_id }}][{{ language.language_id }}]" value="{% if article_seo_url[store.store_id][language.language_id] %}{{ article_seo_url[store.store_id][language.language_id] }}{% endif %}" placeholder="{{ entry_keyword }}" class="form-control" />
+LINE: 239
+CODE: {{ footer }}
+LINE: 751
+----------------------------------------------------------------
+MOD: DEV-OPENCART.COM - UniXML
+CODE: <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+NOT FOUND - OPERATION SKIPPED!
+CODE: <script type="text/javascript" src="view/javascript/bootstrap/js/bootstrap.min.js"></script>
+LINE: 18
+----------------------------------------------------------------
+MOD: DEV-OPENCART.COM - Массовый автоматический перевод текстов
+CODE: public function index(
+LINE: 10
+CODE: </head>
+LINE: 41
+CODE: <header
+LINE: 74
+----------------------------------------------------------------
+MOD: Shipping Data Admin
+CODE: public function getForm(
+LINE: 570
+
+FILE: admin/model/sale/order.php
+CODE: public function getOrderProducts(
+LINE: 260
+CODE: // Text
+LINE: 22
+CODE: // Text
+LINE: 25
+CODE: // Text
+LINE: 24
+
+FILE: admin/view/template/sale/order_list.twig
+CODE: {{ footer }}
+LINE: 619
+
+FILE: admin/view/template/sale/order_info.twig
+CODE: {{ footer }}
+LINE: 859
+----------------------------------------------------------------
+MOD: Shipping Data for Simple checkout and registration
+CODE: public function index(
+LINE: 16
+
+FILE: catalog/model/tool/simpleapimain.php
+CODE: extends Model {
+LINE: 200
+
+FILE: catalog/model/tool/simpleapicustom.php
+CODE: extends Model {
+LINE: 200
+CODE: {% include simple_footer %}
+LINE: 632
+CODE: {% include simple_footer %}
+LINE: 647
+CODE: </label>
+LINE: 53
+CODE: </label>
+LINE: 53
+----------------------------------------------------------------

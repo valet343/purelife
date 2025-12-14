@@ -1,0 +1,53 @@
+{{ header }}
+<div id="product-manufacturer" class="container">
+  <div class="columns">
+    {{ column_left }}
+    <div id="content" class="{{ class }}">
+      <ul itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+        
+            {% set last_crumb = breadcrumbs|last %}
+            {% set breadcrumbs = breadcrumbs|slice(0,-1) %}
+            {% set i = 1 %}
+            {% for breadcrumb in breadcrumbs %}
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ breadcrumb.href }}" itemprop="item"><span itemprop="name">{{ breadcrumb.text }}</span></a><meta itemprop="position" content="{{ i }}" /></li>
+                {% set i = i + 1 %}
+            {% endfor %}
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><link href="{{ last_crumb.href }}" itemprop="item"/><span itemprop="name">{{ last_crumb.text|striptags }}</span><meta itemprop="position" content="{{ i }}" /></li>
+            {% for breadcrumb in breadcrumbs123 %}
+            
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+      <h1>{{ heading_title }}</h1>
+      {{ content_top }}
+      {% if categories %}
+      <p class="manufacturer_letters">
+        <strong>{{ text_index }}</strong>
+        {% for category in categories %}
+          <a href="index.php?route=product/manufacturer#{{ category.name }}">{{ category.name }}</a>
+        {% endfor %}
+      </p>
+      {% for category in categories %}
+      <h2 id="{{ category.name }}">{{ category.name }}</h2>
+      {% if category.manufacturer %}
+      {% for manufacturers in category.manufacturer|batch(4) %}
+      <div class="manufacturer_items">
+        {% for manufacturer in manufacturers %}
+        <div class="item">
+          <a href="{{ manufacturer.href }}">{% if manufacturer['logo'] %}<img src="{{ manufacturer['logo'] }}" alt="{{ manufacturer['name'] }}" />{% else %}<img src="image/placeholder.png" width="100" height="100" alt="{{ manufacturer['name'] }}">{% endif %}{{ manufacturer.name }}</a> 
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endfor %}
+      {% else %}
+      <p>{{ text_empty }}</p>
+      <div class="buttons clearfix">
+        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {% endif %}
+      {{ content_bottom }}</div>
+    {{ column_right }}</div>
+</div>
+{{ footer }}

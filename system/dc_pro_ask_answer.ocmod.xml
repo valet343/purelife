@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+<name>DEV-OPENCART.COM - Задать вопрос о товаре (DEVCART PRO)</name>
+<version>1</version>
+<link>https://DEV-OPENCART.COM</link>
+<author>DEV-OPENCART.COM</author>
+<code>dev_opencart_com_ask_product_answer</code>
+	<file path="catalog/controller/product/product.php">
+		<operation>
+			<search><![CDATA[
+			$data['header'] = $this->load->controller('common/header');
+			]]></search>
+			<add position="before"><![CDATA[
+			$this->load->model('extension/module/art_aqa_product');
+			$data['art_aqa_product_send'] = $this->config->get('module_art_aqa_product_status');
+			$data['art_aqa_product_form'] = $this->load->controller('extension/module/art_aqa_product/getForm', array('product_name' => $product_info['name']));
+			$art_aqa_product_title_tab = $this->config->get('module_art_aqa_product_title_tab');
+
+			if (!empty($art_aqa_product_title_tab)) {
+				$data['art_aqa_product_tab'] = $art_aqa_product_title_tab;
+			} else {
+				$data['art_aqa_product_tab'] = $this->language->get('text_art_aqa_product_tab');
+			}
+
+	   	$data['art_aqa_product_title'] = $this->language->get('art_aqa_product_title ');
+		   	
+	   	$data['art_aqa_product_total'] = $this->model_extension_module_art_aqa_product->getTotalQuestion($product_info['product_id']);
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/view/theme/*/template/product/product.twig">
+		<operation>
+			<search><![CDATA[<div class="tab-content" id="product">]]></search>
+			<add position="before" offset="1"><![CDATA[
+			{% if art_aqa_product_send %}
+        <li><p class="tab-art_aqa_product">{{ art_aqa_product_tab }} <span>{{ art_aqa_product_total }}</span></p></li>
+      {% endif %}
+			]]></add>
+		</operation>
+		<operation>
+			<search index="0"><![CDATA[<div class="product_middle_right">]]></search>
+			<add position="before" offset="2"><![CDATA[
+        {% if art_aqa_product_send %}
+        <div class="tab-pane" id="tab-art_aqa_product">
+          {{ art_aqa_product_form }}
+        </div>
+        {% endif %}
+			]]></add>
+		</operation>
+	</file>
+</modification>

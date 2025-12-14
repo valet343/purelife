@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<name>DEV-OPENCART.COM — Watermark (DEVCART PRO)</name>
+	<version>1</version>
+	<link>https://dev-opencart.com</link>
+	<author>DEV-OPENCART.COM</author>
+	<code>dev_opencart_com_watermark</code>
+
+	<!-- controller -->
+
+	<file path="catalog/controller/extension/module/{bestseller.php,latest.php,special.php,alsobuy.php}|catalog/controller/product/{category.php,search.php,special.php,compare.php}|catalog/controller/account/wishlist.php">
+		<operation error="skip">
+			<search><![CDATA[public function index]]></search>
+			<add position="after"><![CDATA[$this->load->model('extension/module/oc_watermark');]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$image = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$image = $this->model_extension_module_oc_watermark->resize('product', ]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$image2 = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$image2 = $this->model_extension_module_oc_watermark->resize('product', ]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/extension/module/featured.php">
+		<operation error="skip">
+			<search><![CDATA[public function index]]></search>
+			<add position="after"><![CDATA[$this->load->model('extension/module/oc_watermark');]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$image = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$image = $this->model_extension_module_oc_watermark->resize('product', ]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$image2 = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$image2 = $this->model_extension_module_oc_watermark->resize('product', ]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/extension/module/featured_product.php">
+		<operation error="skip">
+			<search><![CDATA[public function index]]></search>
+			<add position="after"><![CDATA[$this->load->model('extension/module/oc_watermark');]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$image = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$image = $this->model_extension_module_oc_watermark->resize('product', ]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$image2 = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$image2 = $this->model_extension_module_oc_watermark->resize('product', ]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/product/manufacturer.php">
+		<operation error="skip">
+			<search><![CDATA[public function info]]></search>
+			<add position="after"><![CDATA[$this->load->model('extension/module/oc_watermark');]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$image = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$image = $this->model_extension_module_oc_watermark->resize('product', ]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$image2 = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$image2 = $this->model_extension_module_oc_watermark->resize('product', ]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/product/product.php">
+		<operation error="skip">
+			<search><![CDATA[public function index]]></search>
+			<add position="after"><![CDATA[$this->load->model('extension/module/oc_watermark');]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$image = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$image = $this->model_extension_module_oc_watermark->resize('product', ]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$image2 = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$image2 = $this->model_extension_module_oc_watermark->resize('product', ]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$data['thumb'] = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$data['thumb'] = $this->model_extension_module_oc_watermark->resize('thumb', ]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$data['thumb_small'] = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$data['thumb_small'] = $this->model_extension_module_oc_watermark->resize('thumb', ]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA['popup' => $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA['popup' => $this->model_extension_module_oc_watermark->resize('popup', ]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$data['popup'] = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$data['popup'] = $this->model_extension_module_oc_watermark->resize('popup', ]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA['thumb' => $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA['thumb' => $this->model_extension_module_oc_watermark->resize('additional', ]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$this->model_tool_image->resize($option_value['image']]]></search>
+			<add position="replace"><![CDATA[$this->model_extension_module_oc_watermark->resize('option', $option_value['image']]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/checkout/cart.php|catalog/controller/common/cart.php">
+		<operation error="skip">
+			<search><![CDATA[public function index]]></search>
+			<add position="after"><![CDATA[$this->load->model('extension/module/oc_watermark');]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$image = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$image = $this->model_extension_module_oc_watermark->resize('cart', ]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/extension/module/carousel.php">
+		<operation error="skip">
+			<search><![CDATA[public function index]]></search>
+			<add position="after"><![CDATA[$this->load->model('extension/module/oc_watermark');]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$this->model_extension_module_oc_watermark->resize('carousel', ]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/extension/module/banner.php">
+		<operation error="skip">
+			<search><![CDATA[public function index]]></search>
+			<add position="after"><![CDATA[$this->load->model('extension/module/oc_watermark');]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$this->model_extension_module_oc_watermark->resize('banner', ]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/extension/module/slideshow.php">
+		<operation error="skip">
+			<search><![CDATA[public function index]]></search>
+			<add position="after"><![CDATA[$this->load->model('extension/module/oc_watermark');]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$this->model_extension_module_oc_watermark->resize('slideshow', ]]></add>
+		</operation>
+	</file>
+	<file path="catalog/model/extension/module/options_category.php">
+		<operation error="skip">
+			<search><![CDATA[$this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$image = $this->model_extension_module_oc_watermark->resize('option', ]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/extension/module/preorder.php">
+		<operation error="skip">
+			<search><![CDATA[public function form]]></search>
+			<add position="after"><![CDATA[$this->load->model('extension/module/oc_watermark');]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$json['image'] = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$json['image'] = $this->model_extension_module_oc_watermark->resize('preorder', ]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[public function account]]></search>
+			<add position="after"><![CDATA[$this->load->model('extension/module/oc_watermark');]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$product_image = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$product_image = $this->model_extension_module_oc_watermark->resize('preorder', ]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/extension/module/p_review.php">
+		<operation error="skip">
+			<search><![CDATA[public function all]]></search>
+			<add position="after"><![CDATA[$this->load->model('extension/module/oc_watermark');]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$product_image = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$product_image = $this->model_extension_module_oc_watermark->resize('p_review', ]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[public function info]]></search>
+			<add position="after"><![CDATA[$this->load->model('extension/module/oc_watermark');]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$data['product_image'] = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$data['product_image'] = $this->model_extension_module_oc_watermark->resize('p_review', ]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/extension/module/pm_review.php">
+		<operation error="skip">
+			<search><![CDATA[public function index]]></search>
+			<add position="after"><![CDATA[$this->load->model('extension/module/oc_watermark');]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$product_image = $this->model_tool_image->resize(]]></search>
+			<add position="replace"><![CDATA[$product_image = $this->model_extension_module_oc_watermark->resize('p_review', ]]></add>
+		</operation>
+	</file>
+
+</modification>

@@ -1,0 +1,184 @@
+{{ header }}{{ column_left }}
+<div id="content" class="dc_pro_theme">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title_text }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+          <div class="form-group required">
+            <label class="col-sm-3 control-label" for="input-status">{{ entry_status }}</label>
+            <div class="col-sm-9">
+              <select name="module_speedy_banner_top_status" id="input-status" class="form-control">
+                {% if module_speedy_banner_top_status %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-3 control-label" for="input-type">{{ entry_type }}</label>
+            <div class="col-sm-9">
+              <select name="module_speedy_banner_top_type" id="input-type" class="form-control">
+                {% if module_speedy_banner_top_type == 'banner' %}
+                <option value="banner" selected="selected">{{ text_banner }}</option>
+                <option value="info">{{ text_info }}</option>
+                {% else %}
+                <option value="banner">{{ text_banner }}</option>
+                <option value="info" selected="selected">{{ text_info }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group required banner">
+            <label class="col-sm-3 control-label" for="input-background-color">Фон</label>
+            <div class="col-sm-9">
+              <input type="text" name="module_speedy_banner_top_background" value="{{ module_speedy_banner_top_background }}" placeholder="#000000" id="input-background-color" class="form-control colorpicker" />
+            </div>
+          </div>
+          <div class="form-group required banner">
+            <label class="col-sm-3 control-label" for="input-background-text">Текст на изображении</label>
+            <div class="col-sm-9">
+              {% for language in languages %}
+              <div class="input-group input-group-last">
+                <input type="text" name="module_speedy_banner_top_text[{{ language.language_id }}]" value="{{ module_speedy_banner_top_text[language.language_id] ? module_speedy_banner_top_text[language.language_id] }}" placeholder="{{ entry_name }}" class="form-control" />
+                <span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="form-group banner">
+            <label class="col-sm-3 control-label" for="input-text-size">Ссылки (SEO URL)</label>
+            <div class="col-sm-9">
+              {% for language in languages %}
+              <div class="input-group input-group-last">
+                <input type="text" name="module_speedy_banner_top_link[{{ language.language_id }}]" value="{{ module_speedy_banner_top_link[language.language_id] ? module_speedy_banner_top_link[language.language_id] }}" placeholder="{{ entry_name }}" class="form-control" />
+                <span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="form-group required banner">
+            <label class="col-sm-3 control-label" for="input-image">Изображение</label>
+            <div class="col-sm-9"><a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="{{ thumb }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a>
+              <input type="hidden" name="module_speedy_banner_top_image" value="{{ module_speedy_banner_top_image }}" id="input-image" />
+            </div>
+          </div>
+          <div class="form-group required banner">
+            <label class="col-sm-3 control-label" for="input-image-banner-top-width">Размеры изображения</label>
+            <div class="col-sm-9">
+              <div class="row">
+                <div class="col-sm-6">
+                  <input type="text" name="module_speedy_banner_top_width" value="{{ module_speedy_banner_top_width }}" placeholder="{{ entry_width }}" id="input-image-banner-top-width" class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" name="module_speedy_banner_top_height" value="{{ module_speedy_banner_top_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group required info">
+            <label class="col-sm-3 control-label" for="input-background-top-color">Фон</label>
+            <div class="col-sm-9">
+              <input type="text" name="module_speedy_banner_top_info_background" value="{{ module_speedy_banner_top_info_background }}" placeholder="#000000" id="input-background-top-color" class="form-control colorpicker" />
+            </div>
+          </div>
+          <div class="form-group required info">
+            <label class="col-sm-3 control-label" for="input-background-text">Текст</label>
+            <div class="col-sm-9">
+              {% for language in languages %}
+              <div class="input-group input-group-last">
+                <input type="text" name="module_speedy_banner_top_info_text[{{ language.language_id }}]" value="{{ module_speedy_banner_top_info_text[language.language_id] ? module_speedy_banner_top_info_text[language.language_id] }}" placeholder="{{ entry_name }}" class="form-control" />
+                <span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="form-group info">
+            <label class="col-sm-3 control-label" for="input-text-size">Ссылки (SEO URL)</label>
+            <div class="col-sm-9">
+              {% for language in languages %}
+              <div class="input-group input-group-last">
+                <input type="text" name="module_speedy_banner_top_info_link[{{ language.language_id }}]" value="{{ module_speedy_banner_top_info_link[language.language_id] ? module_speedy_banner_top_info_link[language.language_id] }}" placeholder="{{ entry_name }}" class="form-control" />
+                <span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="form-group required info">
+            <label class="col-sm-3 control-label" for="input-image-banner-top-width">Высота</label>
+            <div class="col-sm-9">
+              <input type="text" name="module_speedy_banner_top_info_height" value="{{ module_speedy_banner_top_info_height }}" placeholder="{{ entry_height }}" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group info">
+            <label class="col-sm-3 control-label" for="input-image-banner-top-width"></label>
+            <div class="col-sm-9">
+              <input type="text" name="module_speedy_banner_top_info_id" value="{{ module_speedy_banner_top_info_id }}" placeholder="{{ entry_height }}" class="form-control" style="display: none;" />
+              <button id="change_info_id" class="btn btn-success">Нажмите, чтоб удалить кеш и показывать блок всем, кто его закрыл</button>
+              <div class="alert alert-bottom alert-warning alert-dismissible">После нажатия <b>страница сохраняется</b></div>
+              <script>
+                $('#change_info_id').on("click", function() {
+                  var text = "";
+                  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+                  for( var i=0; i < 10; i++ )
+                  text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+                  $('input[name="module_speedy_banner_top_info_id"]').val(text);
+                })
+              </script>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}
+<script>
+  $('.colorpicker').spectrum({type: "component"});
+  // При старте
+    // Проверка на тип слайдера (картинка или картинка + текст)
+    if($("#input-type :selected").val() == 'banner') {
+      $(".banner").css({"display":"revert"});
+      $(".info").css({"display":"none"});
+    } else {
+      $(".info").css({"display":"revert"});
+      $(".banner").css({"display":"none"});
+    }
+  // Изменения
+    // Проверка на тип
+    $("#input-type").on('change', function() {
+      if($("#input-type :selected").val() == 'banner') {
+        $(".banner").css({"display":"revert"});
+        $(".info").css({"display":"none"});
+      } else {
+        $(".info").css({"display":"revert"});
+        $(".banner").css({"display":"none"});
+      }
+    });
+</script>

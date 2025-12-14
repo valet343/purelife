@@ -1,0 +1,70 @@
+<style>
+.list_category {
+  font-family: {{ font_family ? font_family : 'Arial, sans-serif' }};
+}
+.list_category .list-group-item {
+  font-family: {{ font_family ? font_family : 'Arial, sans-serif' }};
+  font-size: {{ font_size ? font_size : '16px' }};
+  font-weight: {{ font_weight ? font_weight : 'normal' }};
+  color: {{ font_color ? font_color : '#000000' }};
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.list_category .list-group-item .category-icon {
+  width: {{ icon_size ? icon_size : '24px' }};
+  height: {{ icon_size ? icon_size : '24px' }};
+  object-fit: contain;
+  flex-shrink: 0;
+}
+</style>
+
+<section class="list_category">
+  <div class="section_title">{{ heading_title }}</div>
+  <ul>
+  {% for category in categories %}
+  {% if category.blog_category_id == blog_category_id %} 
+  <li>
+    <a href="{{ category.href }}" class="list-group-item active">
+      {% if show_icons and category.icon is defined and category.icon %}
+      <img src="{{ category.icon }}" alt="{{ category.name }}" class="category-icon" />
+      {% endif %}
+      <span>{{ category.name }}</span>
+    </a>
+  </li> 
+  {% if category.children %}
+  {% for child in category.children %}
+  {% if child.blog_category_id == child_id %}
+  <li>
+    <a href="{{ child.href }}" class="list-group-item active">
+      {% if show_icons and child.icon is defined and child.icon %}
+      <img src="{{ child.icon }}" alt="{{ child.name }}" class="category-icon" />
+      {% endif %}
+      <span>&nbsp;&nbsp;&nbsp;- {{ child.name }}</span>
+    </a>
+  </li> 
+  {% else %} 
+  <li>
+    <a href="{{ child.href }}" class="list-group-item">
+      {% if show_icons and child.icon is defined and child.icon %}
+      <img src="{{ child.icon }}" alt="{{ child.name }}" class="category-icon" />
+      {% endif %}
+      <span>&nbsp;&nbsp;&nbsp;- {{ child.name }}</span>
+    </a>
+  </li>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+  {% else %}
+  <li>
+    <a href="{{ category.href }}" class="list-group-item">
+      {% if show_icons and category.icon is defined and category.icon %}
+      <img src="{{ category.icon }}" alt="{{ category.name }}" class="category-icon" />
+      {% endif %}
+      <span>{{ category.name }}</span>
+    </a>
+  </li>
+  {% endif %}
+  {% endfor %}
+  </ul>
+</section>

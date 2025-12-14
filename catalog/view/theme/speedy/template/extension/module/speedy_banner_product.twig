@@ -1,0 +1,100 @@
+{% if banners_product %}
+{% if column == 3 %}
+<style>
+    .banner_product_content {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .banner_product_content.banner_product_carousel .item {
+        max-width: 31%;
+    }
+    @media (max-width: 768px) {
+        .banner_product_content {
+            grid-template-columns: 1fr;
+        }
+        .banner_product_content.banner_product_carousel .item {
+          max-width: 85%;
+        }
+    }
+</style>
+{% else %}
+<style>
+    .banner_product_content {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .banner_product_content.banner_product_carousel .item {
+        max-width: 23%;
+    }
+    @media (max-width: 1100px) {
+        .banner_product_content {
+            grid-template-columns: 1fr 1fr;
+        }   
+    }
+    @media (max-width: 768px) {
+        .banner_product_content {
+            grid-template-columns: 1fr;
+        }
+        .banner_product_content.banner_product_carousel .item {
+          max-width: 85%;
+        }
+    }
+</style>
+{% endif %}
+<section class="banner_product">
+  <div id="banner_product_content{{ module }}" class="banner_product_content{% if type == 'list' %} banner_product_list{% elseif type == 'list2' %} banner_product_list banner_product_list2{% else %} banner_product_carousel swiper{% endif %}">
+    {% if type == 'carousel' %}
+      <div class="swiper-wrapper">
+        {% for banner in banners_product %}
+        <div class="swiper-slide item"{% if banner.background_color %} style="background-color: {{ banner.background_color }}"{% endif%}>
+          <div class="caption">
+            {% if banner.sticker %}<u>{{ banner.sticker }}</u>{% endif %}
+            {% if banner.title %}<p>{{ banner.title }}</p>{% endif %}
+            {% if banner.price %}<span>{{ banner.price }}</span>{% endif %}
+            {% if banner.link and banner.button_text %}<a class="btn{% if banner.button_type == 1 %} button_type_button{% else %} button_type_link{% endif %}" href="{{ banner.link }}">{{ banner.button_text }}</a>{% endif %}
+          </div>
+          <div class="image"><img src="{{ banner.image }}" alt="{{ banner.title }}"/></div>
+        </div>
+        {% endfor %}
+      </div>
+      <script>
+        var swiperBannerProductContent = new Swiper("#banner_product_content{{ module }}", {
+          spaceBetween: 10,
+          loop: true,
+          // breakpoints: {
+          //   320: {
+          //     slidesPerView: 1,
+          //   },
+          //   480: {
+          //     slidesPerView: 1,
+          //   },
+          //   768: {
+          //     slidesPerView: 2,
+          //   },
+          //   1024: {
+          //     slidesPerView: 3,
+          //   },
+          //   1280: {
+          //     slidesPerView: 4,
+          //   },
+          //   1440: {
+          //     slidesPerView: {{ column }},
+          //   },
+          // },
+          slidesPerView: "auto",
+        });
+      </script>
+    {% else %}
+      {% for banner in banners_product %}
+      <div class="item"{% if banner.background_color %} style="background-color: {{ banner.background_color }}"{% endif%}>
+        <div class="caption">
+          {% if banner.sticker %}<u>{{ banner.sticker }}</u>{% endif %}
+          {% if banner.title %}<p>{{ banner.title }}</p>{% endif %}
+          {% if banner.price %}<span>{{ banner.price }}</span>{% endif %}
+          {% if banner.link and banner.button_text %}<a class="btn{% if banner.button_type == 1 %} button_type_link{% else %} button_type_button{% endif %}" href="{{ banner.link }}">{{ banner.button_text }}</a>{% endif %}
+        </div>
+        <div class="image"><img src="{{ banner.image }}" alt="{{ banner.title }}"/></div>
+      </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</section>
+{% endif %}

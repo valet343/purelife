@@ -1,0 +1,304 @@
+{{ header }}
+<div id="product-category" class="container">
+  <ul itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+    
+            {% set last_crumb = breadcrumbs|last %}
+            {% set breadcrumbs = breadcrumbs|slice(0,-1) %}
+            {% set i = 1 %}
+            {% for breadcrumb in breadcrumbs %}
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ breadcrumb.href }}" itemprop="item"><span itemprop="name">{{ breadcrumb.text }}</span></a><meta itemprop="position" content="{{ i }}" /></li>
+                {% set i = i + 1 %}
+            {% endfor %}
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><link href="{{ last_crumb.href }}" itemprop="item"/><span itemprop="name">{{ last_crumb.text|striptags }}</span><meta itemprop="position" content="{{ i }}" /></li>
+            {% for breadcrumb in breadcrumbs123 %}
+            
+    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endfor %}
+  </ul>
+  <h1>{{ heading_title }}</h1>
+  <div class="columns">
+    {{ column_left }}
+    <div id="content" class="{{ class }}">
+      {{ content_top }}
+      {% if description_position == 1 %}
+        {% if description %}
+        <div class="description_block">
+          {% if thumb %}
+            <img src="{{ thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" />
+          {% endif %}
+          {% if description %}
+            <div class="description_content">
+              <div class="description_text">{{ description }}</div>
+              <div class="description_link"></div>
+            </div>
+          {% endif %}
+        </div>
+        {% endif %}
+      {% endif %}
+
+      {% if categories %}
+      <div class="category_refine">
+        <p>{{ text_refine }}</p>
+        <div class="category_refine_items">
+          <ul class="swiper-wrapper">
+            {% for category in categories %}
+            <li class="swiper-slide"><a href="{{ category.href }}"><span><img src="{{ category.image }}" alt="{{ category.name }}"></span><p>{% if category.name|length > 25 %}{{ category.name|slice(0, 25) ~ '...' }}{% else %}{{ category.name }}{% endif %}</p></a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <script>
+        var swiperCategoryWall = new Swiper(".category_refine_items", {
+          slidesPerView: "auto",
+          spaceBetween: 10,
+          freeMode: true,
+        });
+      </script>
+      {% endif %}
+
+      <!-- OCFilter Start -->
+      {% if ocfilter_description_top %}
+      <div class="ocf-description ocf-description-top">{{ ocfilter_description_top }}</div>
+      {% endif %}
+      
+      {% if ocfilter_pages.top %}
+      <nav class="ocf-page-list-top">  
+        {% for ocfilter_page_group in ocfilter_pages.top %}
+        <div class="ocf-page-group">
+          {% if ocfilter_page_group.name %}
+          <div class="ocf-page-group-name">{{ ocfilter_page_group.name }}</div>
+          {% endif %}
+          <ul class="ocf-category-page-list">
+            {% for ocfilter_page in ocfilter_page_group.pages %}           
+            {% if ocfilter_page.selected %}
+            <li class="ocf-page-selected"><a href="{{ ocfilter_page.href }}">{{ ocfilter_page.name }}</a></li>
+            {% else %}
+            <li><a href="{{ ocfilter_page.href }}">{{ ocfilter_page.name }}</a></li>
+            {% endif %}            
+            {% endfor %}
+          </ul>         
+        </div>
+        {% endfor %}
+      </nav>
+      {% endif %} 
+      
+      {% if products %}
+      <!-- OCFilter Start -->      
+      {% if ocfilter_mobile_button %}
+      <div class="ocf-btn-mobile-static ocf-mobile">
+        <button type="button" class="ocf-btn ocf-btn-default" data-ocf="mobile"><span class="ocf-btn-name">{{ button_ocfilter_mobile }}</span> <i class="ocf-icon ocf-icon-16 ocf-brand ocf-sliders"></i></button>
+      </div>
+      {% endif %}   
+      <!-- /OCFilter End -->
+      <!-- /OCFilter End -->
+      <div class="products_sort">
+        <div class="type">
+          <button type="button" id="list-view"></button>
+          <button type="button" id="grid-view"></button>
+        </div>
+        <div class="sort">
+          <label class="input-group-addon" for="input-sort">{{ text_sort }}</label>
+          <select id="input-sort" class="form-control" onchange="location = this.value;">
+            {% for sorts in sorts %}
+            {% if sorts.value == '%s-%s'|format(sort, order) %}
+            <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
+            {% else %}
+            <option value="{{ sorts.href }}">{{ sorts.text }}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <div class="limit">
+          <!-- <label for="input-limit">{{ text_limit }}</label> -->
+          <select id="input-limit" onchange="location = this.value;">
+            {% for limits in limits %}
+            {% if limits.value == limit %}
+            <option value="{{ limits.href }}" selected="selected">{{ limits.text }}</option>
+            {% else %}
+            <option value="{{ limits.href }}">{{ limits.text }}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <!-- <p class="result">{{ results }}</p> -->
+      </div>
+      <div class="products_items products_sort_content">
+        {% for product in products %}
+        <div class="item product_{{ product.id }}{% if product.stock_status_id == 5 or product.stock_status_id == 6 or product.stock_status_id == 8 %} item_out_of_stock{% endif %}">
+          <div class="image">
+            <a href="{{ product.href }}">
+              <img class="image_main" src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+              {% if product.thumb2 %}<img class="image_hover" src="{{ product.thumb2 }}" alt="{{ product.name }}" title="{{ product.name }}" />{% endif %}
+            </a>
+            {% if catalog_stickers_text %}
+            <ul class="stickers_text">
+              {% if product.sticker_new_status %}<li style="background: {{ sticker_new_background }}">{{ sticker_new_name }}</li>{% endif %}
+              {% if product.sticker_special_status %}<li style="background: {{ sticker_special_background }}">{{ sticker_special_name }}</li>{% endif %}
+              {% if product.sticker_sale_status %}<li style="background: {{ sticker_sale_background }}">{{ sticker_sale_name }}</li>{% endif %}
+              {% if product.sticker_hot_status %}<li style="background: {{ sticker_hot_background }}">{{ sticker_hot_name }}</li>{% endif %}
+            </ul>
+            {% endif %}
+            <div class="buttons_compare_wishlist">
+              <button type="button" class="button_wishlist icon_wishlist" onclick="wishlist.add('{{ product.product_id }}');"></button>
+              <button type="button" class="button_compare icon_compare" onclick="compare.add('{{ product.product_id }}');"></button>
+              <button type="button" class="button_view_modal icon_view_modal"></button>
+              {% if buyoneclick_status_module %}
+                <button type="button" data-loading-text="{{ buyoneclick_text_loading }}" class="button_fast_checkout icon_fast_checkout" {% if (buyoneclick_google_status and buyoneclick_google_category_btn is defined and buyoneclick_google_category_btn != '' and buyoneclick_google_action_btn is defined and buyoneclick_google_action_btn != '') %} onClick="clickAnalytics(); return true;" {% endif %} data-target="#boc_order" data-product="{{ product['name'] }}" data-product_id="{{ product['product_id'] }}"></button>
+              {% endif %}
+            </div>
+            {% if product.special %}
+            <div class="percent">-{{ product.special_percent }}%</div>
+            {% endif %}
+          </div>
+          <div class="caption">
+            <div class="name"><a href="{{ product.href }}">{{ product.name }}</a></div>
+            {% if product.description and catalog_description %}<p class="description">{{ product.description }}</p>{% endif %}
+            <div class="additional">
+              <div class="rating">
+                {% for i in 1..5 %}
+                  {% if product.rating < i %}
+                  <span></span>
+                  {% else %}
+                  <span class="active"></span>
+                  {% endif %}
+                {% endfor %}
+                <p>{{ product.reviews }}</p>
+              </div>
+              {% if product.model and catalog_model %}
+              <p class="model">{{ product.model }}</p>
+              {% endif %}
+              {% if product.stock and catalog_stock %}
+              <div class="stock{% if product.stock_status_id == 7 %} in{% elseif product.stock_status_id == 5 %} out{% elseif product.stock_status_id == 6 %} wait{% elseif product.stock_status_id == 8 %} pre{% endif %}">{{ product.stock }}</div>
+              {% endif %}
+            </div>
+            <div class="price_button">
+              {% if product.price %}
+              <div class="price">
+                {% if not product.special %}
+                
+            {% if catalog_quantity %}
+                <div class="price-stock el-price">{{ product.price }}</div>
+            {% else %}
+                <div class="price-stock">{{ product.price }}</div>
+            {% endif %}
+        
+                {% else %}
+                <div class="price-old">{{ product.price }}</div>
+                <div class="price-stock price-new">{{ product.special }}</div>
+                {% endif %}
+              </div>
+              {% endif %}
+              
+            {% if catalog_quantity %}
+               <button id="add-cart-{{ product.product_id }}" type="button" data-productid ="{{ product.product_id }}" class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock {% endif %} bcart f-button-add-cart"></button>
+            {% else %}
+                <button class="btn icon_cart{% if product.out_of_stock and catalog_button_cart %} out_of_stock{% endif %}" type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"></button>
+            {% endif %}
+        
+            </div>
+            <div class="hover_block">
+
+            {% if catalog_quantity %}
+            <div class="wrap-plus-minus" id="wrap-plus-minus{{ product.product_id }}">
+                <span class="btn p-m minus">-</span>
+                <input name="quantity" id="quantity{{ product.product_id }}" class="inp-quantity p-m" value="{{ product.minimum }}" type="text">
+                <span class="btn p-m plus">+</span>
+                <input name="product_id" type="hidden" class="product-id" value="{{ product.product_id }}">
+                <input name="minimum" type="hidden" class="minimum" value="{{ product.minimum }}">
+                <input name="maximum" type="hidden" class="maximum" value="{{ product.maximum }}">
+                <input name="price-no-format" type="hidden" class="price-no-format" value="{{ product.price_no_format }}">
+                <input name="special-no-format" type="hidden" class="special-no-format" value="{{ product.special_no_format }}">
+            </div>
+            {% endif %}
+        
+              {% if product.attribute_groups and catalog_attribute_groups %}
+              <ul class="attribute_groups">
+                {% for attribute_group in product.attribute_groups|slice(0, 2) %}
+                {% for attribute in attribute_group.attribute|slice(0, 3) %}
+                <li>
+                  <b>{{ attribute.name }}:</b>
+                  {% if attribute.text|length > 90 %}
+                    {{ attribute.text|slice(0, 90) ~ '...' }}
+                  {% else %}
+                    {{ attribute.text }}
+                  {% endif %}
+                </li>
+                {% endfor %}
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="pagination_items">
+        {{ pagination }}
+        <p class="result">{{ results }}</p>
+      </div>
+      {% endif %}
+      {% if not categories and not products %}
+      <p>{{ text_empty }}</p>
+      <div class="buttons buttons_bottom">
+        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {% endif %}
+      {% if description_position == 0 %}
+        {% if thumb or description %}
+        <div class="description_block description_bottom">
+          {% if thumb %}
+            <img src="{{ thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" />
+          {% endif %}
+          {% if description %}
+            <div class="description_content">
+              <div class="description_text">{{ description }}</div>
+              <div class="description_link"></div>
+            </div>
+          {% endif %}
+        </div>
+        {% endif %}
+      {% endif %}
+{{ microdatapro }} {% set microdatapro_main_flag = 1 %} {# microdatapro 8.1 - 1 - main #}
+      <!-- OCFilter Start -->
+      {% if ocfilter_pages.bottom %}
+      <nav class="ocf-page-list-bottom">      
+        {% for ocfilter_page_group in ocfilter_pages.bottom %}    
+        <div class="ocf-page-group">
+          {% if ocfilter_page_group.name %}
+          <div class="ocf-page-group-name">{{ ocfilter_page_group.name }}</div>
+          {% endif %}
+          <ul class="ocf-category-page-list">
+            {% for ocfilter_page in ocfilter_page_group.pages %}
+            {% if ocfilter_page.selected %}
+            <li class="ocf-page-selected"><a href="{{ ocfilter_page.href }}">{{ ocfilter_page.name }}</a></li>
+            {% else %}
+            <li><a href="{{ ocfilter_page.href }}">{{ ocfilter_page.name }}</a></li>
+            {% endif %}     
+            {% endfor %}
+          </ul>         
+        </div>               
+        {% endfor %}
+      </nav>
+      {% endif %}
+      
+      {% if ocfilter_description_bottom %}   
+      <div class="ocf-description ocf-description-bottom">{{ ocfilter_description_bottom }}</div>
+      {% endif %}
+      <!-- /OCFilter End -->
+      
+      {{ content_bottom }}
+    </div>
+    {{ column_right }}
+  </div>
+</div>
+<script>
+if($(".description_text").height() >= 120) {
+    $('.description_link').addClass('active');
+  }
+$('.description_link').on('click', function() {
+  $('.description_text').addClass('active');
+  $('.description_link').removeClass('active');
+});
+</script>
+{% if (microdatapro_main_flag is not defined) %}{{ microdatapro }}{% endif %} {# microdatapro 8.1 - 2 - extra #}
+{{ footer }} 
