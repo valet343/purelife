@@ -1,0 +1,80 @@
+# OpenCart .gitignore
+
+# Config files with sensitive data
+config.php
+admin/config.php
+
+# Storage directories (cache, logs, sessions)
+system/storage/cache/*
+!system/storage/cache/.htaccess
+system/storage/logs/*
+!system/storage/logs/.htaccess
+system/storage/session/*
+!system/storage/session/.htaccess
+system/storage/modification/*
+!system/storage/modification/.htaccess
+system/storage/download/*
+!system/storage/download/.htaccess
+system/storage/upload/*
+!system/storage/upload/.htaccess
+
+# Error logs
+error_log
+*.log
+admin/error_log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+
+# Composer
+/vendor/
+composer.lock
+
+# Node modules (if using npm)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Deploy configuration (contains sensitive SSH data)
+deploy-config.json
+
+# PHP
+*.php~
+*.php.bak
+
+# Image cache (if generated)
+image/cache/*
+
+# User uploaded content (optional - uncomment if you don't want to track uploads)
+# image/catalog/*
+# !image/catalog/.htaccess
