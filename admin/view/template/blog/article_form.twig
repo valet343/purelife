@@ -31,6 +31,7 @@
             <li><a href="#tab-image" data-toggle="tab">{{ tab_image }}</a></li>
             <li><a href="#tab-seo" data-toggle="tab">{{ tab_seo }}</a></li>
             <li><a href="#tab-design" data-toggle="tab">{{ tab_design }}</a></li>
+            <li><a href="#tab-telegram" data-toggle="tab">{{ tab_telegram }}</a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab-general">
@@ -305,6 +306,49 @@
                 </table>
               </div>
             </div>
+			<div class="tab-pane" id="tab-telegram">
+              <div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ help_telegram }}</div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-telegram-token">{{ entry_telegram_token }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="telegram_token" value="{{ telegram_token }}" placeholder="{{ entry_telegram_token }}" id="input-telegram-token" class="form-control" />
+                  <small class="help-block">{{ help_telegram_token }}</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-telegram-channel">{{ entry_telegram_channel }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="telegram_channel" value="{{ telegram_channel }}" placeholder="@purelifeblog" id="input-telegram-channel" class="form-control" />
+                  <small class="help-block">{{ help_telegram_channel }}</small>
+                </div>
+              </div>
+              <hr>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-telegram-hashtags">{{ entry_telegram_hashtags }}</label>
+                <div class="col-sm-10">
+                  <textarea name="telegram_hashtags" rows="3" placeholder="#садоводство #поради #рослини" id="input-telegram-hashtags" class="form-control">{{ telegram_hashtags }}</textarea>
+                  <small class="help-block">{{ help_telegram_hashtags }}</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">{{ entry_telegram_preview }}</label>
+                <div class="col-sm-10">
+                  <div class="well" style="background: #f5f5f5; padding: 15px; border-radius: 4px;">
+                    <div id="telegram-preview">
+                      <strong id="preview-title">{{ article_description[config_language_id] ? article_description[config_language_id].name : '' }}</strong>
+                      <p id="preview-description" style="margin-top: 10px; color: #666;"></p>
+                      <div id="preview-hashtags" style="margin-top: 10px; color: #0088cc;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                  <button type="button" id="button-publish-telegram" class="btn btn-success"><i class="fa fa-paper-plane"></i> {{ button_publish_telegram }}</button>
+                  <span id="telegram-status" style="margin-left: 10px;"></span>
+                </div>
+              </div>
+            </div>
           </div>
         </form>
       </div>
@@ -433,6 +477,92 @@ $('input[name=\'relatedproduct\']').autocomplete({
 $('#product-related').delegate('.fa-minus-circle', 'click', function() {
 	$(this).parent().remove();
 });
+
+// Telegram preview update
+function updateTelegramPreview() {
+	// Отримуємо активну мову з табів
+	var activeLanguageTab = $('#language li.active a').attr('href');
+	var languageId = activeLanguageTab ? activeLanguageTab.replace('#language', '') : '{{ config_language_id }}';
+	
+	var title = $('#input-name' + languageId).val() || '';
+	var description = $('#input-description' + languageId).val() || '';
+	var hashtags = $('#input-telegram-hashtags').val() || '';
+	
+	// Очищаємо HTML з опису для прев'ю
+	var cleanDescription = $('<div>').html(description).text();
+	if (cleanDescription.length > 200) {
+		cleanDescription = cleanDescription.substring(0, 200) + '...';
+	}
+	
+	$('#preview-title').text(title || '{{ text_no_title }}');
+	$('#preview-description').text(cleanDescription);
+	$('#preview-hashtags').text(hashtags);
+}
+
+// Оновлюємо прев'ю при зміні полів та переключенні мов
+$('input[id^="input-name"], textarea[id^="input-description"], #input-telegram-hashtags').on('input change', function() {
+	updateTelegramPreview();
+});
+
+// Оновлюємо прев'ю при переключенні мови
+$('#language a[data-toggle="tab"]').on('shown.bs.tab', function() {
+	updateTelegramPreview();
+});
+
+// Публікація в Telegram
+$('#button-publish-telegram').on('click', function() {
+	var articleId = '{{ article_id }}' || 0;
+	var token = $('#input-telegram-token').val();
+	var channel = $('#input-telegram-channel').val();
+	var hashtags = $('#input-telegram-hashtags').val();
+	
+	if (!token) {
+		alert('{{ error_telegram_token_required }}');
+		return;
+	}
+	
+	if (!channel) {
+		alert('{{ error_telegram_channel_required }}');
+		return;
+	}
+	
+	if (!articleId || articleId == '0') {
+		alert('{{ error_article_not_saved }}');
+		return;
+	}
+	
+	var button = $(this);
+	var originalText = button.html();
+	button.prop('disabled', true).html('<i class="fa fa-spinner fa-spin"></i> {{ text_publishing }}');
+	$('#telegram-status').html('');
+	
+	$.ajax({
+		url: 'index.php?route=blog/article/publishToTelegram&user_token={{ user_token }}',
+		type: 'post',
+		data: {
+			'article_id': articleId,
+			'telegram_token': token,
+			'telegram_channel': channel,
+			'telegram_hashtags': hashtags
+		},
+		dataType: 'json',
+		success: function(json) {
+			if (json['success']) {
+				$('#telegram-status').html('<span class="text-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</span>');
+			} else if (json['error']) {
+				$('#telegram-status').html('<span class="text-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</span>');
+			}
+			button.prop('disabled', false).html(originalText);
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			$('#telegram-status').html('<span class="text-danger"><i class="fa fa-exclamation-circle"></i> {{ error_telegram_request }}</span>');
+			button.prop('disabled', false).html(originalText);
+		}
+	});
+});
+
+// Ініціалізація прев'ю при завантаженні сторінки
+updateTelegramPreview();
 //--></script> 
   
   <script type="text/javascript"><!--

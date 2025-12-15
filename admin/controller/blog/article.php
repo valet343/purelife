@@ -731,6 +731,28 @@ class ControllerBlogArticle extends Controller {
 
 		$data['layouts'] = $this->model_design_layout->getLayouts();
 
+		// Telegram settings
+		if (isset($this->request->post['telegram_token'])) {
+			$data['telegram_token'] = $this->request->post['telegram_token'];
+		} else {
+			$data['telegram_token'] = $this->config->get('config_telegram_token') ? $this->config->get('config_telegram_token') : '';
+		}
+
+		if (isset($this->request->post['telegram_channel'])) {
+			$data['telegram_channel'] = $this->request->post['telegram_channel'];
+		} else {
+			$data['telegram_channel'] = $this->config->get('config_telegram_channel') ? $this->config->get('config_telegram_channel') : '@purelifeblog';
+		}
+
+		if (isset($this->request->post['telegram_hashtags'])) {
+			$data['telegram_hashtags'] = $this->request->post['telegram_hashtags'];
+		} else {
+			$data['telegram_hashtags'] = '';
+		}
+
+		$data['config_language_id'] = $this->config->get('config_language_id');
+		$data['article_id'] = isset($this->request->get['article_id']) ? $this->request->get['article_id'] : 0;
+
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
@@ -906,6 +928,145 @@ class ControllerBlogArticle extends Controller {
 					'article_id' => $result['article_id'],
 					'name'       => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
 				);
+			}
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+
+	public function publishToTelegram() {
+		$this->load->language('blog/article');
+
+		$json = array();
+
+		if (!$this->user->hasPermission('modify', 'blog/article')) {
+			$json['error'] = $this->language->get('error_permission');
+		} else {
+			if (!isset($this->request->post['article_id']) || !$this->request->post['article_id']) {
+				$json['error'] = $this->language->get('error_article_not_saved');
+			} elseif (!isset($this->request->post['telegram_token']) || !$this->request->post['telegram_token']) {
+				$json['error'] = $this->language->get('error_telegram_token_required');
+			} elseif (!isset($this->request->post['telegram_channel']) || !$this->request->post['telegram_channel']) {
+				$json['error'] = $this->language->get('error_telegram_channel_required');
+			} else {
+				$this->load->model('blog/article');
+				$this->load->model('tool/image');
+
+				$article_id = (int)$this->request->post['article_id'];
+				$article_info = $this->model_blog_article->getArticle($article_id);
+
+				if (!$article_info) {
+					$json['error'] = $this->language->get('error_article_not_found');
+				} else {
+					$article_description = $this->model_blog_article->getArticleDescriptions($article_id);
+					$language_id = $this->config->get('config_language_id');
+
+					$title = isset($article_description[$language_id]['name']) ? $article_description[$language_id]['name'] : '';
+					$description = isset($article_description[$language_id]['description']) ? $article_description[$language_id]['description'] : '';
+					
+					// Очищаємо HTML з опису
+					$description = strip_tags($description);
+					$description = html_entity_decode($description, ENT_QUOTES, 'UTF-8');
+					
+					// Обмежуємо довжину опису
+					if (mb_strlen($description) > 1000) {
+						$description = mb_substr($description, 0, 1000) . '...';
+					}
+
+					$hashtags = isset($this->request->post['telegram_hashtags']) ? trim($this->request->post['telegram_hashtags']) : '';
+					
+					// Отримуємо категорію статті
+					$this->load->model('blog/category');
+					$main_category_id = $this->model_blog_article->getArticleMainCategoryId($article_id);
+					$category_name = '';
+					if ($main_category_id) {
+						$category_info = $this->model_blog_category->getCategory($main_category_id);
+						if ($category_info) {
+							$category_name = $category_info['name'];
+						}
+					}
+					
+					// Формуємо повідомлення
+					$message = '<b>' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</b>' . "\n\n";
+					
+					if ($category_name) {
+						$message .= '<i>' . htmlspecialchars($category_name, ENT_QUOTES, 'UTF-8') . '</i>' . "\n\n";
+					}
+					
+					$message .= htmlspecialchars($description, ENT_QUOTES, 'UTF-8');
+					
+					if ($hashtags) {
+						$message .= "\n\n" . $hashtags;
+					}
+
+					$token = $this->request->post['telegram_token'];
+					$channel = $this->request->post['telegram_channel'];
+					
+					// Перевіряємо формат каналу
+					if (strpos($channel, '@') !== 0) {
+						$channel = '@' . ltrim($channel, '@');
+					}
+
+					$api_url = 'https://api.telegram.org/bot' . $token;
+
+					// Перевіряємо наявність зображення
+					$image_url = '';
+					if (!empty($article_info['image']) && is_file(DIR_IMAGE . $article_info['image'])) {
+						$image_url = HTTP_CATALOG . 'image/' . $article_info['image'];
+					}
+
+					// Відправляємо повідомлення
+					if ($image_url) {
+						// Відправляємо фото з підписом через URL
+						$photo_url = $api_url . '/sendPhoto';
+						
+						$post_data = array(
+							'chat_id' => $channel,
+							'photo' => $image_url,
+							'caption' => $message,
+							'parse_mode' => 'HTML'
+						);
+
+						$ch = curl_init();
+						curl_setopt($ch, CURLOPT_URL, $photo_url);
+						curl_setopt($ch, CURLOPT_POST, true);
+						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+						curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+						curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post_data));
+						$result = curl_exec($ch);
+						$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+						curl_close($ch);
+					} else {
+						// Відправляємо тільки текст
+						$message_url = $api_url . '/sendMessage';
+						
+						$post_data = array(
+							'chat_id' => $channel,
+							'text' => $message,
+							'parse_mode' => 'HTML'
+						);
+
+						$ch = curl_init();
+						curl_setopt($ch, CURLOPT_URL, $message_url);
+						curl_setopt($ch, CURLOPT_POST, true);
+						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+						curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+						curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post_data));
+						$result = curl_exec($ch);
+						$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+						curl_close($ch);
+					}
+
+					$result_data = json_decode($result, true);
+
+					if ($http_code == 200 && isset($result_data['ok']) && $result_data['ok']) {
+						$json['success'] = $this->language->get('text_telegram_published');
+					} else {
+						$error_message = isset($result_data['description']) ? $result_data['description'] : $this->language->get('error_telegram_request');
+						$json['error'] = $this->language->get('error_telegram_publish') . ': ' . $error_message;
+					}
+				}
 			}
 		}
 

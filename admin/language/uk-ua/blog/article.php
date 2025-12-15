@@ -38,8 +38,27 @@ $_['entry_related']          = 'Рекомендовані статті';
 $_['entry_related_product']  = 'Рекомендовані товари';
 $_['entry_tag']          	 = 'Теги статті';
 $_['entry_layout']           = 'Обрати макет';
+$_['entry_telegram_token']   = 'Токен Telegram бота';
+$_['entry_telegram_channel'] = 'Канал Telegram';
+$_['entry_telegram_hashtags'] = 'Хештеги';
+$_['entry_telegram_preview'] = 'Попередній перегляд';
+
+// Tab
+$_['tab_telegram']           = 'Телеграм';
+
+// Button
+$_['button_publish_telegram'] = 'Опублікувати в канал';
+
+// Text
+$_['text_publishing']         = 'Публікація...';
+$_['text_no_title']           = 'Без назви';
+$_['text_telegram_published'] = 'Статтю успішно опубліковано в Telegram!';
 
 // Help
+$_['help_telegram']           = 'Налаштуйте параметри для публікації статті в Telegram канал';
+$_['help_telegram_token']     = 'Токен бота отримується від @BotFather в Telegram';
+$_['help_telegram_channel']   = 'Назва каналу (наприклад: @purelifeblog або -1001234567890)';
+$_['help_telegram_hashtags']  = 'Введіть хештеги через пробіл (наприклад: #садоводство #поради)';
 $_['help_keyword']           = 'Має бути унікальним на всю систему, без пробілів та спецсимволів';
 $_['help_category']          = '(Автодоповнення)';
 $_['help_download']          = '(Автодоповнення)';
@@ -55,3 +74,9 @@ $_['error_name']             = 'Назва має містити від 3 до 2
 $_['error_meta_title']       = 'Мета-тег Title має містити від 0 до 255 символів';
 $_['error_meta_h1']	         = 'HTML-тег H1 має містити від 0 до 255 символів';
 $_['error_keyword']          = 'Вказаний SEO URL вже використовується';
+$_['error_telegram_token_required'] = 'Необхідно вказати токен Telegram бота';
+$_['error_telegram_channel_required'] = 'Необхідно вказати канал Telegram';
+$_['error_article_not_saved'] = 'Спочатку збережіть статтю';
+$_['error_article_not_found'] = 'Статтю не знайдено';
+$_['error_telegram_request'] = 'Помилка при відправці запиту до Telegram';
+$_['error_telegram_publish'] = 'Помилка публікації в Telegram';
