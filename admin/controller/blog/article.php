@@ -970,10 +970,24 @@ class ControllerBlogArticle extends Controller {
 						if (empty($text)) {
 							return '';
 						}
-						// Видаляємо всі HTML теги (включаючи з атрибутами)
-						$text = preg_replace('/<[^>]*>/', '', $text);
+						// Спочатку використовуємо strip_tags для базового очищення
+						$text = strip_tags($text);
 						// Декодуємо HTML entities
 						$text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+						// Видаляємо всі HTML теги через регулярний вираз (включаючи з атрибутами)
+						$old_text = '';
+						$iterations = 0;
+						while ($old_text !== $text && $iterations < 10) {
+							$old_text = $text;
+							// Видаляємо всі теги, включаючи самозакриваючі та з атрибутами
+							$text = preg_replace('/<[^>]+>/', '', $text);
+							$text = preg_replace('/<\/[^>]+>/', '', $text);
+							$iterations++;
+						}
+						// Декодуємо HTML entities ще раз
+						$text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+						// Видаляємо залишки HTML entities у вигляді &nbsp; &amp; тощо
+						$text = str_replace(array('&nbsp;', '&amp;', '&lt;', '&gt;', '&quot;', '&#39;'), array(' ', '&', '<', '>', '"', "'"), $text);
 						// Видаляємо зайві пробіли та переноси рядків
 						$text = preg_replace('/\s+/', ' ', $text);
 						$text = trim($text);
@@ -998,6 +1012,8 @@ class ControllerBlogArticle extends Controller {
 					}
 
 					$hashtags = isset($this->request->post['telegram_hashtags']) ? trim($this->request->post['telegram_hashtags']) : '';
+					// Очищаємо хештеги від HTML (на всяк випадок)
+					$hashtags = $cleanHtml($hashtags);
 					
 					// Отримуємо категорію статті
 					$this->load->model('blog/category');
