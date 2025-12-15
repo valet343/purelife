@@ -965,9 +965,26 @@ class ControllerBlogArticle extends Controller {
 					$title = isset($article_description[$language_id]['name']) ? $article_description[$language_id]['name'] : '';
 					$description = isset($article_description[$language_id]['description']) ? $article_description[$language_id]['description'] : '';
 					
-					// Очищаємо HTML з опису
-					$description = strip_tags($description);
-					$description = html_entity_decode($description, ENT_QUOTES, 'UTF-8');
+					// Функція для повного очищення HTML
+					$cleanHtml = function($text) {
+						if (empty($text)) {
+							return '';
+						}
+						// Видаляємо всі HTML теги (включаючи з атрибутами)
+						$text = preg_replace('/<[^>]*>/', '', $text);
+						// Декодуємо HTML entities
+						$text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+						// Видаляємо зайві пробіли та переноси рядків
+						$text = preg_replace('/\s+/', ' ', $text);
+						$text = trim($text);
+						return $text;
+					};
+					
+					// Очищаємо назву статті від HTML
+					$title = $cleanHtml($title);
+					
+					// Очищаємо опис від HTML
+					$description = $cleanHtml($description);
 					
 					// Обмежуємо довжину опису до 400 символів для підпису фото
 					$max_length = 400;
@@ -990,6 +1007,8 @@ class ControllerBlogArticle extends Controller {
 						$category_info = $this->model_blog_category->getCategory($main_category_id);
 						if ($category_info) {
 							$category_name = $category_info['name'];
+							// Очищаємо категорію від HTML
+							$category_name = $cleanHtml($category_name);
 						}
 					}
 					
@@ -1006,7 +1025,7 @@ class ControllerBlogArticle extends Controller {
 						$article_url = HTTP_CATALOG . 'index.php?route=blog/article&article_id=' . $article_id;
 					}
 					
-					// Формуємо повідомлення
+					// Формуємо повідомлення (текст вже очищений від HTML, тільки екрануємо для Telegram HTML)
 					$message = '<b>' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</b>' . "\n\n";
 					
 					if ($category_name) {
