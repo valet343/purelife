@@ -732,15 +732,19 @@ class ControllerBlogArticle extends Controller {
 		$data['layouts'] = $this->model_design_layout->getLayouts();
 
 		// Telegram settings
+		$this->load->model('setting/setting');
+		
 		if (isset($this->request->post['telegram_token'])) {
 			$data['telegram_token'] = $this->request->post['telegram_token'];
 		} else {
-			$data['telegram_token'] = $this->config->get('config_telegram_token') ? $this->config->get('config_telegram_token') : '';
+			// Завантажуємо з налаштувань або використовуємо за замовчуванням
+			$data['telegram_token'] = $this->config->get('config_telegram_token') ? $this->config->get('config_telegram_token') : '6465331084:AAHobsCwzncQPJlxkhdjcYAWKMf5qx5l_gw';
 		}
 
 		if (isset($this->request->post['telegram_channel'])) {
 			$data['telegram_channel'] = $this->request->post['telegram_channel'];
 		} else {
+			// Завантажуємо з налаштувань або використовуємо за замовчуванням
 			$data['telegram_channel'] = $this->config->get('config_telegram_channel') ? $this->config->get('config_telegram_channel') : '@purelifeblog';
 		}
 
@@ -1065,6 +1069,14 @@ class ControllerBlogArticle extends Controller {
 					if (strpos($channel, '@') !== 0) {
 						$channel = '@' . ltrim($channel, '@');
 					}
+					
+					// Зберігаємо токен та канал в налаштуваннях для подальшого використання
+					$this->load->model('setting/setting');
+					$telegram_settings = array(
+						'config_telegram_token' => $token,
+						'config_telegram_channel' => $channel
+					);
+					$this->model_setting_setting->editSetting('config', $telegram_settings);
 
 					$api_url = 'https://api.telegram.org/bot' . $token;
 
@@ -1125,6 +1137,44 @@ class ControllerBlogArticle extends Controller {
 						$json['error'] = $this->language->get('error_telegram_publish') . ': ' . $error_message;
 					}
 				}
+			}
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+
+	public function saveTelegramSettings() {
+		$this->load->language('blog/article');
+
+		$json = array();
+
+		if (!$this->user->hasPermission('modify', 'blog/article')) {
+			$json['error'] = $this->language->get('error_permission');
+		} else {
+			if (!isset($this->request->post['telegram_token']) || !$this->request->post['telegram_token']) {
+				$json['error'] = $this->language->get('error_telegram_token_required');
+			} elseif (!isset($this->request->post['telegram_channel']) || !$this->request->post['telegram_channel']) {
+				$json['error'] = $this->language->get('error_telegram_channel_required');
+			} else {
+				$this->load->model('setting/setting');
+				
+				$token = $this->request->post['telegram_token'];
+				$channel = $this->request->post['telegram_channel'];
+				
+				// Перевіряємо формат каналу
+				if (strpos($channel, '@') !== 0) {
+					$channel = '@' . ltrim($channel, '@');
+				}
+				
+				// Зберігаємо токен та канал в налаштуваннях
+				$telegram_settings = array(
+					'config_telegram_token' => $token,
+					'config_telegram_channel' => $channel
+				);
+				$this->model_setting_setting->editSetting('config', $telegram_settings);
+				
+				$json['success'] = $this->language->get('text_telegram_settings_saved');
 			}
 		}
 

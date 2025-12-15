@@ -48,6 +48,7 @@ $_['tab_telegram']           = 'Телеграм';
 
 // Button
 $_['button_publish_telegram'] = 'Опублікувати в канал';
+$_['button_save_telegram_settings'] = 'Зберегти налаштування';
 
 // Text
 $_['text_publishing']         = 'Публікація...';
