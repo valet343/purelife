@@ -947,7 +947,15 @@ class ControllerBlogArticle extends Controller {
 		if (!$this->user->hasPermission('modify', 'blog/article')) {
 			$json['error'] = $this->language->get('error_permission');
 		} else {
-			if (!isset($this->request->post['article_id']) || !$this->request->post['article_id']) {
+			// Перевіряємо article_id - спочатку з POST, потім з GET (якщо редагуємо)
+			$article_id = 0;
+			if (isset($this->request->post['article_id']) && $this->request->post['article_id']) {
+				$article_id = (int)$this->request->post['article_id'];
+			} elseif (isset($this->request->get['article_id']) && $this->request->get['article_id']) {
+				$article_id = (int)$this->request->get['article_id'];
+			}
+			
+			if (!$article_id) {
 				$json['error'] = $this->language->get('error_article_not_saved');
 			} elseif (!isset($this->request->post['telegram_token']) || !$this->request->post['telegram_token']) {
 				$json['error'] = $this->language->get('error_telegram_token_required');
@@ -957,11 +965,10 @@ class ControllerBlogArticle extends Controller {
 				$this->load->model('blog/article');
 				$this->load->model('tool/image');
 
-				$article_id = (int)$this->request->post['article_id'];
 				$article_info = $this->model_blog_article->getArticle($article_id);
 
-				if (!$article_info) {
-					$json['error'] = $this->language->get('error_article_not_found');
+				if (!$article_info || empty($article_info)) {
+					$json['error'] = $this->language->get('error_article_not_found') . ' (ID: ' . $article_id . ')';
 				} else {
 					$article_description = $this->model_blog_article->getArticleDescriptions($article_id);
 					$language_id = $this->config->get('config_language_id');

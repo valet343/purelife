@@ -555,7 +555,15 @@ $('#button-save-telegram-settings').on('click', function() {
 
 // Публікація в Telegram
 $('#button-publish-telegram').on('click', function() {
-	var articleId = '{{ article_id }}' || 0;
+	// Отримуємо article_id з URL або зі змінної
+	var articleId = 0;
+	var urlParams = new URLSearchParams(window.location.search);
+	if (urlParams.has('article_id')) {
+		articleId = urlParams.get('article_id');
+	} else if ('{{ article_id }}' && '{{ article_id }}' != '0') {
+		articleId = '{{ article_id }}';
+	}
+	
 	var token = $('#input-telegram-token').val();
 	var channel = $('#input-telegram-channel').val();
 	var hashtags = $('#input-telegram-hashtags').val();
@@ -570,7 +578,7 @@ $('#button-publish-telegram').on('click', function() {
 		return;
 	}
 	
-	if (!articleId || articleId == '0') {
+	if (!articleId || articleId == '0' || articleId == 0) {
 		alert('{{ error_article_not_saved }}');
 		return;
 	}
