@@ -969,9 +969,15 @@ class ControllerBlogArticle extends Controller {
 					$description = strip_tags($description);
 					$description = html_entity_decode($description, ENT_QUOTES, 'UTF-8');
 					
-					// Обмежуємо довжину опису
-					if (mb_strlen($description) > 1000) {
-						$description = mb_substr($description, 0, 1000) . '...';
+					// Обмежуємо довжину опису до 400 символів для підпису фото
+					$max_length = 400;
+					if (mb_strlen($description) > $max_length) {
+						$description = mb_substr($description, 0, $max_length);
+						// Перевіряємо, щоб не обрізати слово посередині
+						$last_space = mb_strrpos($description, ' ');
+						if ($last_space !== false && $last_space > $max_length * 0.8) {
+							$description = mb_substr($description, 0, $last_space);
+						}
 					}
 
 					$hashtags = isset($this->request->post['telegram_hashtags']) ? trim($this->request->post['telegram_hashtags']) : '';
@@ -987,6 +993,19 @@ class ControllerBlogArticle extends Controller {
 						}
 					}
 					
+					// Отримуємо URL статті
+					$article_url = '';
+					$article_seo_urls = $this->model_blog_article->getArticleSeoUrls($article_id);
+					$store_id = 0; // Використовуємо головний магазин
+					
+					if (isset($article_seo_urls[$store_id][$language_id]) && !empty($article_seo_urls[$store_id][$language_id])) {
+						// Використовуємо SEO URL
+						$article_url = HTTP_CATALOG . $article_seo_urls[$store_id][$language_id];
+					} else {
+						// Використовуємо стандартний URL
+						$article_url = HTTP_CATALOG . 'index.php?route=blog/article&article_id=' . $article_id;
+					}
+					
 					// Формуємо повідомлення
 					$message = '<b>' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</b>' . "\n\n";
 					
@@ -995,6 +1014,10 @@ class ControllerBlogArticle extends Controller {
 					}
 					
 					$message .= htmlspecialchars($description, ENT_QUOTES, 'UTF-8');
+					
+					// Додаємо "Читати далі" з посиланням
+					$read_more_text = $this->language->get('text_read_more');
+					$message .= "\n\n" . '<a href="' . htmlspecialchars($article_url, ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($read_more_text, ENT_QUOTES, 'UTF-8') . '</a>';
 					
 					if ($hashtags) {
 						$message .= "\n\n" . $hashtags;

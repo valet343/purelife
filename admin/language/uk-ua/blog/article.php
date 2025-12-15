@@ -53,6 +53,7 @@ $_['button_publish_telegram'] = 'Опублікувати в канал';
 $_['text_publishing']         = 'Публікація...';
 $_['text_no_title']           = 'Без назви';
 $_['text_telegram_published'] = 'Статтю успішно опубліковано в Telegram!';
+$_['text_read_more']          = 'Читати далі...';
 
 // Help
 $_['help_telegram']           = 'Налаштуйте параметри для публікації статті в Telegram канал';
